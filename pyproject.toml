@@ -1,0 +1,11 @@
+[project]
+name = "ntu-dual-guide"
+version = "0.1.0"
+description = "LLMOps and RAG tooling for NTU dual-major guidance."
+requires-python = ">=3.8"
+
+[tool.setuptools]
+package-dir = {"" = "packages/ingestion/src"}
+
+[tool.setuptools.packages.find]
+where = ["packages/ingestion/src"]
