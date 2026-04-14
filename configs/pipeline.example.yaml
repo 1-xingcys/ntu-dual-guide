@@ -1,0 +1,20 @@
+pipeline:
+  dataset_name: ntu-dual-guide
+  dataset_version: 2026-04-14-initial
+  environment: dev
+  storage:
+    raw_dir: data/raw
+    bronze_dir: data/bronze
+    silver_dir: data/silver
+    gold_dir: data/gold
+  embedding:
+    provider: openai
+    model: text-embedding-3-large
+    batch_size: 64
+  vector_store:
+    provider: pinecone
+    index_name: ntu-dual-guide-dev-openai-large
+    namespace: main
+  retrieval:
+    top_k: 8
+    min_similarity: 0.2

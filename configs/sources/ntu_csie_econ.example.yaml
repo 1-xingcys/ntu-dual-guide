@@ -1,0 +1,24 @@
+source_id: ntu-csie-econ-dual-major
+source_type: pdf
+title: NTU CSIE x Economics Dual Major Regulations
+url: https://example.edu.tw/dual-major.pdf
+tags:
+  - ntu
+  - csie
+  - economics
+  - dual-major
+parser:
+  name: pdf_to_markdown
+  version: v1
+chunking_profile:
+  name: regulation_sections
+  max_tokens: 600
+  overlap_tokens: 80
+crawl_policy:
+  update_strategy: content_hash
+  check_interval_hours: 24
+metadata:
+  department:
+    - csie
+    - economics
+  locale: zh-TW
