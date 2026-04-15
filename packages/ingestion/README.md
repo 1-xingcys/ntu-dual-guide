@@ -28,6 +28,12 @@
 - `ntu_dual_guide_ingestion/silver_router.py`
 - `ntu_dual_guide_ingestion/normalizers/`
 
+以及第一版 `silver -> gold` 入口：
+
+- `scripts/silver_to_gold.py`
+- `ntu_dual_guide_ingestion/gold_router.py`
+- `ntu_dual_guide_ingestion/chunkers/`
+
 ### Layer responsibilities
 
 - `raw`: 原始 PDF / HTML 檔案與來源分類
