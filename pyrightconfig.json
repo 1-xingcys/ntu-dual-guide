@@ -1,0 +1,22 @@
+{
+  "venvPath": ".",
+  "venv": ".venv",
+  "include": [
+    "apps",
+    "packages",
+    "scripts"
+  ],
+  "extraPaths": [
+    "packages/ingestion/src",
+    "packages/rag/src"
+  ],
+  "executionEnvironments": [
+    {
+      "root": ".",
+      "extraPaths": [
+        "packages/ingestion/src",
+        "packages/rag/src"
+      ]
+    }
+  ]
+}
