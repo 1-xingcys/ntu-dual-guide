@@ -34,6 +34,13 @@
 - `ntu_dual_guide_ingestion/gold_router.py`
 - `ntu_dual_guide_ingestion/chunkers/`
 
+以及 `gold -> index records -> Pinecone` 入口：
+
+- `scripts/gold_to_index_records.py`
+- `scripts/upsert_pinecone.py`
+- `ntu_dual_guide_ingestion/index_records.py`
+- `ntu_dual_guide_ingestion/vector_clients.py`
+
 ### Layer responsibilities
 
 - `raw`: 原始 PDF / HTML 檔案與來源分類
@@ -73,3 +80,19 @@ python3 scripts/raw_to_bronze.py --dataset-version 2026-04-15.001
 python3 scripts/bronze_to_silver.py --dataset-version 2026-04-15.001
 python3 scripts/silver_to_gold.py --dataset-version 2026-04-15.001
 ```
+
+索引階段範例：
+
+```bash
+python3 scripts/gold_to_index_records.py --dataset-version 2026-04-15.003
+python3 scripts/upsert_pinecone.py --dataset-version 2026-04-15.003 --dry-run
+python3 scripts/upsert_pinecone.py --dataset-version 2026-04-15.003
+```
+
+實際 upsert 需要這些環境變數：
+
+- `OPENAI_API_KEY`
+- `PINECONE_API_KEY`
+- `PINECONE_INDEX_HOST`
+
+`scripts/upsert_pinecone.py` 會自動讀 repo root 的 `.env`，且已存在的 shell 環境變數優先。
