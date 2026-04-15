@@ -8,14 +8,16 @@
   ],
   "extraPaths": [
     "packages/ingestion/src",
-    "packages/rag/src"
+    "packages/rag/src",
+    "packages/evals/src"
   ],
   "executionEnvironments": [
     {
       "root": ".",
       "extraPaths": [
         "packages/ingestion/src",
-        "packages/rag/src"
+        "packages/rag/src",
+        "packages/evals/src"
       ]
     }
   ]

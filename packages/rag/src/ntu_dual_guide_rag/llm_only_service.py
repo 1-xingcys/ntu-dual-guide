@@ -1,0 +1,42 @@
+from __future__ import annotations
+
+from pathlib import Path
+
+from ntu_dual_guide_rag.models import ChatAnswer
+from ntu_dual_guide_rag.openai_responses import create_text_response
+from ntu_dual_guide_rag.prompts import LLM_ONLY_SYSTEM_PROMPT
+from ntu_dual_guide_rag.prompts import build_llm_only_user_prompt
+from ntu_dual_guide_rag.settings import RagSettings
+
+
+class LlmOnlyService:
+    def __init__(self, settings: RagSettings) -> None:
+        self.settings = settings
+
+    @classmethod
+    def from_repo_root(cls, repo_root: Path) -> "LlmOnlyService":
+        settings = RagSettings.from_env(repo_root)
+        return cls(settings)
+
+    def answer(self, question: str) -> ChatAnswer:
+        answer_text = create_text_response(
+            api_key=self.settings.openai_api_key,
+            model=self.settings.openai_model,
+            instructions=LLM_ONLY_SYSTEM_PROMPT,
+            user_input=build_llm_only_user_prompt(question),
+        ).strip()
+
+        status = "answered"
+        if not answer_text or answer_text == "不知道":
+            answer_text = "不知道"
+            status = "unknown"
+
+        return ChatAnswer(
+            answer=answer_text,
+            status=status,
+            model=self.settings.openai_model,
+            dataset_version=self.settings.dataset_version,
+            namespace=self.settings.namespace,
+            citations=[],
+            retrieved_chunks=[],
+        )

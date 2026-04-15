@@ -17,6 +17,11 @@ SYSTEM_PROMPT = """你是台大資訊工程學系、雙主修經濟學系的 AI 
 7. 不要假設未提供的條件，例如核准年度、入學年度、原系身分；若缺少關鍵條件又無法從 context 判斷，就回答不知道。
 """
 
+LLM_ONLY_SYSTEM_PROMPT = """你是台大資訊工程學系、雙主修經濟學系的 AI 助手。
+
+現在沒有提供檢索內容，你只能根據自己已知的台大校規、系規與常見修課規定回答。
+"""
+
 
 def build_user_prompt(question: str, chunks: list[RetrievalChunk]) -> str:
     context_lines = []
@@ -36,3 +41,7 @@ def build_user_prompt(question: str, chunks: list[RetrievalChunk]) -> str:
         question,
         context_text or "（無）",
     )
+
+
+def build_llm_only_user_prompt(question: str) -> str:
+    return "問題：{0}\n\n請直接回答；若不確定，請回答不知道。".format(question)

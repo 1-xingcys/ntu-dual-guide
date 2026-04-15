@@ -15,4 +15,4 @@ ntu_dual_guide_ingestion = "packages/ingestion/src/ntu_dual_guide_ingestion"
 ntu_dual_guide_rag = "packages/rag/src/ntu_dual_guide_rag"
 
 [tool.setuptools.packages.find]
-where = ["packages/ingestion/src", "packages/rag/src"]
+where = ["packages/ingestion/src", "packages/rag/src", "packages/evals/src"]
