@@ -37,6 +37,38 @@ class FaqContent:
 
 
 @dataclass
+class DualMajorPolicySection:
+    section_id: str
+    label: str
+    text: str
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "section_id": self.section_id,
+            "label": self.label,
+            "text": self.text,
+        }
+
+
+@dataclass
+class DualMajorPolicyContent:
+    academic_year: Optional[str]
+    department_name: Optional[str]
+    quota: Optional[str]
+    contact_phone: Optional[str]
+    sections: list[DualMajorPolicySection]
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "academic_year": self.academic_year,
+            "department_name": self.department_name,
+            "quota": self.quota,
+            "contact_phone": self.contact_phone,
+            "sections": [section.to_dict() for section in self.sections],
+        }
+
+
+@dataclass
 class SilverDocument:
     source_id: str
     doc_type: str

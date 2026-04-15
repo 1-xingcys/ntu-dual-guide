@@ -4,13 +4,17 @@ import argparse
 import hashlib
 import json
 import re
-import subprocess
 from dataclasses import dataclass
 from pathlib import Path
 
 from ntu_dual_guide_ingestion.silver_schema import FaqContent
 from ntu_dual_guide_ingestion.silver_schema import FaqQAPair
 from ntu_dual_guide_ingestion.silver_schema import SilverDocument
+from ntu_dual_guide_ingestion.utils import extract_pdf_text
+from ntu_dual_guide_ingestion.utils import extract_title
+from ntu_dual_guide_ingestion.utils import normalize_fragment
+from ntu_dual_guide_ingestion.utils import normalize_whitespace
+from ntu_dual_guide_ingestion.utils import sha256_file
 
 PARSER_NAME = "pdftotext"
 PARSER_VERSION = "v1"
@@ -31,38 +35,6 @@ class QAPair:
             answer=self.answer,
             topics=self.topics,
         )
-
-
-def extract_pdf_text(pdf_path: Path) -> str:
-    result = subprocess.run(
-        ["pdftotext", str(pdf_path), "-"],
-        check=True,
-        capture_output=True,
-        text=True,
-    )
-    return result.stdout
-
-
-def normalize_whitespace(text: str) -> str:
-    text = text.replace("\x0c", "\n")
-    text = text.replace("\u3000", " ")
-    text = text.replace("：", ": ")
-    text = re.sub(r"\n{2,}", "\n", text)
-    text = re.sub(r"[ \t]+", " ", text)
-    text = re.sub(r" ?\n ?", "\n", text)
-    return text.strip()
-
-
-def normalize_fragment(text: str) -> str:
-    text = normalize_whitespace(text)
-    text = re.sub(r"\n+", " ", text)
-    text = re.sub(r"\s+", " ", text)
-    return text.strip()
-
-
-def extract_title(text: str, fallback: str) -> str:
-    lines = [line.strip() for line in text.splitlines() if line.strip()]
-    return lines[0] if lines else fallback
 
 
 def infer_topics(question: str, answer: str) -> list[str]:
@@ -101,10 +73,6 @@ def split_qa_pairs(text: str, source_id: str) -> list[QAPair]:
             )
         )
     return pairs
-
-
-def sha256_file(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def processing_fingerprint(source_hash: str) -> str:
