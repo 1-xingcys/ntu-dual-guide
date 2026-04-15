@@ -79,12 +79,56 @@ def upsert_vectors_pinecone(
         raise RuntimeError(read_http_error(exc)) from exc
 
 
+def query_vectors_pinecone(
+    vector: list[float],
+    *,
+    namespace: str,
+    index_host: str,
+    api_key: str,
+    top_k: int,
+    include_metadata: bool = True,
+    api_version: str = DEFAULT_PINECONE_API_VERSION,
+    filter: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    payload: dict[str, Any] = {
+        "vector": vector,
+        "namespace": namespace,
+        "topK": top_k,
+        "includeMetadata": include_metadata,
+    }
+    if filter:
+        payload["filter"] = filter
+    req = request.Request(
+        normalize_pinecone_query_url(index_host),
+        data=json.dumps(payload).encode("utf-8"),
+        headers={
+            "Api-Key": api_key,
+            "Content-Type": "application/json",
+            "X-Pinecone-Api-Version": api_version,
+        },
+        method="POST",
+    )
+    try:
+        with request.urlopen(req, timeout=120) as response:
+            return json.loads(response.read().decode("utf-8"))
+    except error.HTTPError as exc:
+        raise RuntimeError(read_http_error(exc)) from exc
+
+
 def normalize_pinecone_upsert_url(index_host: str) -> str:
     if index_host.startswith("https://"):
         return "{0}/vectors/upsert".format(index_host.rstrip("/"))
     if index_host.startswith("http://"):
         return "{0}/vectors/upsert".format(index_host.rstrip("/"))
     return "https://{0}/vectors/upsert".format(index_host.rstrip("/"))
+
+
+def normalize_pinecone_query_url(index_host: str) -> str:
+    if index_host.startswith("https://"):
+        return "{0}/query".format(index_host.rstrip("/"))
+    if index_host.startswith("http://"):
+        return "{0}/query".format(index_host.rstrip("/"))
+    return "https://{0}/query".format(index_host.rstrip("/"))
 
 
 def read_http_error(exc: error.HTTPError) -> str:
