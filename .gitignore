@@ -20,6 +20,7 @@ dist/
 
 # Data and artifacts
 data/raw/*
+data/raw-deprecated/*
 data/bronze/*
 data/silver/*
 data/gold/*
