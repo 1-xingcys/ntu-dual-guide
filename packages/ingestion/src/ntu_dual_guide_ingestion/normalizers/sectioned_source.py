@@ -22,6 +22,7 @@ class BronzeSectionedSourceNormalizer(BaseSilverNormalizer):
     def build_document(self, bronze_document: dict[str, Any]) -> dict[str, Any]:
         sections = build_sectioned_content(bronze_document, self.doc_type)
         document = SilverDocument(
+            dataset_version=bronze_document["dataset_version"],
             source_id=self.source_id,
             doc_type=self.doc_type,
             title=bronze_document["content"].get("title") or bronze_document["file_name"],

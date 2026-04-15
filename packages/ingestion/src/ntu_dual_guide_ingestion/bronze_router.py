@@ -43,10 +43,10 @@ class RawToBronzeRouter:
             return RawRoute(family=family, category=category, adapter_kind="html", parser_profile="html_pruned")
         raise ValueError("Unsupported raw file type: {0}".format(raw_path))
 
-    def build_bronze_document(self, raw_path: Path, raw_root: Path) -> dict:
+    def build_bronze_document(self, raw_path: Path, raw_root: Path, dataset_version: str) -> dict:
         route = self.resolve(raw_path, raw_root)
         adapter = self.adapters[route.parser_profile]
-        return adapter.build_document(raw_path, route).to_dict()
+        return adapter.build_document(raw_path, route, dataset_version).to_dict()
 
 
 def iter_raw_files(input_path: Path) -> Iterable[Path]:

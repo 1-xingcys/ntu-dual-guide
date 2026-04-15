@@ -27,6 +27,7 @@ class BronzeCurriculumRequiredNormalizer(BaseSilverNormalizer):
             parsed["admission_year"] or "unknown",
         )
         document = SilverDocument(
+            dataset_version=bronze_document["dataset_version"],
             source_id=source_id,
             doc_type="curriculum_required_summary",
             title=parsed["title"],

@@ -28,6 +28,7 @@ class BronzeFaqNormalizer(BaseSilverNormalizer):
         source_id = infer_faq_source_id(bronze_document)
         qa_pairs = extract_qa_pairs(bronze_document, source_id)
         document = SilverDocument(
+            dataset_version=bronze_document["dataset_version"],
             source_id=source_id,
             doc_type="faq",
             title=bronze_document["content"].get("title") or bronze_document["file_name"],

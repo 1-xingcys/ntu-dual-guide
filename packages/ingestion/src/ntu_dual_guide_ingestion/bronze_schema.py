@@ -44,6 +44,7 @@ class BronzeContent:
 
 @dataclass
 class BronzeDocument:
+    dataset_version: str
     raw_path: str
     file_name: str
     file_format: str
@@ -62,6 +63,7 @@ class BronzeDocument:
     def to_dict(self) -> dict[str, Any]:
         return {
             "schema_version": self.schema_version,
+            "dataset_version": self.dataset_version,
             "raw_path": self.raw_path,
             "file_name": self.file_name,
             "file_format": self.file_format,

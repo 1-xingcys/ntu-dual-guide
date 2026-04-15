@@ -51,3 +51,25 @@
 - `source-specific/*.html` -> `html_pruned`
 
 目前應以 `raw -> bronze -> silver` 為主流程；`silver` 由 `document class` normalizer 產生，不再直接由 `raw` 輸出。
+
+### Dataset snapshots
+
+三個 stage script 現在都必須顯式帶 `--dataset-version`，而且會把輸出寫到版本化目錄：
+
+- `data/bronze/<dataset_version>/...`
+- `data/silver/<dataset_version>/...`
+- `data/gold/<dataset_version>/...`
+
+同時每個 stage 會寫 manifest 到：
+
+- `data/manifests/<dataset_version>/raw_to_bronze.json`
+- `data/manifests/<dataset_version>/bronze_to_silver.json`
+- `data/manifests/<dataset_version>/silver_to_gold.json`
+
+範例：
+
+```bash
+python3 scripts/raw_to_bronze.py --dataset-version 2026-04-15.001
+python3 scripts/bronze_to_silver.py --dataset-version 2026-04-15.001
+python3 scripts/silver_to_gold.py --dataset-version 2026-04-15.001
+```

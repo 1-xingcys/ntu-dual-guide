@@ -28,7 +28,12 @@ class BaseBronzeAdapter:
     parser_name = "base"
     parser_version = "v1"
 
-    def build_document(self, raw_path: Path, route: RawRoute) -> BronzeDocument:
+    def build_document(
+        self,
+        raw_path: Path,
+        route: RawRoute,
+        dataset_version: str,
+    ) -> BronzeDocument:
         raise NotImplementedError
 
     def processing_fingerprint(self, source_hash: str, parser_profile: str) -> str:
@@ -45,12 +50,18 @@ class PdfBronzeAdapter(BaseBronzeAdapter):
     def __init__(self, layout: bool) -> None:
         self.layout = layout
 
-    def build_document(self, raw_path: Path, route: RawRoute) -> BronzeDocument:
+    def build_document(
+        self,
+        raw_path: Path,
+        route: RawRoute,
+        dataset_version: str,
+    ) -> BronzeDocument:
         raw_text = extract_pdf_text(raw_path, layout=self.layout)
         source_hash = sha256_file(raw_path)
         blocks = build_pdf_blocks(raw_text, raw_path.stem)
 
         return BronzeDocument(
+            dataset_version=dataset_version,
             raw_path=str(raw_path),
             file_name=raw_path.name,
             file_format="pdf",
@@ -75,7 +86,12 @@ class HtmlBronzeAdapter(BaseBronzeAdapter):
     def __init__(self, table_aware: bool) -> None:
         self.table_aware = table_aware
 
-    def build_document(self, raw_path: Path, route: RawRoute) -> BronzeDocument:
+    def build_document(
+        self,
+        raw_path: Path,
+        route: RawRoute,
+        dataset_version: str,
+    ) -> BronzeDocument:
         html_text = raw_path.read_text(encoding="utf-8")
         source_hash = sha256_file(raw_path)
         parser = BronzeHTMLParser(table_aware=self.table_aware)
@@ -84,6 +100,7 @@ class HtmlBronzeAdapter(BaseBronzeAdapter):
         title = parser.title or raw_path.stem
 
         return BronzeDocument(
+            dataset_version=dataset_version,
             raw_path=str(raw_path),
             file_name=raw_path.name,
             file_format="html",

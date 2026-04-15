@@ -1,0 +1,83 @@
+{
+  "schema_version": "dataset.stage_manifest.v1",
+  "dataset_version": "2026-04-15.001",
+  "stage": "raw_to_bronze",
+  "created_at": "2026-04-15T04:45:54.194692+00:00",
+  "document_count": 8,
+  "dataset_fingerprint": "eb0c34a9b0eb34d492812c340afb0959a4d150dd85bd823189f7692cff5a6752",
+  "output_root": "/Users/1-xing/Documents/ntu-dual-guide/data/bronze/2026-04-15.001",
+  "documents": [
+    {
+      "relative_output_path": "source-specific/112臺大資訊工程系新生手冊230827.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/source-specific/112臺大資訊工程系新生手冊230827.pdf",
+      "source_path": null,
+      "source_hash": "4de338ee5c9893d569918c36769ad3eb8ad245b23f6f4e02ddf5a19a5bf96bce",
+      "processing_fingerprint": "b1f6d3d2c95718e589c8e3c7ffe64f82fe232446a90578ef8f899fc2743650aa"
+    },
+    {
+      "relative_output_path": "source-specific/台大經濟系轉雙輔招生頁面.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/source-specific/台大經濟系轉雙輔招生頁面.html",
+      "source_path": null,
+      "source_hash": "84b43d547869352cfced2fac5a65424763cd50d1fc5b7e16722e835871ae2130",
+      "processing_fingerprint": "609326a45b0f824950a4770c38207a1f38ce948e2ddf1af05b160f5c47216f6d"
+    },
+    {
+      "relative_output_path": "source-specific/台大經濟雙主修_輔系常見Q_A.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/source-specific/台大經濟雙主修_輔系常見Q_A.pdf",
+      "source_path": null,
+      "source_hash": "a706a432fe28bde467a2a1c458fac540c4285256c426d97867515c98694854c2",
+      "processing_fingerprint": "1c723add717a6cb444dba97edf8e64592ac1720d46481174092a10d8a50f81ac"
+    },
+    {
+      "relative_output_path": "source-specific/國立臺灣大學轉系、輔系及雙主修相關規定查詢網頁.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/source-specific/國立臺灣大學轉系、輔系及雙主修相關規定查詢網頁.pdf",
+      "source_path": null,
+      "source_hash": "01231bc747454dad0aeef0ef5ddb5bb49770e4ce72aa71cd712fa27dba208ab2",
+      "processing_fingerprint": "a7372c6559bc5f58b433d34c7db6f941d952d474825a3f23c0f2ed53885507e1"
+    },
+    {
+      "relative_output_path": "template-family/dpt-credit-required/台大經濟學系111學年度入學學生畢業應修學分統計表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-credit-required/台大經濟學系111學年度入學學生畢業應修學分統計表.html",
+      "source_path": null,
+      "source_hash": "ee90ed851407f4fca6b129db1807a2aa4480bc3390bf7d195781ff8b387eb009",
+      "processing_fingerprint": "1438d285da3885fc85afe9a7bf6d65518668f383ebd502866453d2dbce376bd5"
+    },
+    {
+      "relative_output_path": "template-family/dpt-credit-required/台大資訊工程學系學系111學年度入學學生畢業應修學分統計表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-credit-required/台大資訊工程學系學系111學年度入學學生畢業應修學分統計表.html",
+      "source_path": null,
+      "source_hash": "f17b3a9a4a6f92f2397849af524d59e3638f34b4f2c30d65ea35509fe651a33b",
+      "processing_fingerprint": "fd725af0a87211810e2130a7331e483a017be19cdfc505bf50f522f24000095b"
+    },
+    {
+      "relative_output_path": "template-family/dpt-double-major-policy/國立臺灣大學111學年度經濟學系雙主修相關規定.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-double-major-policy/國立臺灣大學111學年度經濟學系雙主修相關規定.pdf",
+      "source_path": null,
+      "source_hash": "75a8b4051cfe7c5a7b93278fcfa964b112bbdcc240b128597b183d1562989d46",
+      "processing_fingerprint": "7ebc171f49bf8e9715e4cb54b5dbef164c52c829f0f4759ac9dab137047d7003"
+    },
+    {
+      "relative_output_path": "template-family/dpt-double-major-policy/國立臺灣大學112學年度經濟學系雙主修相關規定.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-double-major-policy/國立臺灣大學112學年度經濟學系雙主修相關規定.pdf",
+      "source_path": null,
+      "source_hash": "5d1fd4dd507ab9e3cb4535a062e323a534cc59bc62707f2b0256e046bb93f006",
+      "processing_fingerprint": "f3a94486505de9881ae4f9624cc76a4f0c9e9376dfe890ea948ddcf11501cc41"
+    }
+  ]
+}

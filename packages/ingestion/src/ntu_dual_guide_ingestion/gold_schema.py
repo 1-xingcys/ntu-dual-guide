@@ -34,6 +34,7 @@ class GoldChunk:
 
 @dataclass
 class GoldDocument:
+    dataset_version: str
     source_id: str
     doc_type: str
     title: str
@@ -53,6 +54,7 @@ class GoldDocument:
     def to_dict(self) -> dict[str, Any]:
         return {
             "schema_version": self.schema_version,
+            "dataset_version": self.dataset_version,
             "source_id": self.source_id,
             "doc_type": self.doc_type,
             "title": self.title,

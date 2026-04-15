@@ -136,6 +136,7 @@ class SectionedContent:
 
 @dataclass
 class SilverDocument:
+    dataset_version: str
     source_id: str
     doc_type: str
     title: str
@@ -157,6 +158,7 @@ class SilverDocument:
         content = self.content.to_dict() if hasattr(self.content, "to_dict") else self.content
         return {
             "schema_version": self.schema_version,
+            "dataset_version": self.dataset_version,
             "source_id": self.source_id,
             "doc_type": self.doc_type,
             "title": self.title,

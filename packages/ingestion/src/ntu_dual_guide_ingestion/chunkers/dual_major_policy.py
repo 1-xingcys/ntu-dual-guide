@@ -59,6 +59,7 @@ class DualMajorPolicyGoldChunker(BaseGoldChunker):
             )
 
         document = GoldDocument(
+            dataset_version=silver_document["dataset_version"],
             source_id=silver_document["source_id"],
             doc_type=silver_document["doc_type"],
             title=silver_document["title"],

@@ -37,6 +37,7 @@ class BronzeDualMajorPolicyNormalizer(BaseSilverNormalizer):
         parsed = parse_policy_from_bronze(bronze_document)
         source_id = infer_policy_source_id(bronze_document, parsed)
         document = SilverDocument(
+            dataset_version=bronze_document["dataset_version"],
             source_id=source_id,
             doc_type="dual_major_policy",
             title=parsed.title,
