@@ -3,7 +3,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
-from ntu_dual_guide_ingestion.faq_extractor import infer_topics
 from ntu_dual_guide_ingestion.normalizers.base import BaseSilverNormalizer
 from ntu_dual_guide_ingestion.silver_schema import FaqContent
 from ntu_dual_guide_ingestion.silver_schema import FaqQAPair
@@ -44,6 +43,24 @@ class BronzeFaqNormalizer(BaseSilverNormalizer):
             source_url=bronze_document.get("source_url"),
         )
         return document.to_dict()
+
+
+def infer_topics(question: str, answer: str) -> list[str]:
+    haystack = "{0} {1}".format(question, answer)
+    keyword_topics = [
+        ("學分要求", ["學分", "修完", "取得學位"]),
+        ("兼充", ["兼充", "一修二用"]),
+        ("課程認列", ["計入", "替代", "課名相同"]),
+        ("統計課程", ["統計學", "計量經濟學"]),
+        ("雙主修", ["雙主修"]),
+        ("輔系", ["輔系"]),
+        ("核准年度", ["核准年度"]),
+    ]
+    topics: list[str] = []
+    for topic, keywords in keyword_topics:
+        if any(keyword in haystack for keyword in keywords):
+            topics.append(topic)
+    return topics
 
 
 def infer_faq_source_id(bronze_document: dict[str, Any]) -> str:

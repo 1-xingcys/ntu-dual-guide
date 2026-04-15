@@ -44,4 +44,4 @@
 - `source-specific/*.pdf` -> `pdf_plain`
 - `source-specific/*.html` -> `html_pruned`
 
-現有的 `faq_extractor.py` 與 `dual_major_policy_extractor.py` 仍保留為 legacy `raw -> silver` 路徑；之後應逐步改成讀取 `bronze` 再轉 `silver`。
+目前應以 `raw -> bronze -> silver` 為主流程；`silver` 由 `document class` normalizer 產生，不再直接由 `raw` 輸出。
