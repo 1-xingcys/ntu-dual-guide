@@ -69,6 +69,72 @@ class DualMajorPolicyContent:
 
 
 @dataclass
+class CurriculumTermLimit:
+    grade: str
+    term: str
+    min_credits: str
+    max_credits: str
+    required_major_credits: str
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "grade": self.grade,
+            "term": self.term,
+            "min_credits": self.min_credits,
+            "max_credits": self.max_credits,
+            "required_major_credits": self.required_major_credits,
+        }
+
+
+@dataclass
+class CurriculumRequiredContent:
+    department_code: Optional[str]
+    department_name: Optional[str]
+    admission_year: Optional[str]
+    graduation_total_credits: Optional[str]
+    required_major_credits: Optional[str]
+    common_and_general_credits: Optional[str]
+    elective_credits: Optional[str]
+    term_limits: list[CurriculumTermLimit]
+    notes: list[str]
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "department_code": self.department_code,
+            "department_name": self.department_name,
+            "admission_year": self.admission_year,
+            "graduation_total_credits": self.graduation_total_credits,
+            "required_major_credits": self.required_major_credits,
+            "common_and_general_credits": self.common_and_general_credits,
+            "elective_credits": self.elective_credits,
+            "term_limits": [item.to_dict() for item in self.term_limits],
+            "notes": self.notes,
+        }
+
+
+@dataclass
+class SectionedSection:
+    section_id: str
+    heading: str
+    body: str
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "section_id": self.section_id,
+            "heading": self.heading,
+            "body": self.body,
+        }
+
+
+@dataclass
+class SectionedContent:
+    sections: list[SectionedSection]
+
+    def to_dict(self) -> dict[str, Any]:
+        return {"sections": [section.to_dict() for section in self.sections]}
+
+
+@dataclass
 class SilverDocument:
     source_id: str
     doc_type: str

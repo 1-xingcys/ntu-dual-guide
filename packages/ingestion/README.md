@@ -22,6 +22,12 @@
 - `ntu_dual_guide_ingestion/bronze_router.py`
 - `ntu_dual_guide_ingestion/bronze_adapters.py`
 
+以及第一版 `bronze -> silver` 入口：
+
+- `scripts/bronze_to_silver.py`
+- `ntu_dual_guide_ingestion/silver_router.py`
+- `ntu_dual_guide_ingestion/normalizers/`
+
 ### Layer responsibilities
 
 - `raw`: 原始 PDF / HTML 檔案與來源分類
