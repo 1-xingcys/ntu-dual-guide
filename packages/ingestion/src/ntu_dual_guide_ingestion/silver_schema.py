@@ -113,6 +113,50 @@ class CurriculumRequiredContent:
 
 
 @dataclass
+class RequiredCourseItem:
+    course_code: str
+    course_identifier: str | None
+    chinese_name: str
+    english_name: str
+    credits: str
+    group: str | None
+    recognition_scope: str | None
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "course_code": self.course_code,
+            "course_identifier": self.course_identifier,
+            "chinese_name": self.chinese_name,
+            "english_name": self.english_name,
+            "credits": self.credits,
+            "group": self.group,
+            "recognition_scope": self.recognition_scope,
+        }
+
+
+@dataclass
+class CurriculumRequiredCoursesContent:
+    department_code: Optional[str]
+    department_name: Optional[str]
+    admission_year: Optional[str]
+    grade: Optional[str]
+    grade_label: Optional[str]
+    courses: list[RequiredCourseItem]
+    notes: list[str]
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "department_code": self.department_code,
+            "department_name": self.department_name,
+            "admission_year": self.admission_year,
+            "grade": self.grade,
+            "grade_label": self.grade_label,
+            "courses": [item.to_dict() for item in self.courses],
+            "notes": self.notes,
+        }
+
+
+@dataclass
 class SectionedSection:
     section_id: str
     heading: str

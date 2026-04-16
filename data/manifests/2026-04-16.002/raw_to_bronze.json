@@ -1,0 +1,533 @@
+{
+  "schema_version": "dataset.stage_manifest.v1",
+  "dataset_version": "2026-04-16.002",
+  "stage": "raw_to_bronze",
+  "created_at": "2026-04-16T07:39:03.962253+00:00",
+  "document_count": 58,
+  "dataset_fingerprint": "4ee60947e6eb77a1fb6dfc1f3dc37a5c9b6e4962a4838e9f38b1a2ea23300f70",
+  "output_root": "/Users/1-xing/Documents/ntu-dual-guide/data/bronze/2026-04-16.002",
+  "documents": [
+    {
+      "relative_output_path": "source-specific/台大經濟系轉雙輔招生頁面.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/source-specific/台大經濟系轉雙輔招生頁面.html",
+      "source_path": null,
+      "source_hash": "84b43d547869352cfced2fac5a65424763cd50d1fc5b7e16722e835871ae2130",
+      "processing_fingerprint": "609326a45b0f824950a4770c38207a1f38ce948e2ddf1af05b160f5c47216f6d"
+    },
+    {
+      "relative_output_path": "source-specific/台大經濟雙主修_輔系常見Q_A.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/source-specific/台大經濟雙主修_輔系常見Q_A.pdf",
+      "source_path": null,
+      "source_hash": "a706a432fe28bde467a2a1c458fac540c4285256c426d97867515c98694854c2",
+      "processing_fingerprint": "1c723add717a6cb444dba97edf8e64592ac1720d46481174092a10d8a50f81ac"
+    },
+    {
+      "relative_output_path": "source-specific/國立臺灣大學轉系、輔系及雙主修相關規定查詢網頁.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/source-specific/國立臺灣大學轉系、輔系及雙主修相關規定查詢網頁.pdf",
+      "source_path": null,
+      "source_hash": "01231bc747454dad0aeef0ef5ddb5bb49770e4ce72aa71cd712fa27dba208ab2",
+      "processing_fingerprint": "a7372c6559bc5f58b433d34c7db6f941d952d474825a3f23c0f2ed53885507e1"
+    },
+    {
+      "relative_output_path": "template-family/dpt-credit-required/3030-經濟學系/台大經濟學系110學年度入學學生畢業應修學分統計表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-credit-required/3030-經濟學系/台大經濟學系110學年度入學學生畢業應修學分統計表.html",
+      "source_path": null,
+      "source_hash": "6784d6464eb2d714de41d7a7a3d36bcbba84f363a0140de3e56bd45cca567de6",
+      "processing_fingerprint": "79a45f094c5c9b95562aa2062d47f2673a0175c9dc3e0ae57c8f73da042b357b"
+    },
+    {
+      "relative_output_path": "template-family/dpt-credit-required/3030-經濟學系/台大經濟學系111學年度入學學生畢業應修學分統計表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-credit-required/3030-經濟學系/台大經濟學系111學年度入學學生畢業應修學分統計表.html",
+      "source_path": null,
+      "source_hash": "ee90ed851407f4fca6b129db1807a2aa4480bc3390bf7d195781ff8b387eb009",
+      "processing_fingerprint": "1438d285da3885fc85afe9a7bf6d65518668f383ebd502866453d2dbce376bd5"
+    },
+    {
+      "relative_output_path": "template-family/dpt-credit-required/3030-經濟學系/台大經濟學系112學年度入學學生畢業應修學分統計表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-credit-required/3030-經濟學系/台大經濟學系112學年度入學學生畢業應修學分統計表.html",
+      "source_path": null,
+      "source_hash": "397be9e0a578454615dd4c857538b0d0812fde427c7b0e56e6994742a583cf0b",
+      "processing_fingerprint": "d9cace07daaf5fe893746055a67d1546ddaaf45d681781ee6b6aa81f5fe000ae"
+    },
+    {
+      "relative_output_path": "template-family/dpt-credit-required/3030-經濟學系/台大經濟學系113學年度入學學生畢業應修學分統計表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-credit-required/3030-經濟學系/台大經濟學系113學年度入學學生畢業應修學分統計表.html",
+      "source_path": null,
+      "source_hash": "72b3addc8ed2f694fcb704b161124b0964ad1550fc2e18eebd8d1b0e0d42608a",
+      "processing_fingerprint": "8df63e0659d4925d5cc08f456a81b69b3fa86012788c0a80be433e265a14f272"
+    },
+    {
+      "relative_output_path": "template-family/dpt-credit-required/3030-經濟學系/台大經濟學系114學年度入學學生畢業應修學分統計表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-credit-required/3030-經濟學系/台大經濟學系114學年度入學學生畢業應修學分統計表.html",
+      "source_path": null,
+      "source_hash": "3642d6c615a92969a4f560d109c911860893d7d95c2e7f0193ecebcf8af8c94c",
+      "processing_fingerprint": "20a561394e6bf6ef7a7d9182a337d365f26443418bd3a49163e42ef1f1a3b778"
+    },
+    {
+      "relative_output_path": "template-family/dpt-credit-required/9020-資訊工程學系/台大資訊工程學系110學年度入學學生畢業應修學分統計表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-credit-required/9020-資訊工程學系/台大資訊工程學系110學年度入學學生畢業應修學分統計表.html",
+      "source_path": null,
+      "source_hash": "2a96aefcd78a4435b3bd67ae3a33a59a036e1ebf151a195e3fffa355ba715c57",
+      "processing_fingerprint": "340ac19916cf2d0818dacb91dfd07b5d8b6275fbd01deae1c2e001fca5908312"
+    },
+    {
+      "relative_output_path": "template-family/dpt-credit-required/9020-資訊工程學系/台大資訊工程學系111學年度入學學生畢業應修學分統計表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-credit-required/9020-資訊工程學系/台大資訊工程學系111學年度入學學生畢業應修學分統計表.html",
+      "source_path": null,
+      "source_hash": "f17b3a9a4a6f92f2397849af524d59e3638f34b4f2c30d65ea35509fe651a33b",
+      "processing_fingerprint": "fd725af0a87211810e2130a7331e483a017be19cdfc505bf50f522f24000095b"
+    },
+    {
+      "relative_output_path": "template-family/dpt-credit-required/9020-資訊工程學系/台大資訊工程學系112學年度入學學生畢業應修學分統計表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-credit-required/9020-資訊工程學系/台大資訊工程學系112學年度入學學生畢業應修學分統計表.html",
+      "source_path": null,
+      "source_hash": "097b5c954184d9e4e033805cb301d02544d24d55230285fdf3589750332affd7",
+      "processing_fingerprint": "a444b418b30c05afa33a17d8ab2773efa4336c55b3ae69b55aa9e50b7c13bf88"
+    },
+    {
+      "relative_output_path": "template-family/dpt-credit-required/9020-資訊工程學系/台大資訊工程學系113學年度入學學生畢業應修學分統計表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-credit-required/9020-資訊工程學系/台大資訊工程學系113學年度入學學生畢業應修學分統計表.html",
+      "source_path": null,
+      "source_hash": "52a7b9bb1aee59c7b560014b8104cbef9e25a03ba9a29733231129d41f1aa47c",
+      "processing_fingerprint": "37a7fba5274bb6e78513ed40c3ed65c773d8f0ab5a17f848b801ae07ed269978"
+    },
+    {
+      "relative_output_path": "template-family/dpt-credit-required/9020-資訊工程學系/台大資訊工程學系114學年度入學學生畢業應修學分統計表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-credit-required/9020-資訊工程學系/台大資訊工程學系114學年度入學學生畢業應修學分統計表.html",
+      "source_path": null,
+      "source_hash": "c4d563687efe16492b8a2cc4daf7b79d7597c4e8318e1cd13094b07988775ebf",
+      "processing_fingerprint": "14768a2a960141c93448f98bcbf896c86404e036e1c82dd25c8510681bce900d"
+    },
+    {
+      "relative_output_path": "template-family/dpt-double-major-policy/國立臺灣大學111學年度經濟學系雙主修相關規定.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-double-major-policy/國立臺灣大學111學年度經濟學系雙主修相關規定.pdf",
+      "source_path": null,
+      "source_hash": "75a8b4051cfe7c5a7b93278fcfa964b112bbdcc240b128597b183d1562989d46",
+      "processing_fingerprint": "7ebc171f49bf8e9715e4cb54b5dbef164c52c829f0f4759ac9dab137047d7003"
+    },
+    {
+      "relative_output_path": "template-family/dpt-double-major-policy/國立臺灣大學112學年度經濟學系雙主修相關規定.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-double-major-policy/國立臺灣大學112學年度經濟學系雙主修相關規定.pdf",
+      "source_path": null,
+      "source_hash": "5d1fd4dd507ab9e3cb4535a062e323a534cc59bc62707f2b0256e046bb93f006",
+      "processing_fingerprint": "f3a94486505de9881ae4f9624cc76a4f0c9e9376dfe890ea948ddcf11501cc41"
+    },
+    {
+      "relative_output_path": "template-family/dpt-double-major-policy/國立臺灣大學113學年度經濟學系雙主修相關規定 .json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-double-major-policy/國立臺灣大學113學年度經濟學系雙主修相關規定 .pdf",
+      "source_path": null,
+      "source_hash": "f6f79e9448e54bf76042b3e86fd1a6a392c49f431896c3b8bfa86578e2ecc68d",
+      "processing_fingerprint": "6f99223dfc8405dcf0581165de8bfe110afecf36e6b709f00a37e55723459d70"
+    },
+    {
+      "relative_output_path": "template-family/dpt-double-major-policy/國立臺灣大學114學年度經濟學系雙主修相關規定.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-double-major-policy/國立臺灣大學114學年度經濟學系雙主修相關規定.pdf",
+      "source_path": null,
+      "source_hash": "b1da77b7a636f302e243f32afd46de8192d1f0f0767b1137447423d65dddf2e1",
+      "processing_fingerprint": "c9ddcaa8fe19d1771c013ec54092c4b84cc7c387d66d943571ab9a7a1886c36a"
+    },
+    {
+      "relative_output_path": "template-family/dpt-double-major-policy/國立臺灣大學115學年度經濟學系雙主修相關規定.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-double-major-policy/國立臺灣大學115學年度經濟學系雙主修相關規定.pdf",
+      "source_path": null,
+      "source_hash": "d81c656c5761e1c1f8f4c111a7428de7fa9539fbb77dd3b6987120d3785e5f30",
+      "processing_fingerprint": "4dee9a97c84efe697835f45d59dfc5b473d4d7ae3bb9e4cbd5f7623ce87cd45e"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/3030-經濟學系/110/3030-110學年度-1年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/3030-經濟學系/110/3030-110學年度-1年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "9b21da6c48ec8acb98cfec196f6fbe9030eccb7288ee5821771558856ed79325",
+      "processing_fingerprint": "0348f9bd6a7a947db916ec98faf45ba9f2ffeface8ed0578788aecd6b1e26d7d"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/3030-經濟學系/110/3030-110學年度-2年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/3030-經濟學系/110/3030-110學年度-2年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "cb7f4c2f6c30f6dd02c6f0cef9c53414820f1b0f56357d1f6d3613488d9785e8",
+      "processing_fingerprint": "509d7255fd0eb896610c7d1e5cfa91f352ebddcd50b8c3bd03a1f55cce7e76d9"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/3030-經濟學系/110/3030-110學年度-3年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/3030-經濟學系/110/3030-110學年度-3年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "575f969c7167463d5cda115285777d757490331d93104791afa1d6d24313c1d7",
+      "processing_fingerprint": "f99d13aec3770bb7042a0c14ad4ab2a07f2c60c5eaa14c6f281857692978f7ea"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/3030-經濟學系/110/3030-110學年度-4年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/3030-經濟學系/110/3030-110學年度-4年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "35dbb178121f02255c64b4ce9722a1800b74a66429b6b2c0e7a9b824f68ffc25",
+      "processing_fingerprint": "7fbb49f8498a6a6624c1846388e5fe3d59065990d73a6946002727fff5c9e158"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/3030-經濟學系/111/3030-111學年度-1年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/3030-經濟學系/111/3030-111學年度-1年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "db2e1136d55321ba8d63b5e5131f2e313a4ae42bd2ddeedacca99af7cdcfba64",
+      "processing_fingerprint": "54b62120fb7f01eb178366bf598191d82f6e12d54b012f2738adaf85e335e33c"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/3030-經濟學系/111/3030-111學年度-2年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/3030-經濟學系/111/3030-111學年度-2年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "268937bfcc36c025c7e96d9e47d1ae0dc1d70b6073a0dceabdfd8100036a27c0",
+      "processing_fingerprint": "033d2e0f1182b5a1a4436dea59645d932e479bfa00463b5aabd3166dec7d6972"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/3030-經濟學系/111/3030-111學年度-3年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/3030-經濟學系/111/3030-111學年度-3年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "c274505c7f76bb1bd9e7b6206695afd58056cfa0186e0365c00b8d14f99e4512",
+      "processing_fingerprint": "da882a38e83c68c5a68ac45de0024678d61fb485890c2e5f79057fb9bf19650a"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/3030-經濟學系/111/3030-111學年度-4年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/3030-經濟學系/111/3030-111學年度-4年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "600d6680191a2b26534a1e1c10e9b942adab342931d8fd0ff90fbef0c47d8058",
+      "processing_fingerprint": "a20eef38f73ca4fcd624600bc0a7aacf981ec427ec2c7d063b8325baadc364e3"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/3030-經濟學系/112/3030-112學年度-1年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/3030-經濟學系/112/3030-112學年度-1年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "ee756bb56dd58301f5c6d3c3b8b44eae58a80e69d3b82c16bb1c5fd67c67fe16",
+      "processing_fingerprint": "34bc3f768965a78bfdd9a0c0c83571f6aa57779914bd0d2fc5c873b71ead9bc6"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/3030-經濟學系/112/3030-112學年度-2年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/3030-經濟學系/112/3030-112學年度-2年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "1155904403cca1ff311fb250fccc950b52cbbd0b0fa14ceea155aeede6c0f323",
+      "processing_fingerprint": "a994da987d7bb2be53bd3046efab4fe5c680d43e1074bdbf82eab3ddbb742bd9"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/3030-經濟學系/112/3030-112學年度-3年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/3030-經濟學系/112/3030-112學年度-3年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "4199599d4e6f6a8efec9de8124251b6eff12f91488473ab03e07132c95a67e6c",
+      "processing_fingerprint": "fe0cb81402e2f7f12a987aa0f4c1086af62fb7ccc539077f231ff04c5d5a15d7"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/3030-經濟學系/112/3030-112學年度-4年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/3030-經濟學系/112/3030-112學年度-4年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "a5724858b1c25a44a6f52c7e6c28a2937453b6c20682cdcbbab3b9c237b7172a",
+      "processing_fingerprint": "dfb0578f40e67930250f6676a49bb5ad22c16ed858862799bb64a589772d5e27"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/3030-經濟學系/113/3030-113學年度-1年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/3030-經濟學系/113/3030-113學年度-1年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "cd914936a4a32fc08585b071b0cae53272c2bfdb207a5e0033f0ac45fdef0385",
+      "processing_fingerprint": "5135f6447ada4f816afdaf900edddd9f3b776c3ae5b9c5b2236d554c7709a7a0"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/3030-經濟學系/113/3030-113學年度-2年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/3030-經濟學系/113/3030-113學年度-2年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "06df117ad0245066bdef7a0e213401c70726044a37a9a4e5be444c3940b81b3d",
+      "processing_fingerprint": "992231fdbe74d5909212acfcd9ade33e462220a729197f87843629eebabaff02"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/3030-經濟學系/113/3030-113學年度-3年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/3030-經濟學系/113/3030-113學年度-3年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "6349041a30d62e10500f57dd45af0d08e3f56821337e3571bfa86e29581d7b98",
+      "processing_fingerprint": "1049c7c0e1682e0136f4e922941c89a0e311edfb265bd1f5dc57d52afde0c08d"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/3030-經濟學系/113/3030-113學年度-4年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/3030-經濟學系/113/3030-113學年度-4年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "0b6107452424bb62f58481f5bbcd325784075b0eab7ae880354c4d1303108030",
+      "processing_fingerprint": "c985c546b5c5e68d5febbbeae75a8048773bfe4e48b9f17ab42e6cbbf510e1f8"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/3030-經濟學系/114/3030-114學年度-1年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/3030-經濟學系/114/3030-114學年度-1年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "235d1806177929ad1941dde2e5315a1f1c049391bcd4425d367518335819263a",
+      "processing_fingerprint": "75a05f4d9beded8e293f720e6b40c0a25a2bc5c2b2191a4aa93d9e1cf1d66d42"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/3030-經濟學系/114/3030-114學年度-2年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/3030-經濟學系/114/3030-114學年度-2年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "df23fb166b872908327eb3fba9e19d78fc3d5450e49ce9c02ab5b4d8821529f8",
+      "processing_fingerprint": "8b67132a403332503bd031a817e3d8287eeb1d7269f594ecde43b16395f9c05e"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/3030-經濟學系/114/3030-114學年度-3年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/3030-經濟學系/114/3030-114學年度-3年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "90d7ad0d8609ef8fd995e90796086d45f6d94f9f2bcc5c3ca9b14fb087eadf5a",
+      "processing_fingerprint": "7e6de7a5f5658e61a024839b73abe0ef51be4f549b4739b4b7d4f4b6bf81bd22"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/3030-經濟學系/114/3030-114學年度-4年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/3030-經濟學系/114/3030-114學年度-4年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "ae7386a39717611c80a5b6109cde3e1f8a1a1361b7d05af64220bab1530d74e3",
+      "processing_fingerprint": "e2bc4bc4b693aa8939f60a8ae8cedaec62b0b897bc6f5f6ac1e5e6ac5ebb0b20"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/9020-資訊工程學系/110/9020-110學年度-1年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/9020-資訊工程學系/110/9020-110學年度-1年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "5ad6f5e795976892afde1d4d776052e6ccda59c7647d8ce0ebef642fb494997a",
+      "processing_fingerprint": "aebbe603a71d6e94bbceb6ad1b0c6a1c3b4759b9e040e2bf2b4ffe0e6e702f71"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/9020-資訊工程學系/110/9020-110學年度-2年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/9020-資訊工程學系/110/9020-110學年度-2年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "29717b7aadfe46d9312d29a906eb036f3852919ee4fbfe741d6c7e7bbbfe8505",
+      "processing_fingerprint": "81839adea7229f286834769aa67a6f34b5a390ae8fe3faf4b98b73726b9956df"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/9020-資訊工程學系/110/9020-110學年度-3年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/9020-資訊工程學系/110/9020-110學年度-3年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "4500ecc63884a650c971b323e1ce311193e8bb18e2f16b1164c18bba5bf98147",
+      "processing_fingerprint": "317aedf29e29ad9a3997143e2758b7a1466129f8caad9d07d323cacc523c6e8f"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/9020-資訊工程學系/110/9020-110學年度-4年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/9020-資訊工程學系/110/9020-110學年度-4年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "3ddc4075d19e96261605c332714b085119b36297ffa49e4044f09bcc5a95d06b",
+      "processing_fingerprint": "97341613e93cc99ea9c3f4fb5c8be82fc095afe71cda7e15c9a379c4604ee3aa"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/9020-資訊工程學系/111/9020-111學年度-1年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/9020-資訊工程學系/111/9020-111學年度-1年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "633a8adc82f9379a1507b2de33f8e5f8a8b397028eaf49a792e5c52a04dc7fd8",
+      "processing_fingerprint": "6838c41ca71d961241b655a70e945ef3313843278bab205cfd903df1983f40fd"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/9020-資訊工程學系/111/9020-111學年度-2年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/9020-資訊工程學系/111/9020-111學年度-2年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "4102a33769dd11b11b01d4d14f4399dfe522b35b158f104eed0194b14f4f24e1",
+      "processing_fingerprint": "44a73cc1014903bf70de37f775f3aac790b43a978b3aa99b86b32b9d341ba7ff"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/9020-資訊工程學系/111/9020-111學年度-3年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/9020-資訊工程學系/111/9020-111學年度-3年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "575756180a00fd586973f80a6c406f887bbd83314d33e5c3e7c1dfaeb18a6a1d",
+      "processing_fingerprint": "0569e5bc3983e12b0ecda434d4bf394dd79bed26d5550bc5c9301fa43f561f2d"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/9020-資訊工程學系/111/9020-111學年度-4年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/9020-資訊工程學系/111/9020-111學年度-4年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "16c6ce104941f7f0c757ec9a4d4a8e701cac2e5af9c5bf2dadacca9727dc66a4",
+      "processing_fingerprint": "0fac4cd5116a9e97af5ab023c4153b0261cfcef814cf74df1afeccbda2773d8f"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/9020-資訊工程學系/112/9020-112學年度-1年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/9020-資訊工程學系/112/9020-112學年度-1年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "24c9243997e3da6480ead311bf71ccfefb240d82b73b7efc352258c08fbac9df",
+      "processing_fingerprint": "c44b37fb93a3fbeee43f19f6a23996fe36ae47843d9e9180623437ff0d60f00f"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/9020-資訊工程學系/112/9020-112學年度-2年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/9020-資訊工程學系/112/9020-112學年度-2年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "7d917882915fd7be86288d7b78fe32ce37eb40f1ca3fd7512d356b962c20f70e",
+      "processing_fingerprint": "87dcaf7a6758ea1819c5ef179c9efc62b8ee115d290c2cc8c7ea5550b6902517"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/9020-資訊工程學系/112/9020-112學年度-3年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/9020-資訊工程學系/112/9020-112學年度-3年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "229d0f19dbd13705a8e06785ad149b2a2236af7a8764300252cfadb05cc1e383",
+      "processing_fingerprint": "0f65a5c5db0b04b56bc17a1c7f3dec4ab720e769b6a7c0ea5304d2810f4aae0e"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/9020-資訊工程學系/112/9020-112學年度-4年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/9020-資訊工程學系/112/9020-112學年度-4年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "19acbe297fc856caeb875972e1c8cf268cf88867cb42c14557af255793eaeff2",
+      "processing_fingerprint": "59e82c1cbef57493e715430d61c29ed1cac2f99b6907eb024adde3726a5ad6e4"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/9020-資訊工程學系/113/9020-113學年度-1年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/9020-資訊工程學系/113/9020-113學年度-1年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "0c194e5274f6b00f082fc3aa3c394e0aa2d8b79f0aa053103833f898f9293015",
+      "processing_fingerprint": "b2002f44e8a33fd18df55d3af07392f020ffe3a4c5fd64362a3c9004c48dc369"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/9020-資訊工程學系/113/9020-113學年度-2年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/9020-資訊工程學系/113/9020-113學年度-2年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "376a817bc28244c0da4653effa6b908268ecd92f124b1ab96ebecb57082af585",
+      "processing_fingerprint": "ac10613d9640fdc6732480dbf42a51e60eff2d544096ea3dc21be99bde4d38e1"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/9020-資訊工程學系/113/9020-113學年度-3年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/9020-資訊工程學系/113/9020-113學年度-3年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "3085a73093a496e1289db33458dbef673858cee9599e2ad5b89ca25785b2e0f0",
+      "processing_fingerprint": "fde2eadd0ce5285fc4c5ed2334b388eda4079e1d39347fc85a101eb7d20d6e64"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/9020-資訊工程學系/113/9020-113學年度-4年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/9020-資訊工程學系/113/9020-113學年度-4年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "ae9ff09fc000446f28ea7f2524d0ab86922c6801bbdf285cd78428e393411d41",
+      "processing_fingerprint": "01dec78afc8c3d4bb074b9e7a5dd9933a65bfda0bc31e026fe8c55b6095d6c91"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/9020-資訊工程學系/114/9020-114學年度-1年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/9020-資訊工程學系/114/9020-114學年度-1年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "6121892f914dc97c1cb0b10d142be78ad3725f804c1e49fd0d6998431f738e3c",
+      "processing_fingerprint": "ef551594b60e360c5b8406c9fdcd8f720a48b84738d5d0797238a0a17ecc5046"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/9020-資訊工程學系/114/9020-114學年度-2年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/9020-資訊工程學系/114/9020-114學年度-2年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "3f635090e4ef5b77bfe5074febf192b665fd999e327ed2c763306a4b6bcf76fb",
+      "processing_fingerprint": "dd05b6b9aea198f27aa0dc1b1ad74cb96fde8a3742e9a413219166449c06c738"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/9020-資訊工程學系/114/9020-114學年度-3年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/9020-資訊工程學系/114/9020-114學年度-3年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "818d7751b91480206341425db7ceddaf87d3978896d4d7cfe4cd435b6d27370b",
+      "processing_fingerprint": "3a45a2aa68412dfb8c17efbf37913213bba9f5d22f1684d2904034ccc2d144b3"
+    },
+    {
+      "relative_output_path": "template-family/dpt-required-courses/9020-資訊工程學系/114/9020-114學年度-4年級系訂必修科目及學分表.json",
+      "source_id": null,
+      "doc_type": null,
+      "raw_path": "/Users/1-xing/Documents/ntu-dual-guide/data/raw/template-family/dpt-required-courses/9020-資訊工程學系/114/9020-114學年度-4年級系訂必修科目及學分表.html",
+      "source_path": null,
+      "source_hash": "abb381f1f07dc2fd4663565e6a2509de1ac8cd94e836653be3a0aad6761a3cd4",
+      "processing_fingerprint": "4201218259efc3954ca274e40a5304f6014809feaf16a0879b07747deaca5960"
+    }
+  ]
+}

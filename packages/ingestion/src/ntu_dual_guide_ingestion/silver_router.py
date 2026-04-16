@@ -7,6 +7,7 @@ from typing import Iterable
 from ntu_dual_guide_ingestion.normalizers.curriculum_required import BronzeCurriculumRequiredNormalizer
 from ntu_dual_guide_ingestion.normalizers.dual_major_policy import BronzeDualMajorPolicyNormalizer
 from ntu_dual_guide_ingestion.normalizers.faq import BronzeFaqNormalizer
+from ntu_dual_guide_ingestion.normalizers.required_courses import BronzeRequiredCoursesNormalizer
 from ntu_dual_guide_ingestion.normalizers.sectioned_source import BronzeSectionedSourceNormalizer
 
 
@@ -15,6 +16,7 @@ class BronzeToSilverRouter:
         self.faq_normalizer = BronzeFaqNormalizer()
         self.dual_major_policy_normalizer = BronzeDualMajorPolicyNormalizer()
         self.curriculum_required_normalizer = BronzeCurriculumRequiredNormalizer()
+        self.required_courses_normalizer = BronzeRequiredCoursesNormalizer()
         self.econ_portal_normalizer = BronzeSectionedSourceNormalizer(
             doc_type="econ_portal_page",
             source_id="econ-transfer-double-major-portal",
@@ -39,6 +41,8 @@ class BronzeToSilverRouter:
             return self.dual_major_policy_normalizer
         if category == "dpt-credit-required":
             return self.curriculum_required_normalizer
+        if category == "dpt-required-courses":
+            return self.required_courses_normalizer
         if "常見Q&A" in title or "常見Q_A" in file_name or "雙主修_輔系常見Q_A" in file_name:
             return self.faq_normalizer
         if "轉雙輔招生頁面" in file_name:

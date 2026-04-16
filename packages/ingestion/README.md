@@ -54,6 +54,7 @@
 
 - `template-family/dpt-double-major-policy` -> `pdf_layout`
 - `template-family/dpt-credit-required` -> `html_table_aware`
+- `template-family/dpt-required-courses` -> `html_table_aware`
 - `source-specific/*.pdf` -> `pdf_plain`
 - `source-specific/*.html` -> `html_pruned`
 

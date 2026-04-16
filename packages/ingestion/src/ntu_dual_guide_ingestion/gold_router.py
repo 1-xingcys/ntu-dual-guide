@@ -7,6 +7,7 @@ from typing import Iterable
 from ntu_dual_guide_ingestion.chunkers.curriculum_required import CurriculumRequiredGoldChunker
 from ntu_dual_guide_ingestion.chunkers.dual_major_policy import DualMajorPolicyGoldChunker
 from ntu_dual_guide_ingestion.chunkers.faq import FaqGoldChunker
+from ntu_dual_guide_ingestion.chunkers.required_courses import RequiredCoursesGoldChunker
 from ntu_dual_guide_ingestion.chunkers.sectioned_source import SectionedSourceGoldChunker
 
 
@@ -15,6 +16,7 @@ class SilverToGoldRouter:
         self.faq_chunker = FaqGoldChunker()
         self.dual_major_policy_chunker = DualMajorPolicyGoldChunker()
         self.curriculum_required_chunker = CurriculumRequiredGoldChunker()
+        self.required_courses_chunker = RequiredCoursesGoldChunker()
         self.sectioned_source_chunker = SectionedSourceGoldChunker()
 
     def resolve(self, silver_document: dict):
@@ -25,6 +27,8 @@ class SilverToGoldRouter:
             return self.dual_major_policy_chunker
         if doc_type == "curriculum_required_summary":
             return self.curriculum_required_chunker
+        if doc_type == "curriculum_required_courses":
+            return self.required_courses_chunker
         if doc_type in {"econ_portal_page", "handbook", "ntu_policy_info_page"}:
             return self.sectioned_source_chunker
         raise ValueError("No gold chunker configured for silver doc_type: {0}".format(doc_type))
