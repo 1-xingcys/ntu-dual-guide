@@ -1,10 +1,16 @@
 # Scripts
 
-這裡放開發用或操作型腳本，例如：
+腳本依用途分目錄：
 
-- 建立 dataset snapshot
-- 觸發 reindex
-- 匯出 eval report
-- 本機啟動開發環境
+- `scripts/fetch/`
+  - 抓原始資料到 `data/raw`
+- `scripts/etl/`
+  - `raw -> bronze -> silver -> gold`
+- `scripts/index/`
+  - `gold -> index records -> Pinecone`
+- `scripts/eval/`
+  - benchmark / golden bench
+- `scripts/rag/`
+  - 本機 CLI 問答與 retrieval 驗證
 
 如果某支腳本會被 CI/CD 使用，優先讓它保持無狀態且可重複執行。

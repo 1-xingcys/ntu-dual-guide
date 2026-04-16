@@ -3,7 +3,7 @@ import argparse
 import sys
 
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
+REPO_ROOT = Path(__file__).resolve().parents[2]
 SRC_PATH = REPO_ROOT / "packages" / "ingestion" / "src"
 
 if str(SRC_PATH) not in sys.path:

@@ -18,26 +18,26 @@
 
 目前 repo 內已經有一條 `raw -> bronze` 的通用入口：
 
-- `scripts/raw_to_bronze.py`
+- `scripts/etl/raw_to_bronze.py`
 - `ntu_dual_guide_ingestion/bronze_router.py`
 - `ntu_dual_guide_ingestion/bronze_adapters.py`
 
 以及第一版 `bronze -> silver` 入口：
 
-- `scripts/bronze_to_silver.py`
+- `scripts/etl/bronze_to_silver.py`
 - `ntu_dual_guide_ingestion/silver_router.py`
 - `ntu_dual_guide_ingestion/normalizers/`
 
 以及第一版 `silver -> gold` 入口：
 
-- `scripts/silver_to_gold.py`
+- `scripts/etl/silver_to_gold.py`
 - `ntu_dual_guide_ingestion/gold_router.py`
 - `ntu_dual_guide_ingestion/chunkers/`
 
 以及 `gold -> index records -> Pinecone` 入口：
 
-- `scripts/gold_to_index_records.py`
-- `scripts/upsert_pinecone.py`
+- `scripts/index/gold_to_index_records.py`
+- `scripts/index/upsert_pinecone.py`
 - `ntu_dual_guide_ingestion/index_records.py`
 - `ntu_dual_guide_ingestion/vector_clients.py`
 
@@ -76,17 +76,17 @@
 範例：
 
 ```bash
-python3 scripts/raw_to_bronze.py --dataset-version 2026-04-15.001
-python3 scripts/bronze_to_silver.py --dataset-version 2026-04-15.001
-python3 scripts/silver_to_gold.py --dataset-version 2026-04-15.001
+python3 scripts/etl/raw_to_bronze.py --dataset-version 2026-04-15.001
+python3 scripts/etl/bronze_to_silver.py --dataset-version 2026-04-15.001
+python3 scripts/etl/silver_to_gold.py --dataset-version 2026-04-15.001
 ```
 
 索引階段範例：
 
 ```bash
-python3 scripts/gold_to_index_records.py --dataset-version 2026-04-15.003
-python3 scripts/upsert_pinecone.py --dataset-version 2026-04-15.003 --dry-run
-python3 scripts/upsert_pinecone.py --dataset-version 2026-04-15.003
+python3 scripts/index/gold_to_index_records.py --dataset-version 2026-04-15.003
+python3 scripts/index/upsert_pinecone.py --dataset-version 2026-04-15.003 --dry-run
+python3 scripts/index/upsert_pinecone.py --dataset-version 2026-04-15.003
 ```
 
 實際 upsert 需要這些環境變數：
@@ -95,4 +95,4 @@ python3 scripts/upsert_pinecone.py --dataset-version 2026-04-15.003
 - `PINECONE_API_KEY`
 - `PINECONE_INDEX_HOST`
 
-`scripts/upsert_pinecone.py` 會自動讀 repo root 的 `.env`，且已存在的 shell 環境變數優先。
+`scripts/index/upsert_pinecone.py` 會自動讀 repo root 的 `.env`，且已存在的 shell 環境變數優先。

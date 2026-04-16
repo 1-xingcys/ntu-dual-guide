@@ -17,7 +17,7 @@ Golden Bench 應被視為產品品質資產，而不是臨時測試資料。
 - `datasets/golden_bench_v1.jsonl`
 - `src/ntu_dual_guide_evals/golden_bench.py`
 - `src/ntu_dual_guide_evals/runner.py`
-- `scripts/eval_golden_bench.py`
+- `scripts/eval/eval_golden_bench.py`
 
 這一版先做 deterministic baseline，不依賴 DeepEval。
 
@@ -56,25 +56,25 @@ Golden Bench 應被視為產品品質資產，而不是臨時測試資料。
 跑完整 benchmark：
 
 ```bash
-python3 scripts/eval_golden_bench.py
+python3 scripts/eval/eval_golden_bench.py
 ```
 
 跑純 LLM baseline：
 
 ```bash
-python3 scripts/eval_golden_bench.py --mode llm_only
+python3 scripts/eval/eval_golden_bench.py --mode llm_only
 ```
 
 只跑單題：
 
 ```bash
-python3 scripts/eval_golden_bench.py --case-id curriculum-csie-111-double-major-001
+python3 scripts/eval/eval_golden_bench.py --case-id curriculum-csie-111-double-major-001
 ```
 
 輸出 JSON report：
 
 ```bash
-python3 scripts/eval_golden_bench.py --output artifacts/evals/golden_bench_v1.json
+python3 scripts/eval/eval_golden_bench.py --output artifacts/evals/golden_bench_v1.json
 ```
 
 ## Why this before DeepEval

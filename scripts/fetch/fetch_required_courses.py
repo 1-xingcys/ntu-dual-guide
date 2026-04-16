@@ -6,7 +6,7 @@ from urllib import parse
 from urllib import request
 
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
+REPO_ROOT = Path(__file__).resolve().parents[2]
 BASE_URL = "https://curri.aca.ntu.edu.tw/NTUVoxCourse/index.php/uquery/search-result"
 DEFAULT_YEARS = range(110, 115)
 DEFAULT_GRADES = range(1, 5)

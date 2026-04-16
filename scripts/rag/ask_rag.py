@@ -3,7 +3,7 @@ import argparse
 import sys
 
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
+REPO_ROOT = Path(__file__).resolve().parents[2]
 INGESTION_SRC = REPO_ROOT / "packages" / "ingestion" / "src"
 RAG_SRC = REPO_ROOT / "packages" / "rag" / "src"
 
