@@ -6,6 +6,7 @@ from ntu_dual_guide_rag.models import ChatAnswer
 from ntu_dual_guide_rag.openai_responses import create_text_response
 from ntu_dual_guide_rag.prompts import LLM_ONLY_SYSTEM_PROMPT
 from ntu_dual_guide_rag.prompts import build_llm_only_user_prompt
+from ntu_dual_guide_rag.service import is_unknown_response
 from ntu_dual_guide_rag.settings import RagSettings
 
 
@@ -26,10 +27,9 @@ class LlmOnlyService:
             user_input=build_llm_only_user_prompt(question),
         ).strip()
 
-        status = "answered"
-        if not answer_text or answer_text == "不知道":
+        status = "unknown" if is_unknown_response(answer_text) else "answered"
+        if not answer_text:
             answer_text = "不知道"
-            status = "unknown"
 
         return ChatAnswer(
             answer=answer_text,

@@ -11,6 +11,16 @@ from ntu_dual_guide_rag.retriever import PineconeRetriever
 from ntu_dual_guide_rag.settings import RagSettings
 
 
+UNKNOWN_PREFIXES = (
+    "不知道",
+    "無法判斷",
+    "無法確認",
+    "資訊不足",
+    "無法從提供的資料",
+    "無法從檢索內容",
+)
+
+
 class RagService:
     def __init__(self, settings: RagSettings) -> None:
         self.settings = settings
@@ -34,8 +44,8 @@ class RagService:
             user_input=prompt,
         ).strip()
 
-        if not answer_text or answer_text == "不知道":
-            return self._unknown_answer(retrieved_chunks)
+        if is_unknown_response(answer_text):
+            return self._unknown_answer(retrieved_chunks, answer_text=answer_text)
 
         citations = build_citations(retrieved_chunks[:3])
         return ChatAnswer(
@@ -48,9 +58,9 @@ class RagService:
             retrieved_chunks=retrieved_chunks,
         )
 
-    def _unknown_answer(self, retrieved_chunks) -> ChatAnswer:
+    def _unknown_answer(self, retrieved_chunks, *, answer_text: str = "不知道") -> ChatAnswer:
         return ChatAnswer(
-            answer="不知道",
+            answer=answer_text or "不知道",
             status="unknown",
             model=self.settings.openai_model,
             dataset_version=self.settings.dataset_version,
@@ -58,6 +68,14 @@ class RagService:
             citations=build_citations(retrieved_chunks[:3]),
             retrieved_chunks=retrieved_chunks,
         )
+
+
+def is_unknown_response(answer_text: str) -> bool:
+    normalized = answer_text.strip()
+    if not normalized:
+        return True
+    normalized = normalized.replace(" ", "")
+    return normalized.startswith(UNKNOWN_PREFIXES)
 
 
 def build_citations(retrieved_chunks) -> list[Citation]:
