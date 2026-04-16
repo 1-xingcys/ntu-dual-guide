@@ -18,6 +18,8 @@ class CaseResult:
     mode: str
     case_id: str
     passed: bool
+    errored: bool
+    error_message: str | None
     status_ok: bool
     answer_contains_ok: bool
     source_hit_ok: bool
@@ -34,6 +36,8 @@ class CaseResult:
             "mode": self.mode,
             "case_id": self.case_id,
             "passed": self.passed,
+            "errored": self.errored,
+            "error_message": self.error_message,
             "status_ok": self.status_ok,
             "answer_contains_ok": self.answer_contains_ok,
             "source_hit_ok": self.source_hit_ok,
@@ -78,6 +82,8 @@ def evaluate_case(case: GoldenBenchCase, result: ChatAnswer, *, mode: str = "rag
         mode=mode,
         case_id=case.case_id,
         passed=passed,
+        errored=False,
+        error_message=None,
         status_ok=status_ok,
         answer_contains_ok=answer_contains_ok,
         source_hit_ok=source_hit_ok,
@@ -91,15 +97,42 @@ def evaluate_case(case: GoldenBenchCase, result: ChatAnswer, *, mode: str = "rag
     )
 
 
+def error_case_result(
+    case: GoldenBenchCase,
+    *,
+    mode: str,
+    error_message: str,
+) -> CaseResult:
+    return CaseResult(
+        mode=mode,
+        case_id=case.case_id,
+        passed=False,
+        errored=True,
+        error_message=error_message,
+        status_ok=False,
+        answer_contains_ok=False,
+        source_hit_ok=False,
+        retrieval_hit_ok=False,
+        source_hit_checked=False,
+        retrieval_hit_checked=False,
+        answer="",
+        citations=[],
+        retrieved_chunk_ids=[],
+        retrieved_source_ids=[],
+    )
+
+
 def summarize_results(results: list[CaseResult], *, mode: str) -> dict[str, Any]:
     total = len(results)
     passed = sum(1 for result in results if result.passed)
+    errored = sum(1 for result in results if result.errored)
     source_checked = sum(1 for result in results if result.source_hit_checked)
     retrieval_checked = sum(1 for result in results if result.retrieval_hit_checked)
     return {
         "mode": mode,
         "total": total,
         "passed": passed,
+        "errored": errored,
         "failed": total - passed,
         "pass_rate": (passed / total) if total else 0.0,
         "source_checks_enabled_cases": source_checked,

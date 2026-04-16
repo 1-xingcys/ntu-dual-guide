@@ -18,7 +18,9 @@ for path in [INGESTION_SRC, RAG_SRC, EVALS_SRC]:
 
 from ntu_dual_guide_evals.deepeval_runner import run_deepeval_case
 from ntu_dual_guide_evals.deepeval_runner import summarize_deepeval_results
+from ntu_dual_guide_evals.deepeval_runner import error_deepeval_case_result
 from ntu_dual_guide_evals.golden_bench import load_golden_bench
+from ntu_dual_guide_evals.progress import EvalProgress
 from ntu_dual_guide_rag.llm_only_service import LlmOnlyService
 from ntu_dual_guide_rag.service import RagService
 from ntu_dual_guide_rag.settings import RagSettings
@@ -69,6 +71,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Include unknown/refusal cases in DeepEval instead of skipping them.",
     )
+    parser.add_argument(
+        "--no-progress",
+        action="store_true",
+        help="Disable the stderr progress bar.",
+    )
     return parser.parse_args()
 
 
@@ -82,18 +89,33 @@ def main() -> None:
     _ = RagSettings.from_env(REPO_ROOT)
     judge_model = args.judge_model or resolve_judge_model()
     service = build_service(args.mode)
-    results = [
-        run_deepeval_case(
-            service,
-            case,
-            mode=args.mode,
-            judge_model=judge_model,
-            answer_relevancy_threshold=args.answer_relevancy_threshold,
-            faithfulness_threshold=args.faithfulness_threshold,
-            include_unknown=args.include_unknown,
-        )
-        for case in cases
-    ]
+    progress = EvalProgress(len(cases), enabled=not args.no_progress)
+    results = []
+    for index, case in enumerate(cases, start=1):
+        progress.start_case(index - 1, case.case_id)
+        try:
+            result = run_deepeval_case(
+                service,
+                case,
+                mode=args.mode,
+                judge_model=judge_model,
+                answer_relevancy_threshold=args.answer_relevancy_threshold,
+                faithfulness_threshold=args.faithfulness_threshold,
+                include_unknown=args.include_unknown,
+            )
+        except Exception as exc:
+            result = error_deepeval_case_result(
+                case,
+                mode=args.mode,
+                error_message=str(exc),
+            )
+        results.append(result)
+        if result.errored:
+            state = "error"
+        else:
+            state = "skip" if result.skipped else "done"
+        progress.finish_case(index, case.case_id, state=state)
+    progress.close()
     summary = summarize_deepeval_results(
         results,
         mode=args.mode,

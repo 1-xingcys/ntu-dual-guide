@@ -37,6 +37,8 @@ class DeepEvalCaseResult:
     case_id: str
     skipped: bool
     skip_reason: str | None
+    errored: bool
+    error_message: str | None
     answer: str
     status: str
     metrics: list[DeepEvalMetricResult]
@@ -49,6 +51,8 @@ class DeepEvalCaseResult:
             "case_id": self.case_id,
             "skipped": self.skipped,
             "skip_reason": self.skip_reason,
+            "errored": self.errored,
+            "error_message": self.error_message,
             "answer": self.answer,
             "status": self.status,
             "metrics": [metric.to_dict() for metric in self.metrics],
@@ -75,6 +79,8 @@ def run_deepeval_case(
             case_id=case.case_id,
             skipped=True,
             skip_reason="unknown_case_skipped",
+            errored=False,
+            error_message=None,
             answer=result.answer,
             status=result.status,
             metrics=[],
@@ -95,11 +101,34 @@ def run_deepeval_case(
         case_id=case.case_id,
         skipped=False,
         skip_reason=None,
+        errored=False,
+        error_message=None,
         answer=result.answer,
         status=result.status,
         metrics=metrics,
         retrieved_chunk_ids=[chunk.chunk_id for chunk in result.retrieved_chunks],
         retrieved_source_ids=[chunk.source_id for chunk in result.retrieved_chunks],
+    )
+
+
+def error_deepeval_case_result(
+    case: GoldenBenchCase,
+    *,
+    mode: str,
+    error_message: str,
+) -> DeepEvalCaseResult:
+    return DeepEvalCaseResult(
+        mode=mode,
+        case_id=case.case_id,
+        skipped=False,
+        skip_reason=None,
+        errored=True,
+        error_message=error_message,
+        answer="",
+        status="error",
+        metrics=[],
+        retrieved_chunk_ids=[],
+        retrieved_source_ids=[],
     )
 
 
@@ -182,6 +211,7 @@ def summarize_deepeval_results(
 ) -> dict[str, Any]:
     executed = [result for result in results if not result.skipped]
     skipped = [result for result in results if result.skipped]
+    errored = [result for result in results if result.errored]
     metric_summary: dict[str, dict[str, Any]] = {}
 
     for result in executed:
@@ -223,6 +253,7 @@ def summarize_deepeval_results(
         "total": len(results),
         "executed": len(executed),
         "skipped": len(skipped),
+        "errored": len(errored),
         "metrics": metrics_output,
         "results": [result.to_dict() for result in results],
     }

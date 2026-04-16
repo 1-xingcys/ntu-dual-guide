@@ -16,6 +16,8 @@ for path in [INGESTION_SRC, RAG_SRC, EVALS_SRC]:
         sys.path.insert(0, str(path))
 
 from ntu_dual_guide_evals.golden_bench import load_golden_bench
+from ntu_dual_guide_evals.progress import EvalProgress
+from ntu_dual_guide_evals.runner import error_case_result
 from ntu_dual_guide_evals.runner import run_case
 from ntu_dual_guide_evals.runner import summarize_results
 from ntu_dual_guide_rag.llm_only_service import LlmOnlyService
@@ -45,6 +47,11 @@ def parse_args() -> argparse.Namespace:
         default="rag",
         help="Evaluation mode. 'rag' uses retrieval + generation, 'llm_only' uses the model without retrieval.",
     )
+    parser.add_argument(
+        "--no-progress",
+        action="store_true",
+        help="Disable the stderr progress bar.",
+    )
     return parser.parse_args()
 
 
@@ -55,7 +62,25 @@ def main() -> None:
     if args.case_id:
         cases = [case for case in cases if case.case_id == args.case_id]
     service = build_service(args.mode)
-    results = [run_case(service, case, mode=args.mode) for case in cases]
+    progress = EvalProgress(len(cases), enabled=not args.no_progress)
+    results = []
+    for index, case in enumerate(cases, start=1):
+        progress.start_case(index - 1, case.case_id)
+        try:
+            result = run_case(service, case, mode=args.mode)
+        except Exception as exc:
+            result = error_case_result(
+                case,
+                mode=args.mode,
+                error_message=str(exc),
+            )
+        results.append(result)
+        if result.errored:
+            state = "error"
+        else:
+            state = "pass" if result.passed else "fail"
+        progress.finish_case(index, case.case_id, state=state)
+    progress.close()
     summary = summarize_results(results, mode=args.mode)
 
     if args.output:
