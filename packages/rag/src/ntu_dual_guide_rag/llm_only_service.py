@@ -3,10 +3,9 @@ from __future__ import annotations
 from pathlib import Path
 
 from ntu_dual_guide_rag.models import ChatAnswer
-from ntu_dual_guide_rag.openai_responses import create_text_response
+from ntu_dual_guide_rag.openai_responses import create_structured_answer
 from ntu_dual_guide_rag.prompts import LLM_ONLY_SYSTEM_PROMPT
 from ntu_dual_guide_rag.prompts import build_llm_only_user_prompt
-from ntu_dual_guide_rag.service import is_unknown_response
 from ntu_dual_guide_rag.settings import RagSettings
 
 
@@ -20,20 +19,16 @@ class LlmOnlyService:
         return cls(settings)
 
     def answer(self, question: str) -> ChatAnswer:
-        answer_text = create_text_response(
+        structured_answer = create_structured_answer(
             api_key=self.settings.openai_api_key,
             model=self.settings.openai_model,
             instructions=LLM_ONLY_SYSTEM_PROMPT,
             user_input=build_llm_only_user_prompt(question),
-        ).strip()
-
-        status = "unknown" if is_unknown_response(answer_text) else "answered"
-        if not answer_text:
-            answer_text = "不知道"
+        )
 
         return ChatAnswer(
-            answer=answer_text,
-            status=status,
+            answer=structured_answer.answer,
+            status=structured_answer.status,
             model=self.settings.openai_model,
             dataset_version=self.settings.dataset_version,
             namespace=self.settings.namespace,

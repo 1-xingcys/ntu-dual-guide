@@ -4,21 +4,11 @@ from pathlib import Path
 
 from ntu_dual_guide_rag.models import ChatAnswer
 from ntu_dual_guide_rag.models import Citation
-from ntu_dual_guide_rag.openai_responses import create_text_response
+from ntu_dual_guide_rag.openai_responses import create_structured_answer
 from ntu_dual_guide_rag.prompts import SYSTEM_PROMPT
 from ntu_dual_guide_rag.prompts import build_user_prompt
 from ntu_dual_guide_rag.retriever import PineconeRetriever
 from ntu_dual_guide_rag.settings import RagSettings
-
-
-UNKNOWN_PREFIXES = (
-    "不知道",
-    "無法判斷",
-    "無法確認",
-    "資訊不足",
-    "無法從提供的資料",
-    "無法從檢索內容",
-)
 
 
 class RagService:
@@ -37,19 +27,21 @@ class RagService:
             return self._unknown_answer([])
 
         prompt = build_user_prompt(question, retrieved_chunks)
-        answer_text = create_text_response(
+        structured_answer = create_structured_answer(
             api_key=self.settings.openai_api_key,
             model=self.settings.openai_model,
             instructions=SYSTEM_PROMPT,
             user_input=prompt,
-        ).strip()
-
-        if is_unknown_response(answer_text):
-            return self._unknown_answer(retrieved_chunks, answer_text=answer_text)
+        )
+        if structured_answer.status == "unknown":
+            return self._unknown_answer(
+                retrieved_chunks,
+                answer_text=structured_answer.answer,
+            )
 
         citations = build_citations(retrieved_chunks[:3])
         return ChatAnswer(
-            answer=answer_text,
+            answer=structured_answer.answer.strip(),
             status="answered",
             model=self.settings.openai_model,
             dataset_version=self.settings.dataset_version,
@@ -68,14 +60,6 @@ class RagService:
             citations=build_citations(retrieved_chunks[:3]),
             retrieved_chunks=retrieved_chunks,
         )
-
-
-def is_unknown_response(answer_text: str) -> bool:
-    normalized = answer_text.strip()
-    if not normalized:
-        return True
-    normalized = normalized.replace(" ", "")
-    return normalized.startswith(UNKNOWN_PREFIXES)
 
 
 def build_citations(retrieved_chunks) -> list[Citation]:

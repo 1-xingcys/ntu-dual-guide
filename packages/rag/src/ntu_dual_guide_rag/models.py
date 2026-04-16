@@ -70,3 +70,22 @@ class ChatAnswer:
                 for chunk in self.retrieved_chunks
             ],
         }
+
+
+@dataclass
+class StructuredModelAnswer:
+    status: str
+    answer: str
+
+    @classmethod
+    def from_dict(cls, payload: dict[str, Any]) -> "StructuredModelAnswer":
+        status = str(payload.get("status", "")).strip()
+        answer = str(payload.get("answer", "")).strip()
+        if status not in {"answered", "unknown"}:
+            raise ValueError("Unsupported structured answer status: {0}".format(status))
+        if not answer:
+            answer = "不知道" if status == "unknown" else ""
+        return cls(
+            status=status,
+            answer=answer,
+        )
