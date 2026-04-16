@@ -44,6 +44,11 @@ def parse_args() -> argparse.Namespace:
         help="Logical dataset snapshot version, for example 2026-04-15.001.",
     )
     parser.add_argument(
+        "--input-dataset-version",
+        default=None,
+        help="Optional source silver dataset version. Defaults to --dataset-version.",
+    )
+    parser.add_argument(
         "--manifest-root",
         default="data/manifests",
         help="Manifest output root directory.",
@@ -53,17 +58,18 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
+    input_dataset_version = args.input_dataset_version or args.dataset_version
     silver_root = resolve_stage_path(
         args.silver_root,
         "data/silver",
         REPO_ROOT,
-        args.dataset_version,
+        input_dataset_version,
     )
     input_path = resolve_stage_path(
         args.input_path,
         "data/silver",
         REPO_ROOT,
-        args.dataset_version,
+        input_dataset_version,
     )
     output_root = resolve_stage_path(
         args.output_root,
@@ -76,8 +82,9 @@ def main() -> None:
     router = SilverToGoldRouter()
     for silver_path in iter_silver_files(input_path):
         silver_document = json.loads(silver_path.read_text(encoding="utf-8"))
-        assert_dataset_version(silver_document, args.dataset_version, silver_path)
+        assert_dataset_version(silver_document, input_dataset_version, silver_path)
         payload = router.build_gold_document(silver_path)
+        payload["dataset_version"] = args.dataset_version
         output_path = gold_output_path(silver_path, silver_root, output_root)
         write_gold_document(payload, output_path)
         print(output_path.relative_to(REPO_ROOT))

@@ -30,7 +30,10 @@ class RawToBronzeRouter:
 
         if suffix == ".pdf" and family == "template-family" and category == "dpt-double-major-policy":
             return RawRoute(family=family, category=category, adapter_kind="pdf", parser_profile="pdf_layout")
-        if suffix == ".html" and family == "template-family" and category == "dpt-credit-required":
+        if suffix == ".html" and family == "template-family" and category in {
+            "dpt-credit-required",
+            "dpt-required-courses",
+        }:
             return RawRoute(
                 family=family,
                 category=category,
