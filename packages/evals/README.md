@@ -17,7 +17,9 @@ Golden Bench 應被視為產品品質資產，而不是臨時測試資料。
 - `datasets/golden_bench_v1.jsonl`
 - `src/ntu_dual_guide_evals/golden_bench.py`
 - `src/ntu_dual_guide_evals/runner.py`
+- `src/ntu_dual_guide_evals/deepeval_runner.py`
 - `scripts/eval/eval_golden_bench.py`
+- `scripts/eval/eval_deepeval.py`
 
 這一版先做 deterministic baseline，不依賴 DeepEval。
 
@@ -86,3 +88,41 @@ python3 scripts/eval/eval_golden_bench.py --output artifacts/evals/golden_bench_
 - 哪些 source / chunk 才算 hit
 
 之後接 DeepEval，應該把它放在這層之上，作為 answer quality / faithfulness 的補充，而不是取代這份 benchmark。
+
+## DeepEval Layer
+
+目前先接第一版 DeepEval runner：
+
+- `AnswerRelevancyMetric`
+- `FaithfulnessMetric`（僅 `rag` mode 且有 retrieval context 時）
+
+設計原則：
+
+- deterministic baseline 繼續當 hard constraints
+- DeepEval 當語意品質補充
+- `unknown` 題預設跳過，避免一開始就把 refusal 題混進 judge 分數
+
+執行方式：
+
+```bash
+python3 scripts/eval/eval_deepeval.py --mode rag
+```
+
+judge model 預設為：
+
+- `DEEPEVAL_JUDGE_MODEL`，若有設定
+- 否則 `gpt-4.1-mini`
+
+這和 backend 回答模型分開，避免 benchmark judge 直接綁定 `OPENAI_CHAT_MODEL`。
+
+只跑單題：
+
+```bash
+python3 scripts/eval/eval_deepeval.py --case-id comparison-dual-major-vs-minor-001
+```
+
+輸出 report：
+
+```bash
+python3 scripts/eval/eval_deepeval.py --output artifacts/evals/deepeval_rag.json
+```
