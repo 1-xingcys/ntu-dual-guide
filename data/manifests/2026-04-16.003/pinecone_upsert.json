@@ -1,0 +1,11 @@
+{
+  "schema_version": "index.pinecone_upsert_manifest.v1",
+  "dataset_version": "2026-04-16.003",
+  "namespace": "2026-04-16.003",
+  "embedding_model": "text-embedding-3-small",
+  "pinecone_api_version": "2026-04",
+  "record_count": 712,
+  "records_path": "/Users/1-xing/Documents/ntu-dual-guide/artifacts/index-records/2026-04-16.003/records.jsonl",
+  "dry_run": false,
+  "upserted_count": 712
+}

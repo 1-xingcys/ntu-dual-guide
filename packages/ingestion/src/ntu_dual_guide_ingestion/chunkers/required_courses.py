@@ -7,7 +7,7 @@ from ntu_dual_guide_ingestion.gold_schema import GoldDocument
 
 class RequiredCoursesGoldChunker(BaseGoldChunker):
     chunker_name = "required_courses_chunker"
-    chunker_version = "v1"
+    chunker_version = "v2"
 
     def build_document(self, silver_document: dict) -> dict:
         content = silver_document["content"]
@@ -21,6 +21,8 @@ class RequiredCoursesGoldChunker(BaseGoldChunker):
             department_name=department_name,
             department_code=department_code,
         )
+        course_names = [course["chinese_name"] for course in content["courses"]]
+        course_list_text = "、".join(course_names)
 
         chunks.append(
             GoldChunk(
@@ -30,11 +32,16 @@ class RequiredCoursesGoldChunker(BaseGoldChunker):
                 text=(
                     "{department_context}{admission_year}學年度入學學生，{grade_label}系訂必修科目及學分表。"
                     "本頁共列出{course_count}門課程。"
+                    "{course_list_sentence}"
                 ).format(
                     department_context=department_context,
                     admission_year=admission_year or "未知",
                     grade_label=grade_label,
                     course_count=len(content["courses"]),
+                    course_list_sentence=render_course_list_sentence(
+                        grade_label=grade_label,
+                        course_list_text=course_list_text,
+                    ),
                 ),
                 order=1,
                 metadata={
@@ -44,9 +51,42 @@ class RequiredCoursesGoldChunker(BaseGoldChunker):
                     "grade": grade,
                     "grade_label": grade_label,
                     "course_count": len(content["courses"]),
+                    "course_names": course_names,
                 },
             )
         )
+
+        if course_names:
+            chunks.append(
+                GoldChunk(
+                    chunk_id="{0}-course-list".format(silver_document["source_id"]),
+                    chunk_type="required_courses_catalog",
+                    title="{0} {1}必修課程清單".format(
+                        department_name or department_code or "系所",
+                        grade_label,
+                    ),
+                    text=(
+                        "如果問題是「{department_context}{admission_year}學年度入學學生，{grade_label}必修課程有哪些」，"
+                        "答案如下：{course_list_text}。以上共{course_count}門。"
+                    ).format(
+                        department_context=department_context,
+                        admission_year=admission_year or "未知",
+                        grade_label=grade_label,
+                        course_list_text=course_list_text,
+                        course_count=len(course_names),
+                    ),
+                    order=2,
+                    metadata={
+                        "department_code": department_code,
+                        "department_name": department_name,
+                        "admission_year": admission_year,
+                        "grade": grade,
+                        "grade_label": grade_label,
+                        "course_count": len(course_names),
+                        "course_names": course_names,
+                    },
+                )
+            )
 
         for index, course in enumerate(content["courses"], start=1):
             chunks.append(
@@ -138,6 +178,15 @@ def render_identifier(course_identifier: str | None) -> str:
     if not course_identifier:
         return ""
     return "，課程識別碼{0}".format(course_identifier)
+
+
+def render_course_list_sentence(*, grade_label: str, course_list_text: str) -> str:
+    if not course_list_text:
+        return ""
+    return "若問題是在問「{0}有哪些必修課程」，清單如下：{1}。".format(
+        grade_label,
+        course_list_text,
+    )
 
 
 def build_department_context(*, department_name: str | None, department_code: str | None) -> str:
