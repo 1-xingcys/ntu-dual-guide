@@ -17,6 +17,7 @@
 目前第一版 backend MVP 已包含：
 
 - `PineconeRetriever`: 用 query embedding + Pinecone dense retrieval 取回 context
+- `HybridRetriever`: 用 Pinecone dense + 本機 BM25 對 `records.jsonl` 做 application-layer fusion
 - `RagService`: 組 prompt，呼叫 OpenAI Responses API，並在無足夠真相時回 `不知道`
 - `SYSTEM_PROMPT`: 明確限定模型是「台大資工雙主修經濟系助手」，只能根據學校規定回答
 - citation 回傳：先回傳 top retrieved chunks 作為 citation 候選
@@ -26,6 +27,7 @@
 - `src/ntu_dual_guide_rag/settings.py`
 - `src/ntu_dual_guide_rag/prompts.py`
 - `src/ntu_dual_guide_rag/retriever.py`
+- `src/ntu_dual_guide_rag/bm25.py`
 - `src/ntu_dual_guide_rag/openai_responses.py`
 - `src/ntu_dual_guide_rag/service.py`
 
@@ -47,3 +49,9 @@ RAG_MIN_SCORE=0.55
 ```
 
 `OPENAI_CHAT_MODEL` 預設是 `gpt-5-mini`。這是因為 OpenAI 官方文件目前把它定位成 cost-optimized reasoning and chat；若之後要更強推理，可以升級到 `gpt-5.2`。
+
+`HybridRetriever` 另外會讀取：
+
+- `artifacts/index-records/<RAG_DATASET_VERSION>/records.jsonl`
+
+因此 eval 或本機 hybrid 測試時，要確保這份 index records 和 Pinecone namespace 對應的是同一個 dataset snapshot。

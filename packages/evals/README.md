@@ -126,3 +126,30 @@ python3 scripts/eval/eval_deepeval.py --case-id comparison-dual-major-vs-minor-0
 ```bash
 python3 scripts/eval/eval_deepeval.py --output artifacts/evals/deepeval_rag.json
 ```
+
+## Retrieval Bench
+
+retrieval bench 用來只看 retriever，不混進 answer generation。
+
+目前可跑：
+
+- `dense`: OpenAI embedding + Pinecone dense retrieval
+- `hybrid`: Pinecone dense retrieval + 本機 BM25（用同一份 `records.jsonl`）再做 weighted RRF fusion
+
+執行 dense baseline：
+
+```bash
+python3 scripts/eval/eval_retrieval_bench.py --retriever dense
+```
+
+執行 application-layer hybrid：
+
+```bash
+python3 scripts/eval/eval_retrieval_bench.py --retriever hybrid --top-k 10 --dense-top-k 20 --sparse-top-k 20
+```
+
+如果要調整 dense / sparse 相對權重：
+
+```bash
+python3 scripts/eval/eval_retrieval_bench.py --retriever hybrid --dense-weight 1.0 --sparse-weight 1.5 --rrf-k 60
+```
