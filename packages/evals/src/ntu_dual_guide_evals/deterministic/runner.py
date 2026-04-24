@@ -1,10 +1,9 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Protocol
-from typing import Any
+from typing import Any, Protocol
 
-from ntu_dual_guide_evals.golden_bench import GoldenBenchCase
+from ntu_dual_guide_evals.deterministic.golden_bench import GoldenBenchCase
 from ntu_dual_guide_rag.models import ChatAnswer
 
 
@@ -139,3 +138,4 @@ def summarize_results(results: list[CaseResult], *, mode: str) -> dict[str, Any]
         "retrieval_checks_enabled_cases": retrieval_checked,
         "results": [result.to_dict() for result in results],
     }
+

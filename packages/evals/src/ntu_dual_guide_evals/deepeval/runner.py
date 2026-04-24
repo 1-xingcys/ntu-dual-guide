@@ -1,10 +1,9 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any
-from typing import Protocol
+from typing import Any, Protocol
 
-from ntu_dual_guide_evals.golden_bench import GoldenBenchCase
+from ntu_dual_guide_evals.deterministic.golden_bench import GoldenBenchCase
 from ntu_dual_guide_rag.models import ChatAnswer
 
 
@@ -141,8 +140,7 @@ def evaluate_with_deepeval(
     answer_relevancy_threshold: float,
     faithfulness_threshold: float,
 ) -> list[DeepEvalMetricResult]:
-    from deepeval.metrics import AnswerRelevancyMetric
-    from deepeval.metrics import FaithfulnessMetric
+    from deepeval.metrics import AnswerRelevancyMetric, FaithfulnessMetric
     from deepeval.test_case import LLMTestCase
 
     retrieval_context = [chunk.text for chunk in result.retrieved_chunks]
@@ -162,9 +160,7 @@ def evaluate_with_deepeval(
         async_mode=False,
     )
     answer_relevancy.measure(test_case)
-    metric_results.append(
-        capture_metric_result("answer_relevancy", answer_relevancy)
-    )
+    metric_results.append(capture_metric_result("answer_relevancy", answer_relevancy))
 
     if mode == "rag" and retrieval_context and result.status != "unknown":
         faithfulness = FaithfulnessMetric(
@@ -174,9 +170,7 @@ def evaluate_with_deepeval(
             async_mode=False,
         )
         faithfulness.measure(test_case)
-        metric_results.append(
-            capture_metric_result("faithfulness", faithfulness)
-        )
+        metric_results.append(capture_metric_result("faithfulness", faithfulness))
 
     return metric_results
 
@@ -237,13 +231,9 @@ def summarize_deepeval_results(
         metrics_output[name] = {
             "count": summary["count"],
             "success_count": summary["success_count"],
-            "success_rate": (
-                summary["success_count"] / summary["count"] if summary["count"] else 0.0
-            ),
+            "success_rate": (summary["success_count"] / summary["count"] if summary["count"] else 0.0),
             "average_score": (
-                summary["score_sum"] / summary["score_count"]
-                if summary["score_count"]
-                else None
+                summary["score_sum"] / summary["score_count"] if summary["score_count"] else None
             ),
         }
 
@@ -257,3 +247,4 @@ def summarize_deepeval_results(
         "metrics": metrics_output,
         "results": [result.to_dict() for result in results],
     }
+

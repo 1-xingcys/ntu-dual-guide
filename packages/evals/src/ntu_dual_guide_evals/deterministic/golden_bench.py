@@ -39,3 +39,4 @@ def load_golden_bench(dataset_path: Path) -> list[GoldenBenchCase]:
             continue
         cases.append(GoldenBenchCase.from_dict(json.loads(line)))
     return cases
+

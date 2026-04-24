@@ -48,3 +48,4 @@ class EvalProgress:
         sys.stderr.write(message + (" " * padding))
         sys.stderr.flush()
         self._last_message_length = len(message)
+

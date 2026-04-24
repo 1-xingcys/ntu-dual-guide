@@ -15,11 +15,11 @@ for path in [INGESTION_SRC, RAG_SRC, EVALS_SRC]:
     if str(path) not in sys.path:
         sys.path.insert(0, str(path))
 
-from ntu_dual_guide_evals.golden_bench import load_golden_bench
-from ntu_dual_guide_evals.progress import EvalProgress
-from ntu_dual_guide_evals.runner import error_case_result
-from ntu_dual_guide_evals.runner import run_case
-from ntu_dual_guide_evals.runner import summarize_results
+from ntu_dual_guide_evals.deterministic.golden_bench import load_golden_bench
+from ntu_dual_guide_evals.deterministic.runner import error_case_result
+from ntu_dual_guide_evals.deterministic.runner import run_case
+from ntu_dual_guide_evals.deterministic.runner import summarize_results
+from ntu_dual_guide_evals.utils.progress import EvalProgress
 from ntu_dual_guide_rag.llm_only_service import LlmOnlyService
 from ntu_dual_guide_rag.service import RagService
 
