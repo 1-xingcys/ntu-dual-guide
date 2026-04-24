@@ -36,3 +36,6 @@ tmp/*
 !data/gold/.gitkeep
 !artifacts/.gitkeep
 !tmp/.gitkeep
+
+# Experiment
+llamaindex-experiment/
