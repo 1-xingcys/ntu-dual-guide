@@ -1,0 +1,3068 @@
+{
+  "retriever_name": "dense-pinecone-top10",
+  "bench_path": "/Users/1-xing/Documents/ntu-dual-guide/packages/evals/datasets/retrieval_bench_v1.jsonl",
+  "timestamp": "2026-04-24T15:10:47+00:00",
+  "total_cases": 53,
+  "k_values": [
+    1,
+    3,
+    5,
+    10
+  ],
+  "metrics": {
+    "hit@1": 0.37735849056603776,
+    "group_recall@1": 0.4025157232704402,
+    "hit@3": 0.4528301886792453,
+    "group_recall@3": 0.49528301886792453,
+    "hit@5": 0.5094339622641509,
+    "group_recall@5": 0.5424528301886793,
+    "hit@10": 0.5660377358490566,
+    "group_recall@10": 0.6525157232704403,
+    "mrr": 0.5329365079365079,
+    "mean_complete_rr": 0.4318358790056903,
+    "error_rate": 0.0
+  },
+  "by_type": {
+    "misleading-single-fact": {
+      "count": 10,
+      "hit@1": 0.4,
+      "group_recall@1": 0.4333333333333333,
+      "hit@3": 0.4,
+      "group_recall@3": 0.4333333333333333,
+      "hit@5": 0.5,
+      "group_recall@5": 0.5333333333333333,
+      "hit@10": 0.5,
+      "group_recall@10": 0.5666666666666667,
+      "mrr": 0.525,
+      "mean_complete_rr": 0.425,
+      "error_rate": 0.0
+    },
+    "multi-fact-compare": {
+      "count": 15,
+      "hit@1": 0.0,
+      "group_recall@1": 0.06666666666666667,
+      "hit@3": 0.0,
+      "group_recall@3": 0.1277777777777778,
+      "hit@5": 0.13333333333333333,
+      "group_recall@5": 0.22777777777777777,
+      "hit@10": 0.2,
+      "group_recall@10": 0.46111111111111114,
+      "mrr": 0.32796296296296296,
+      "mean_complete_rr": 0.03740740740740741,
+      "error_rate": 0.0
+    },
+    "single-fact": {
+      "count": 28,
+      "hit@1": 0.5714285714285714,
+      "group_recall@1": 0.5714285714285714,
+      "hit@3": 0.7142857142857143,
+      "group_recall@3": 0.7142857142857143,
+      "hit@5": 0.7142857142857143,
+      "group_recall@5": 0.7142857142857143,
+      "hit@10": 0.7857142857142857,
+      "group_recall@10": 0.7857142857142857,
+      "mrr": 0.645578231292517,
+      "mean_complete_rr": 0.645578231292517,
+      "error_rate": 0.0
+    }
+  },
+  "per_case": [
+    {
+      "case_id": "single-fact-001",
+      "case_type": "single-fact",
+      "question": "經濟系雙主修需要修多少學分才能取得學位？",
+      "expected_chunk_groups": [
+        [
+          "econ-dual-major-faq-q1"
+        ],
+        [
+          "econ-transfer-double-major-portal-section-003"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "econ-dual-major-faq-q1",
+        "econ-dual-major-policy-115-selection_method_and_weight",
+        "econ-dual-major-policy-111-selection_method_and_weight",
+        "econ-dual-major-policy-114-selection_method_and_weight",
+        "econ-dual-major-policy-113-selection_method_and_weight",
+        "econ-dual-major-policy-112-selection_method_and_weight",
+        "3030-credit-required-114-note-006-item-006",
+        "3030-credit-required-112-note-006-item-006",
+        "3030-credit-required-110-note-006-item-006",
+        "3030-credit-required-111-note-006-item-006"
+      ],
+      "retrieved_scores": [
+        0.789235711,
+        0.765397489,
+        0.764975309,
+        0.762756884,
+        0.761825562,
+        0.761428297,
+        0.733432472,
+        0.731015325,
+        0.73059243,
+        0.730207503
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": 1,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "faq",
+        "dual-major",
+        "credits"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-002",
+      "case_type": "single-fact",
+      "question": "經濟系雙主修生原系與加修學系的學分可以互相兼充嗎？",
+      "expected_chunk_groups": [
+        [
+          "econ-dual-major-faq-q2"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "econ-dual-major-faq-q2",
+        "econ-dual-major-policy-111-selection_method_and_weight",
+        "econ-dual-major-policy-115-selection_method_and_weight",
+        "econ-dual-major-policy-112-selection_method_and_weight",
+        "econ-dual-major-policy-113-selection_method_and_weight",
+        "econ-dual-major-policy-114-selection_method_and_weight",
+        "econ-dual-major-policy-111-notes",
+        "econ-dual-major-policy-112-notes",
+        "econ-dual-major-faq-q3",
+        "econ-dual-major-policy-113-notes"
+      ],
+      "retrieved_scores": [
+        0.789091825,
+        0.704398692,
+        0.703134477,
+        0.701512575,
+        0.700815678,
+        0.698697627,
+        0.694837749,
+        0.694125831,
+        0.692130268,
+        0.69203
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": 1,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "faq",
+        "dual-major",
+        "credit-sharing"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-003",
+      "case_type": "single-fact",
+      "question": "雙主修經濟系可以修外系同名課程並計入經濟系必修或選修嗎？",
+      "expected_chunk_groups": [
+        [
+          "econ-dual-major-faq-q3"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "econ-dual-major-faq-q3",
+        "econ-dual-major-policy-112-notes",
+        "econ-dual-major-policy-111-notes",
+        "econ-dual-major-policy-113-notes",
+        "econ-dual-major-policy-115-notes",
+        "econ-dual-major-policy-114-notes",
+        "econ-transfer-double-major-portal-section-003",
+        "econ-dual-major-policy-111-selection_method_and_weight",
+        "econ-dual-major-policy-114-selection_method_and_weight",
+        "econ-dual-major-policy-115-selection_method_and_weight"
+      ],
+      "retrieved_scores": [
+        0.819704533,
+        0.729979932,
+        0.72820282,
+        0.726258,
+        0.726169705,
+        0.725352585,
+        0.715353429,
+        0.712708294,
+        0.709111035,
+        0.709029436
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": 1,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "faq",
+        "course-recognition",
+        "dual-major"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-004",
+      "case_type": "single-fact",
+      "question": "111學年度申請經濟系雙主修需要先修哪些課？",
+      "expected_chunk_groups": [
+        [
+          "econ-dual-major-policy-111-eligibility"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "econ-dual-major-policy-111-eligibility",
+        "econ-dual-major-policy-112-eligibility",
+        "econ-dual-major-policy-114-eligibility",
+        "econ-dual-major-policy-115-eligibility",
+        "econ-dual-major-policy-114-other",
+        "econ-dual-major-policy-113-eligibility",
+        "econ-dual-major-policy-111-other",
+        "econ-dual-major-policy-113-other",
+        "econ-dual-major-policy-115-other",
+        "econ-dual-major-policy-111-selection_method_and_weight"
+      ],
+      "retrieved_scores": [
+        0.765356839,
+        0.762415528,
+        0.747247458,
+        0.745886385,
+        0.744686365,
+        0.743409097,
+        0.74269712,
+        0.742541909,
+        0.739280581,
+        0.734487832
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": 1,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "policy",
+        "eligibility",
+        "111"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-005",
+      "case_type": "single-fact",
+      "question": "112學年度經濟系雙主修錄取方式及占分比例是什麼？",
+      "expected_chunk_groups": [
+        [
+          "econ-dual-major-policy-112-selection_method_and_weight"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "econ-dual-major-policy-112-selection_method_and_weight",
+        "econ-dual-major-policy-111-selection_method_and_weight",
+        "econ-dual-major-policy-115-selection_method_and_weight",
+        "econ-dual-major-policy-114-selection_method_and_weight",
+        "econ-dual-major-policy-113-selection_method_and_weight",
+        "3030-credit-required-112-note-006-item-006",
+        "3030-credit-required-114-note-006-item-006",
+        "3030-credit-required-113-note-006-item-006",
+        "3030-credit-required-111-note-006-item-006",
+        "3030-credit-required-110-note-006-item-006"
+      ],
+      "retrieved_scores": [
+        0.846370041,
+        0.844363034,
+        0.843372226,
+        0.841108859,
+        0.840707242,
+        0.741239846,
+        0.736048758,
+        0.734258,
+        0.733912766,
+        0.733655035
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": 1,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "policy",
+        "selection",
+        "112"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-006",
+      "case_type": "single-fact",
+      "question": "111學年度入學的經濟系畢業最低應修學分總數是多少？",
+      "expected_chunk_groups": [
+        [
+          "3030-credit-required-111-overview"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "3030-credit-required-111-overview",
+        "3030-credit-required-112-overview",
+        "3030-credit-required-114-overview",
+        "3030-credit-required-110-overview",
+        "3030-credit-required-113-overview",
+        "3030-credit-required-114-note-003",
+        "3030-credit-required-111-note-003",
+        "3030-credit-required-112-note-003",
+        "3030-credit-required-110-note-003",
+        "3030-credit-required-113-note-003"
+      ],
+      "retrieved_scores": [
+        0.854105592,
+        0.847962201,
+        0.844481587,
+        0.839982688,
+        0.839917243,
+        0.751317263,
+        0.748392045,
+        0.746542156,
+        0.745678902,
+        0.740515113
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": 1,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "curriculum",
+        "econ",
+        "111"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-007",
+      "case_type": "single-fact",
+      "question": "112學年度入學的經濟系系訂必修、共同必修加通識、選修各是多少學分？",
+      "expected_chunk_groups": [
+        [
+          "3030-credit-required-112-overview"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "3030-credit-required-112-overview",
+        "3030-credit-required-111-overview",
+        "3030-credit-required-114-overview",
+        "3030-credit-required-110-overview",
+        "3030-credit-required-113-overview",
+        "3030-credit-required-112-term-003",
+        "3030-credit-required-110-term-003",
+        "3030-required-courses-112-grade-2-list",
+        "3030-required-courses-114-grade-2-list",
+        "3030-required-courses-111-grade-2-list"
+      ],
+      "retrieved_scores": [
+        0.847860038,
+        0.836953223,
+        0.836619,
+        0.831625342,
+        0.826862,
+        0.764084637,
+        0.763196409,
+        0.762898624,
+        0.760796607,
+        0.758715808
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": 1,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "curriculum",
+        "econ",
+        "112"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-008",
+      "case_type": "single-fact",
+      "question": "111學年度入學的資工系學生修讀他系之雙主修必修科目及指定選修學分會如何計入選修學分？",
+      "expected_chunk_groups": [
+        [
+          "9020-credit-required-111-note-005-item-006"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "9020-credit-required-111-note-005-item-006",
+        "9020-credit-required-112-note-005-item-006",
+        "9020-credit-required-114-note-005-item-006",
+        "9020-credit-required-110-note-005-item-006",
+        "9020-credit-required-113-note-005-item-006",
+        "9020-credit-required-111-note-005-item-004",
+        "9020-credit-required-112-note-005-item-004",
+        "9020-credit-required-112-note-005-item-007",
+        "9020-credit-required-111-note-005-item-007",
+        "9020-credit-required-114-note-005-item-004"
+      ],
+      "retrieved_scores": [
+        0.800645411,
+        0.798944,
+        0.796324849,
+        0.794298828,
+        0.792989135,
+        0.735242903,
+        0.734969318,
+        0.733982384,
+        0.733364046,
+        0.730808735
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": 1,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "curriculum",
+        "csie",
+        "dual-major",
+        "electives"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-009",
+      "case_type": "single-fact",
+      "question": "111學年度入學的資工系，系訂選修和院內選修各有限制多少學分？",
+      "expected_chunk_groups": [
+        [
+          "9020-credit-required-111-note-006"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "9020-credit-required-112-note-006",
+        "9020-credit-required-111-note-006",
+        "9020-credit-required-114-note-006",
+        "9020-credit-required-113-note-006",
+        "9020-credit-required-110-note-006",
+        "9020-credit-required-111-note-005-item-006",
+        "9020-credit-required-112-note-005-item-006",
+        "9020-credit-required-111-note-005-item-007",
+        "9020-credit-required-114-note-005-item-006",
+        "9020-credit-required-112-note-005-item-007"
+      ],
+      "retrieved_scores": [
+        0.770015955,
+        0.770011723,
+        0.768976808,
+        0.767034948,
+        0.766165316,
+        0.725553513,
+        0.721795619,
+        0.72118777,
+        0.719204724,
+        0.71887219
+      ],
+      "first_hit_rank": 2,
+      "first_complete_rank": 2,
+      "hit_at_k": {
+        "1": false,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "curriculum",
+        "csie",
+        "electives"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-010",
+      "case_type": "single-fact",
+      "question": "台大雙主修畢業時會自動審核嗎？還是要主動申請審查？",
+      "expected_chunk_groups": [
+        [
+          "ntu-transfer-minor-double-major-info-section-001"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "ntu-transfer-minor-double-major-info-section-001",
+        "econ-dual-major-policy-113-notes",
+        "econ-dual-major-policy-111-notes",
+        "econ-dual-major-policy-114-notes",
+        "econ-dual-major-policy-115-notes",
+        "econ-dual-major-policy-115-selection_method_and_weight",
+        "econ-dual-major-faq-q2",
+        "econ-dual-major-policy-111-selection_method_and_weight",
+        "econ-dual-major-policy-112-notes",
+        "econ-dual-major-policy-113-selection_method_and_weight"
+      ],
+      "retrieved_scores": [
+        0.528165638,
+        0.469294399,
+        0.469121784,
+        0.468776762,
+        0.468619436,
+        0.467594117,
+        0.465772927,
+        0.465415835,
+        0.464408159,
+        0.46227026
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": 1,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "portal",
+        "school-policy",
+        "graduation-review",
+        "dual-major"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-011",
+      "case_type": "single-fact",
+      "question": "經濟系輔系要修多少學分？",
+      "expected_chunk_groups": [
+        [
+          "econ-dual-major-faq-q4"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "econ-dual-major-faq-q4",
+        "3030-credit-required-112-overview",
+        "3030-credit-required-113-overview",
+        "3030-credit-required-111-overview",
+        "3030-credit-required-114-overview",
+        "3030-credit-required-110-overview",
+        "3030-credit-required-114-term-005",
+        "3030-credit-required-114-term-003",
+        "3030-credit-required-110-term-003",
+        "3030-credit-required-112-term-003"
+      ],
+      "retrieved_scores": [
+        0.72535795,
+        0.708766162,
+        0.703650951,
+        0.70293057,
+        0.701796055,
+        0.694918394,
+        0.678559,
+        0.677909493,
+        0.677839875,
+        0.677157521
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": 1,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "faq",
+        "minor",
+        "credits"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-012",
+      "case_type": "single-fact",
+      "question": "雙主修修課需要依照入學年度還是核准雙主修年度？",
+      "expected_chunk_groups": [
+        [
+          "ntu-transfer-minor-double-major-info-section-001"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "ntu-transfer-minor-double-major-info-section-001",
+        "econ-transfer-double-major-portal-section-003",
+        "econ-dual-major-faq-q1",
+        "econ-dual-major-policy-114-notes",
+        "econ-dual-major-policy-115-selection_method_and_weight",
+        "econ-dual-major-policy-114-selection_method_and_weight",
+        "econ-dual-major-policy-113-notes",
+        "econ-dual-major-policy-111-selection_method_and_weight",
+        "econ-dual-major-policy-115-notes",
+        "econ-dual-major-policy-112-notes"
+      ],
+      "retrieved_scores": [
+        0.656563938,
+        0.637638927,
+        0.628552675,
+        0.606018484,
+        0.605700731,
+        0.604863584,
+        0.604579926,
+        0.603498697,
+        0.603312612,
+        0.603255153
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": 1,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "policy",
+        "dual-major",
+        "approved-year"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-013",
+      "case_type": "single-fact",
+      "question": "114學年度入學經濟系二年級有哪些必修？",
+      "expected_chunk_groups": [
+        [
+          "3030-required-courses-114-grade-2-list"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "3030-required-courses-114-grade-1-note-002",
+        "3030-required-courses-114-grade-2-list",
+        "3030-required-courses-112-grade-1-list",
+        "3030-required-courses-114-grade-1-list",
+        "3030-required-courses-112-grade-2-list",
+        "3030-required-courses-112-grade-1-note-002",
+        "3030-required-courses-114-grade-2-note-005",
+        "3030-required-courses-110-grade-2-list",
+        "3030-required-courses-110-grade-2-note-005",
+        "3030-required-courses-111-grade-1-note-007"
+      ],
+      "retrieved_scores": [
+        0.758416653,
+        0.757856131,
+        0.756494462,
+        0.756122708,
+        0.755952954,
+        0.75578481,
+        0.753854,
+        0.752618492,
+        0.751771748,
+        0.751321
+      ],
+      "first_hit_rank": 2,
+      "first_complete_rank": 2,
+      "hit_at_k": {
+        "1": false,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "required-courses",
+        "econ",
+        "114",
+        "grade-2"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-014",
+      "case_type": "single-fact",
+      "question": "資工系111學年度一年級資料結構與演算法幾學分？",
+      "expected_chunk_groups": [
+        [
+          "9020-required-courses-111-grade-1-course-018"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "9020-required-courses-111-grade-2-list",
+        "9020-required-courses-111-grade-2-course-003",
+        "9020-required-courses-111-grade-1-course-018",
+        "9020-required-courses-111-grade-1-note-002",
+        "9020-required-courses-112-grade-2-list",
+        "9020-required-courses-112-grade-2-course-003",
+        "9020-credit-required-111-note-005-item-002",
+        "9020-required-courses-110-grade-2-course-003",
+        "9020-credit-required-111-term-003",
+        "9020-required-courses-112-grade-1-course-018"
+      ],
+      "retrieved_scores": [
+        0.680493176,
+        0.672146201,
+        0.665211499,
+        0.658088446,
+        0.65771,
+        0.657070279,
+        0.655351341,
+        0.653772771,
+        0.651566088,
+        0.650297582
+      ],
+      "first_hit_rank": 3,
+      "first_complete_rank": 3,
+      "hit_at_k": {
+        "1": false,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "required-courses",
+        "csie",
+        "111",
+        "grade-1",
+        "credits"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-015",
+      "case_type": "single-fact",
+      "question": "113學年度資工大二必修有哪些？",
+      "expected_chunk_groups": [
+        [
+          "9020-required-courses-113-grade-2-list"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "9020-required-courses-111-grade-1-list",
+        "9020-required-courses-112-grade-1-list",
+        "9020-required-courses-110-grade-1-list",
+        "9020-required-courses-113-grade-1-list",
+        "9020-required-courses-114-grade-1-list",
+        "9020-required-courses-112-grade-1-note-001",
+        "9020-required-courses-111-grade-1-note-001",
+        "9020-required-courses-110-grade-1-note-001",
+        "9020-required-courses-112-grade-2-list",
+        "9020-required-courses-114-grade-1-note-001"
+      ],
+      "retrieved_scores": [
+        0.658648729,
+        0.658448339,
+        0.652628303,
+        0.651387393,
+        0.651263535,
+        0.63397634,
+        0.630091131,
+        0.628335357,
+        0.627738237,
+        0.626754582
+      ],
+      "first_hit_rank": null,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "tags": [
+        "required-courses",
+        "csie",
+        "113",
+        "grade-2"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-016",
+      "case_type": "single-fact",
+      "question": "112學年度經濟系個體經濟學上是大幾必修？",
+      "expected_chunk_groups": [
+        [
+          "3030-required-courses-112-grade-2-course-001"
+        ],
+        [
+          "3030-required-courses-112-grade-2-list"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "3030-required-courses-112-grade-2-list",
+        "3030-required-courses-110-grade-2-list",
+        "3030-required-courses-114-grade-2-list",
+        "3030-required-courses-111-grade-2-list",
+        "3030-required-courses-113-grade-2-list",
+        "3030-required-courses-110-grade-1-note-008",
+        "3030-required-courses-111-grade-1-note-008",
+        "3030-required-courses-112-grade-1-list",
+        "3030-required-courses-112-grade-1-note-003",
+        "3030-required-courses-114-grade-1-list"
+      ],
+      "retrieved_scores": [
+        0.792111218,
+        0.789796054,
+        0.789645076,
+        0.786549807,
+        0.785310864,
+        0.765258908,
+        0.763755858,
+        0.762654424,
+        0.760379553,
+        0.759673715
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": 1,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "required-courses",
+        "econ",
+        "112",
+        "grade-2"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-017",
+      "case_type": "single-fact",
+      "question": "114學年度資工大三必修有哪些？",
+      "expected_chunk_groups": [
+        [
+          "9020-required-courses-114-grade-3-list"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "9020-required-courses-111-grade-1-list",
+        "9020-required-courses-114-grade-1-list",
+        "9020-required-courses-112-grade-1-list",
+        "9020-required-courses-113-grade-1-list",
+        "9020-required-courses-110-grade-1-list",
+        "9020-required-courses-112-grade-3-list",
+        "9020-required-courses-114-grade-3-list",
+        "9020-required-courses-114-grade-1-note-001",
+        "9020-required-courses-113-grade-3-list",
+        "9020-required-courses-112-grade-1-note-001"
+      ],
+      "retrieved_scores": [
+        0.643517,
+        0.643458188,
+        0.642776787,
+        0.642701209,
+        0.640672326,
+        0.619606733,
+        0.619058847,
+        0.61871016,
+        0.616704583,
+        0.615918279
+      ],
+      "first_hit_rank": 7,
+      "first_complete_rank": 7,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 1.0
+      },
+      "tags": [
+        "required-courses",
+        "csie",
+        "114",
+        "grade-3"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-018",
+      "case_type": "single-fact",
+      "question": "114學年度經濟系個體經濟學原理是大幾必修？",
+      "expected_chunk_groups": [
+        [
+          "3030-required-courses-114-grade-1-course-005"
+        ],
+        [
+          "3030-required-courses-114-grade-1-list"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "3030-required-courses-111-grade-1-note-008",
+        "3030-required-courses-110-grade-1-note-008",
+        "3030-required-courses-114-grade-1-note-003",
+        "3030-required-courses-112-grade-1-note-003",
+        "3030-required-courses-113-grade-1-note-003",
+        "3030-required-courses-114-grade-1-note-001",
+        "3030-required-courses-110-grade-1-note-006",
+        "3030-required-courses-111-grade-1-note-006",
+        "3030-required-courses-112-grade-1-note-001",
+        "3030-required-courses-113-grade-1-note-001"
+      ],
+      "retrieved_scores": [
+        0.781771719,
+        0.781731248,
+        0.781243861,
+        0.778326094,
+        0.776885092,
+        0.774816,
+        0.774445117,
+        0.772393882,
+        0.769559741,
+        0.769154
+      ],
+      "first_hit_rank": null,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "tags": [
+        "required-courses",
+        "econ",
+        "114",
+        "grade-1"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-019",
+      "case_type": "single-fact",
+      "question": "經濟系雙主修／輔系的必修統計學課程可以用外系的統計課替代嗎？",
+      "expected_chunk_groups": [
+        [
+          "econ-dual-major-faq-q5"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "econ-dual-major-faq-q5",
+        "econ-dual-major-faq-q3",
+        "econ-transfer-double-major-portal-section-002",
+        "3030-credit-required-113-note-001",
+        "3030-credit-required-112-note-001",
+        "3030-credit-required-113-note-007",
+        "3030-credit-required-112-note-007",
+        "3030-credit-required-111-note-007",
+        "3030-credit-required-110-note-007",
+        "3030-credit-required-114-note-001"
+      ],
+      "retrieved_scores": [
+        0.77897948,
+        0.694933176,
+        0.686106086,
+        0.683017492,
+        0.681938231,
+        0.678821921,
+        0.678751588,
+        0.678612351,
+        0.677249253,
+        0.676675
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": 1,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "faq",
+        "dual-major",
+        "minor",
+        "course-recognition",
+        "statistics"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-020",
+      "case_type": "single-fact",
+      "question": "資工系111學年度大三必修課號 CSIE3005 是什麼課？",
+      "expected_chunk_groups": [
+        [
+          "9020-required-courses-111-grade-3-course-001"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "9020-required-courses-111-grade-2-course-005",
+        "9020-required-courses-113-grade-2-course-005",
+        "9020-required-courses-111-grade-3-course-003",
+        "9020-required-courses-112-grade-2-course-005",
+        "9020-required-courses-113-grade-3-course-003",
+        "9020-required-courses-114-grade-3-course-003",
+        "9020-required-courses-110-grade-2-course-005",
+        "9020-required-courses-114-grade-2-course-005",
+        "9020-required-courses-112-grade-3-course-003",
+        "9020-required-courses-110-grade-3-course-003"
+      ],
+      "retrieved_scores": [
+        0.735584199,
+        0.733962655,
+        0.732398,
+        0.731612921,
+        0.730988622,
+        0.729201913,
+        0.729076326,
+        0.728585541,
+        0.727691412,
+        0.725824952
+      ],
+      "first_hit_rank": null,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "tags": [
+        "required-courses",
+        "csie",
+        "111",
+        "grade-3",
+        "course-code"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-021",
+      "case_type": "single-fact",
+      "question": "資工系111學年度大三必修「計算機結構」幾學分？",
+      "expected_chunk_groups": [
+        [
+          "9020-required-courses-111-grade-3-course-007"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "9020-required-courses-111-grade-3-course-007",
+        "9020-required-courses-112-grade-3-course-007",
+        "9020-required-courses-113-grade-3-course-007",
+        "9020-required-courses-114-grade-3-course-007",
+        "9020-required-courses-110-grade-3-course-007",
+        "9020-required-courses-111-grade-3-list",
+        "9020-required-courses-111-grade-2-list",
+        "9020-credit-required-111-term-007",
+        "9020-required-courses-112-grade-3-list",
+        "9020-required-courses-113-grade-3-list"
+      ],
+      "retrieved_scores": [
+        0.700433969,
+        0.688638568,
+        0.684555352,
+        0.682697535,
+        0.681049943,
+        0.674946427,
+        0.667034566,
+        0.659577429,
+        0.658733249,
+        0.654836
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": 1,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "required-courses",
+        "csie",
+        "111",
+        "grade-3",
+        "credits"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-022",
+      "case_type": "single-fact",
+      "question": "經濟系114學年度大一必修課號 MATH4006 是什麼課？",
+      "expected_chunk_groups": [
+        [
+          "3030-required-courses-114-grade-1-course-001"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "3030-required-courses-114-grade-1-course-001",
+        "3030-required-courses-113-grade-1-course-001",
+        "3030-required-courses-112-grade-1-course-001",
+        "3030-required-courses-114-grade-1-course-002",
+        "3030-required-courses-113-grade-1-course-002",
+        "3030-required-courses-112-grade-1-course-002",
+        "3030-required-courses-114-grade-1-course-003",
+        "3030-required-courses-113-grade-1-course-003",
+        "3030-required-courses-112-grade-1-course-003",
+        "3030-required-courses-114-grade-1-course-004"
+      ],
+      "retrieved_scores": [
+        0.77812773,
+        0.772419393,
+        0.772357047,
+        0.760421932,
+        0.756511,
+        0.754978,
+        0.754155695,
+        0.748615742,
+        0.747876704,
+        0.742364764
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": 1,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "required-courses",
+        "econ",
+        "114",
+        "grade-1",
+        "course-code"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-023",
+      "case_type": "single-fact",
+      "question": "經濟系114學年度大一必修「個體經濟學原理與實習」幾學分？",
+      "expected_chunk_groups": [
+        [
+          "3030-required-courses-114-grade-1-course-005"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "3030-required-courses-110-grade-1-list",
+        "3030-required-courses-111-grade-1-list",
+        "3030-required-courses-110-grade-2-list",
+        "3030-required-courses-114-grade-2-list",
+        "3030-required-courses-111-grade-2-list",
+        "3030-required-courses-113-grade-2-list",
+        "3030-required-courses-114-grade-1-list",
+        "3030-required-courses-112-grade-2-list",
+        "3030-required-courses-113-grade-1-list",
+        "3030-required-courses-114-grade-1-course-005"
+      ],
+      "retrieved_scores": [
+        0.766343,
+        0.764974415,
+        0.756244659,
+        0.755088687,
+        0.754925787,
+        0.754245639,
+        0.753304482,
+        0.751817465,
+        0.750292957,
+        0.749643683
+      ],
+      "first_hit_rank": 10,
+      "first_complete_rank": 10,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 1.0
+      },
+      "tags": [
+        "required-courses",
+        "econ",
+        "114",
+        "grade-1",
+        "credits"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-024",
+      "case_type": "single-fact",
+      "question": "114學年度資工系大一普通物理、普通化學、普通生物的必修採計規則是什麼？",
+      "expected_chunk_groups": [
+        [
+          "9020-required-courses-114-grade-1-note-001"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "9020-required-courses-114-grade-1-course-006",
+        "9020-required-courses-112-grade-1-course-006",
+        "9020-required-courses-114-grade-1-list",
+        "9020-required-courses-112-grade-1-list",
+        "9020-required-courses-111-grade-1-list",
+        "9020-required-courses-110-grade-1-course-006",
+        "9020-required-courses-112-grade-1-course-007",
+        "9020-required-courses-111-grade-1-course-006",
+        "9020-required-courses-114-grade-1-course-011",
+        "9020-required-courses-114-grade-1-course-007"
+      ],
+      "retrieved_scores": [
+        0.673663139,
+        0.672301531,
+        0.671766341,
+        0.671043634,
+        0.667502701,
+        0.667325854,
+        0.667038,
+        0.666655362,
+        0.665713,
+        0.6657
+      ],
+      "first_hit_rank": null,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "tags": [
+        "required-courses",
+        "csie",
+        "114",
+        "grade-1",
+        "policy",
+        "credits"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-025",
+      "case_type": "single-fact",
+      "question": "114學年度經濟系雙主修錄取方式是什麼？",
+      "expected_chunk_groups": [
+        [
+          "econ-dual-major-policy-114-selection_method_and_weight"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "econ-dual-major-policy-114-selection_method_and_weight",
+        "econ-dual-major-policy-115-selection_method_and_weight",
+        "econ-dual-major-policy-113-selection_method_and_weight",
+        "econ-dual-major-policy-111-selection_method_and_weight",
+        "econ-dual-major-policy-112-selection_method_and_weight",
+        "econ-dual-major-policy-114-overview",
+        "econ-dual-major-policy-113-overview",
+        "econ-dual-major-policy-114-other",
+        "econ-dual-major-policy-111-overview",
+        "econ-dual-major-policy-114-notes"
+      ],
+      "retrieved_scores": [
+        0.818647087,
+        0.816989362,
+        0.81612426,
+        0.815666437,
+        0.814816535,
+        0.766892076,
+        0.761723399,
+        0.757938504,
+        0.75779891,
+        0.756720066
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": 1,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "policy",
+        "dual-major",
+        "econ",
+        "114",
+        "selection"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-026",
+      "case_type": "single-fact",
+      "question": "110學年度入學經濟系一年級有哪些系訂必修？",
+      "expected_chunk_groups": [
+        [
+          "3030-required-courses-110-grade-1-list"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "3030-required-courses-114-grade-1-note-002",
+        "3030-required-courses-112-grade-1-note-002",
+        "3030-required-courses-110-grade-1-note-011",
+        "3030-required-courses-111-grade-1-note-007",
+        "3030-required-courses-110-grade-1-note-007",
+        "3030-required-courses-110-grade-3-list",
+        "3030-required-courses-113-grade-1-note-002",
+        "3030-required-courses-111-grade-1-note-011",
+        "3030-required-courses-112-grade-3-list",
+        "3030-required-courses-110-grade-4-list"
+      ],
+      "retrieved_scores": [
+        0.786949515,
+        0.786949515,
+        0.786654,
+        0.785901964,
+        0.785749495,
+        0.78484118,
+        0.784724534,
+        0.782622933,
+        0.779351175,
+        0.77880764
+      ],
+      "first_hit_rank": null,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "tags": [
+        "required-courses",
+        "econ",
+        "110",
+        "grade-1"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-027",
+      "case_type": "single-fact",
+      "question": "110學年度入學資工系二年級有哪些系訂必修？",
+      "expected_chunk_groups": [
+        [
+          "9020-required-courses-110-grade-2-list"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "9020-required-courses-112-grade-4-list",
+        "9020-required-courses-111-grade-4-list",
+        "9020-required-courses-114-grade-4-list",
+        "9020-required-courses-110-grade-4-list",
+        "9020-required-courses-113-grade-4-list",
+        "9020-required-courses-112-grade-1-list",
+        "9020-required-courses-114-grade-1-list",
+        "9020-required-courses-112-grade-2-list",
+        "9020-required-courses-111-grade-1-list",
+        "9020-required-courses-114-grade-2-list"
+      ],
+      "retrieved_scores": [
+        0.733074605,
+        0.732827902,
+        0.729741871,
+        0.72964114,
+        0.728255391,
+        0.727462947,
+        0.727342,
+        0.726649106,
+        0.726387084,
+        0.725231767
+      ],
+      "first_hit_rank": null,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "tags": [
+        "required-courses",
+        "csie",
+        "110",
+        "grade-2"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "single-fact-028",
+      "case_type": "single-fact",
+      "question": "113學年度入學資工系四年級有哪些系訂必修？",
+      "expected_chunk_groups": [
+        [
+          "9020-required-courses-113-grade-4-list"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "9020-required-courses-114-grade-4-list",
+        "9020-required-courses-113-grade-4-list",
+        "9020-required-courses-111-grade-4-list",
+        "9020-required-courses-112-grade-4-list",
+        "9020-required-courses-110-grade-4-list",
+        "9020-required-courses-114-grade-2-list",
+        "9020-required-courses-114-grade-1-list",
+        "9020-required-courses-114-grade-3-list",
+        "9020-required-courses-113-grade-2-list",
+        "9020-required-courses-113-grade-3-list"
+      ],
+      "retrieved_scores": [
+        0.759312212,
+        0.756824791,
+        0.754203677,
+        0.752886951,
+        0.751193523,
+        0.726598084,
+        0.726293921,
+        0.725790441,
+        0.723409,
+        0.721413255
+      ],
+      "first_hit_rank": 2,
+      "first_complete_rank": 2,
+      "hit_at_k": {
+        "1": false,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "required-courses",
+        "csie",
+        "113",
+        "grade-4",
+        "empty-list"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "multi-fact-compare-001",
+      "case_type": "multi-fact-compare",
+      "question": "雙主修和輔系學分要求差在哪？",
+      "expected_chunk_groups": [
+        [
+          "econ-dual-major-faq-q1",
+          "econ-dual-major-faq-q4"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "econ-dual-major-faq-q2",
+        "econ-dual-major-faq-q4",
+        "ntu-transfer-minor-double-major-info-section-001",
+        "econ-transfer-double-major-portal-section-003",
+        "econ-dual-major-faq-q1",
+        "econ-dual-major-policy-115-selection_method_and_weight",
+        "econ-dual-major-policy-111-selection_method_and_weight",
+        "econ-dual-major-policy-111-notes",
+        "econ-dual-major-policy-112-notes",
+        "econ-dual-major-policy-114-notes"
+      ],
+      "retrieved_scores": [
+        0.614062428,
+        0.604463518,
+        0.60121882,
+        0.597434759,
+        0.588681579,
+        0.578236103,
+        0.577936,
+        0.577551484,
+        0.576491416,
+        0.576385677
+      ],
+      "first_hit_rank": 2,
+      "first_complete_rank": 5,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.5,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "comparison",
+        "dual-major",
+        "minor",
+        "credits"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "multi-fact-compare-002",
+      "case_type": "multi-fact-compare",
+      "question": "111 學年度和 112 學年度經濟系雙主修申請資格規定有什麼差異？",
+      "expected_chunk_groups": [
+        [
+          "econ-dual-major-policy-111-eligibility",
+          "econ-dual-major-policy-112-eligibility",
+          "econ-dual-major-policy-111-selection_method_and_weight",
+          "econ-dual-major-policy-112-selection_method_and_weight"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "econ-dual-major-policy-112-other",
+        "econ-dual-major-policy-111-other",
+        "econ-dual-major-policy-114-other",
+        "econ-dual-major-policy-113-other",
+        "econ-dual-major-policy-115-other",
+        "econ-dual-major-policy-111-overview",
+        "econ-dual-major-policy-112-overview",
+        "econ-dual-major-policy-112-selection_method_and_weight",
+        "econ-dual-major-policy-111-selection_method_and_weight",
+        "econ-dual-major-policy-111-eligibility"
+      ],
+      "retrieved_scores": [
+        0.718910038,
+        0.71823585,
+        0.703716159,
+        0.702704966,
+        0.698856056,
+        0.691695869,
+        0.690410495,
+        0.687361181,
+        0.687271476,
+        0.685207784
+      ],
+      "first_hit_rank": 8,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.75
+      },
+      "tags": [
+        "comparison",
+        "policy",
+        "111",
+        "112"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "multi-fact-compare-003",
+      "case_type": "multi-fact-compare",
+      "question": "113 學年度和 114 學年度經濟系雙主修申請資格規定有什麼差異？",
+      "expected_chunk_groups": [
+        [
+          "econ-dual-major-policy-113-eligibility",
+          "econ-dual-major-policy-114-eligibility",
+          "econ-dual-major-policy-113-selection_method_and_weight",
+          "econ-dual-major-policy-114-selection_method_and_weight"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "econ-dual-major-policy-114-other",
+        "econ-dual-major-policy-113-other",
+        "econ-dual-major-policy-111-other",
+        "econ-dual-major-policy-115-other",
+        "econ-dual-major-policy-112-other",
+        "econ-dual-major-policy-114-selection_method_and_weight",
+        "econ-dual-major-policy-114-overview",
+        "econ-dual-major-policy-111-selection_method_and_weight",
+        "econ-dual-major-policy-113-selection_method_and_weight",
+        "econ-dual-major-policy-115-selection_method_and_weight"
+      ],
+      "retrieved_scores": [
+        0.73553,
+        0.719634175,
+        0.719463,
+        0.717140436,
+        0.713184476,
+        0.705827892,
+        0.705668867,
+        0.701367915,
+        0.700128436,
+        0.699284315
+      ],
+      "first_hit_rank": 6,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.5
+      },
+      "tags": [
+        "comparison",
+        "policy",
+        "113",
+        "114"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "multi-fact-compare-004",
+      "case_type": "multi-fact-compare",
+      "question": "114學年度資工系、114學年度經濟系有什麼共同必修？",
+      "expected_chunk_groups": [
+        [
+          "9020-required-courses-114-grade-1-list",
+          "3030-required-courses-114-grade-1-list"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "3030-required-courses-114-grade-1-note-002",
+        "3030-required-courses-114-grade-4-list",
+        "3030-required-courses-114-grade-3-list",
+        "3030-required-courses-112-grade-1-note-002",
+        "3030-required-courses-114-grade-2-note-005",
+        "3030-required-courses-113-grade-1-note-002",
+        "3030-required-courses-110-grade-1-note-007",
+        "3030-required-courses-111-grade-1-note-007",
+        "3030-required-courses-114-grade-2-list",
+        "3030-required-courses-112-grade-3-list"
+      ],
+      "retrieved_scores": [
+        0.700469851,
+        0.700379074,
+        0.69778651,
+        0.691700339,
+        0.69060564,
+        0.688461661,
+        0.688173413,
+        0.688097358,
+        0.687241793,
+        0.68671453
+      ],
+      "first_hit_rank": null,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "tags": [
+        "comparison",
+        "required-courses",
+        "csie",
+        "econ",
+        "114"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "multi-fact-compare-005",
+      "case_type": "multi-fact-compare",
+      "question": "經濟系一年級必修在 111學年度和 112 學年有什麼差異？",
+      "expected_chunk_groups": [
+        [
+          "3030-required-courses-111-grade-1-list",
+          "3030-required-courses-112-grade-1-list"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "3030-required-courses-111-grade-1-note-007",
+        "3030-required-courses-112-grade-1-note-002",
+        "3030-required-courses-110-grade-1-note-007",
+        "3030-required-courses-114-grade-1-note-002",
+        "3030-credit-required-111-term-003",
+        "3030-required-courses-113-grade-1-note-002",
+        "3030-credit-required-112-term-003",
+        "3030-required-courses-111-grade-1-note-011",
+        "3030-required-courses-111-grade-3-list",
+        "3030-required-courses-111-grade-1-note-006"
+      ],
+      "retrieved_scores": [
+        0.719341,
+        0.716984153,
+        0.705492139,
+        0.702870607,
+        0.701467395,
+        0.700236619,
+        0.697103739,
+        0.69642061,
+        0.695051432,
+        0.694768548
+      ],
+      "first_hit_rank": null,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "tags": [
+        "comparison",
+        "required-courses",
+        "econ",
+        "111",
+        "112",
+        "grade-1"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "multi-fact-compare-006",
+      "case_type": "multi-fact-compare",
+      "question": "資工系三年級 111 與 112 必修差異？",
+      "expected_chunk_groups": [
+        [
+          "9020-required-courses-111-grade-3-list",
+          "9020-required-courses-112-grade-3-list"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "9020-required-courses-111-grade-2-note-001",
+        "9020-credit-required-111-note-005-item-006",
+        "9020-required-courses-112-grade-2-note-001",
+        "9020-required-courses-111-grade-4-list",
+        "9020-credit-required-112-note-005-item-006",
+        "9020-required-courses-111-grade-1-note-003",
+        "9020-required-courses-111-grade-1-list",
+        "9020-required-courses-111-grade-2-list",
+        "9020-required-courses-111-grade-1-note-002",
+        "9020-credit-required-111-note-005-item-004"
+      ],
+      "retrieved_scores": [
+        0.624644101,
+        0.623598218,
+        0.620350838,
+        0.620280683,
+        0.620022476,
+        0.617966533,
+        0.61714071,
+        0.616816223,
+        0.61641,
+        0.615300119
+      ],
+      "first_hit_rank": null,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "tags": [
+        "comparison",
+        "required-courses",
+        "csie",
+        "111",
+        "112",
+        "grade-3"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "multi-fact-compare-007",
+      "case_type": "multi-fact-compare",
+      "question": "112 學年度資工系與經濟系一年級必修有哪些課重疊？",
+      "expected_chunk_groups": [
+        [
+          "9020-required-courses-112-grade-1-list",
+          "3030-required-courses-112-grade-1-list"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "3030-required-courses-112-grade-1-note-002",
+        "3030-required-courses-114-grade-1-note-002",
+        "3030-required-courses-112-grade-2-list",
+        "3030-required-courses-112-grade-3-list",
+        "3030-required-courses-112-grade-4-list",
+        "3030-required-courses-111-grade-1-note-007",
+        "3030-required-courses-110-grade-1-note-007",
+        "3030-required-courses-113-grade-1-note-002",
+        "3030-required-courses-112-grade-1-list",
+        "3030-required-courses-114-grade-2-list"
+      ],
+      "retrieved_scores": [
+        0.690043211,
+        0.686772943,
+        0.686558187,
+        0.68640244,
+        0.685549319,
+        0.682832599,
+        0.682387888,
+        0.682273924,
+        0.682119727,
+        0.681946158
+      ],
+      "first_hit_rank": 9,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.5
+      },
+      "tags": [
+        "comparison",
+        "required-courses",
+        "csie",
+        "econ",
+        "112",
+        "grade-1"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "multi-fact-compare-008",
+      "case_type": "multi-fact-compare",
+      "question": "資工系 111 與經濟系 112 微積分1、微積分2、微積分3 的課號是否相同？",
+      "expected_chunk_groups": [
+        [
+          "9020-required-courses-111-grade-1-course-001",
+          "9020-required-courses-111-grade-1-course-002",
+          "9020-required-courses-111-grade-1-course-003",
+          "3030-required-courses-112-grade-1-course-001",
+          "3030-required-courses-112-grade-1-course-002",
+          "3030-required-courses-112-grade-1-course-003"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "3030-required-courses-111-grade-1-note-002",
+        "3030-required-courses-110-grade-1-note-002",
+        "3030-required-courses-112-grade-1-course-001",
+        "3030-required-courses-111-grade-1-note-003",
+        "3030-required-courses-113-grade-1-course-001",
+        "3030-required-courses-112-grade-1-course-003",
+        "9020-required-courses-111-grade-1-course-001",
+        "3030-required-courses-112-grade-1-course-002",
+        "3030-required-courses-114-grade-1-course-001",
+        "9020-required-courses-112-grade-1-course-001"
+      ],
+      "retrieved_scores": [
+        0.64211005,
+        0.632024109,
+        0.622564,
+        0.619233191,
+        0.617933869,
+        0.617002845,
+        0.61678648,
+        0.615936697,
+        0.614237,
+        0.613028646
+      ],
+      "first_hit_rank": 3,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.16666666666666666,
+        "5": 0.16666666666666666,
+        "10": 0.6666666666666666
+      },
+      "tags": [
+        "comparison",
+        "required-courses",
+        "csie",
+        "econ",
+        "111",
+        "112",
+        "course-code",
+        "calculus"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "multi-fact-compare-009",
+      "case_type": "multi-fact-compare",
+      "question": "經濟系總體經濟學原理在 111–114學年度學分是否改變過？",
+      "expected_chunk_groups": [
+        [
+          "3030-required-courses-111-grade-1-course-004",
+          "3030-required-courses-112-grade-1-course-006",
+          "3030-required-courses-113-grade-1-course-006",
+          "3030-required-courses-114-grade-1-course-006"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "3030-required-courses-111-grade-1-list",
+        "3030-required-courses-111-grade-1-note-011",
+        "3030-required-courses-110-grade-1-note-011",
+        "3030-required-courses-110-grade-1-list",
+        "3030-required-courses-112-grade-1-list",
+        "3030-required-courses-114-grade-1-note-002",
+        "3030-required-courses-111-grade-1-note-007",
+        "3030-required-courses-114-grade-1-list",
+        "3030-required-courses-113-grade-1-list",
+        "3030-required-courses-112-grade-1-course-006"
+      ],
+      "retrieved_scores": [
+        0.675858736,
+        0.675193429,
+        0.670503736,
+        0.669702053,
+        0.655375302,
+        0.654193,
+        0.654155791,
+        0.653508782,
+        0.653443336,
+        0.652698278
+      ],
+      "first_hit_rank": 10,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.25
+      },
+      "tags": [
+        "comparison",
+        "required-courses",
+        "econ",
+        "111",
+        "112",
+        "113",
+        "114",
+        "credits",
+        "macro"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "multi-fact-compare-010",
+      "case_type": "multi-fact-compare",
+      "question": "資工系二年級必修在 113、114 分別列出",
+      "expected_chunk_groups": [
+        [
+          "9020-required-courses-113-grade-2-list",
+          "9020-required-courses-114-grade-2-list"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "9020-required-courses-114-grade-2-list",
+        "9020-required-courses-111-grade-2-list",
+        "9020-required-courses-112-grade-2-list",
+        "9020-required-courses-113-grade-2-list",
+        "9020-credit-required-112-note-005-item-006",
+        "9020-credit-required-111-note-005-item-006",
+        "9020-credit-required-114-note-005-item-006",
+        "9020-required-courses-114-grade-1-list",
+        "9020-required-courses-112-grade-1-list",
+        "9020-required-courses-111-grade-1-list"
+      ],
+      "retrieved_scores": [
+        0.67729187,
+        0.672805905,
+        0.672141433,
+        0.669821918,
+        0.668541789,
+        0.668383837,
+        0.665755749,
+        0.665102303,
+        0.665050685,
+        0.664683044
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": 4,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 0.5,
+        "3": 0.5,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "comparison",
+        "required-courses",
+        "csie",
+        "113",
+        "114",
+        "grade-2"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "multi-fact-compare-011",
+      "case_type": "multi-fact-compare",
+      "question": "資工系 113 學年度所有年級必修總覽",
+      "expected_chunk_groups": [
+        [
+          "9020-required-courses-113-grade-1-list",
+          "9020-required-courses-113-grade-2-list",
+          "9020-required-courses-113-grade-3-list",
+          "9020-required-courses-113-grade-4-list"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "9020-required-courses-111-grade-1-list",
+        "9020-required-courses-112-grade-1-list",
+        "9020-required-courses-113-grade-1-list",
+        "9020-required-courses-114-grade-1-list",
+        "9020-required-courses-110-grade-1-list",
+        "9020-credit-required-111-note-005-item-002",
+        "9020-credit-required-111-note-002",
+        "9020-credit-required-112-note-002",
+        "9020-credit-required-111-note-005-item-003",
+        "9020-credit-required-112-note-005-item-002"
+      ],
+      "retrieved_scores": [
+        0.660034418,
+        0.656682551,
+        0.650798082,
+        0.648703873,
+        0.645988464,
+        0.642202079,
+        0.641306162,
+        0.640336037,
+        0.639706969,
+        0.638964891
+      ],
+      "first_hit_rank": 3,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.25,
+        "5": 0.25,
+        "10": 0.25
+      },
+      "tags": [
+        "overview",
+        "required-courses",
+        "csie",
+        "113"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "multi-fact-compare-012",
+      "case_type": "multi-fact-compare",
+      "question": "112學年度資工系、經濟系對於外文領域的規定有何差異？",
+      "expected_chunk_groups": [
+        [
+          "9020-credit-required-112-note-005-item-001",
+          "9020-credit-required-112-note-005-item-004",
+          "3030-credit-required-112-note-006-item-001",
+          "3030-credit-required-112-note-006-item-004"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "9020-credit-required-112-note-005-item-001",
+        "9020-credit-required-111-note-005-item-001",
+        "9020-credit-required-110-note-005-item-001",
+        "9020-credit-required-114-note-005-item-001",
+        "9020-credit-required-113-note-005-item-001",
+        "3030-credit-required-112-note-006-item-001",
+        "3030-credit-required-114-note-006-item-001",
+        "3030-credit-required-111-note-006-item-001",
+        "3030-credit-required-110-note-006-item-001",
+        "3030-credit-required-113-note-006-item-001"
+      ],
+      "retrieved_scores": [
+        0.644877076,
+        0.641604841,
+        0.638477504,
+        0.637239456,
+        0.636481643,
+        0.630225599,
+        0.628200054,
+        0.624812,
+        0.624741673,
+        0.622926652
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.25,
+        "3": 0.25,
+        "5": 0.25,
+        "10": 0.5
+      },
+      "tags": [
+        "comparison",
+        "credit-required",
+        "csie",
+        "econ",
+        "112",
+        "foreign-language"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "multi-fact-compare-013",
+      "case_type": "multi-fact-compare",
+      "question": "113學年度資工系、經濟系對於全年課程僅修習半年及格是否計入畢業學分的規定",
+      "expected_chunk_groups": [
+        [
+          "9020-credit-required-113-note-005-item-002",
+          "3030-credit-required-113-note-006-item-002"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "9020-credit-required-114-note-005-item-002",
+        "9020-credit-required-111-note-005-item-002",
+        "9020-credit-required-112-note-005-item-002",
+        "9020-credit-required-113-note-005-item-002",
+        "9020-credit-required-110-note-005-item-002",
+        "3030-credit-required-114-note-006-item-002",
+        "3030-credit-required-111-note-006-item-002",
+        "3030-credit-required-112-note-006-item-002",
+        "3030-credit-required-113-note-006-item-002",
+        "3030-credit-required-110-note-006-item-002"
+      ],
+      "retrieved_scores": [
+        0.803234458,
+        0.801426709,
+        0.801180422,
+        0.800276816,
+        0.795205116,
+        0.794819117,
+        0.793050349,
+        0.792467654,
+        0.789639115,
+        0.788971066
+      ],
+      "first_hit_rank": 4,
+      "first_complete_rank": 9,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.5,
+        "10": 1.0
+      },
+      "tags": [
+        "comparison",
+        "credit-required",
+        "csie",
+        "econ",
+        "113",
+        "half-year"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "multi-fact-compare-014",
+      "case_type": "multi-fact-compare",
+      "question": "114學年度資工系、經濟系對於超修之通識課程、外文領域課程計入選修學分的規定",
+      "expected_chunk_groups": [
+        [
+          "9020-credit-required-114-note-005-item-003",
+          "9020-credit-required-114-note-005-item-004",
+          "3030-credit-required-114-note-006-item-003",
+          "3030-credit-required-114-note-006-item-004"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "9020-credit-required-114-note-005-item-004",
+        "9020-credit-required-111-note-005-item-004",
+        "9020-credit-required-112-note-005-item-004",
+        "9020-credit-required-110-note-005-item-004",
+        "9020-credit-required-113-note-005-item-004",
+        "9020-credit-required-114-note-005-item-003",
+        "9020-credit-required-111-note-005-item-003",
+        "9020-credit-required-112-note-005-item-003",
+        "9020-credit-required-113-note-005-item-003",
+        "9020-credit-required-110-note-005-item-003"
+      ],
+      "retrieved_scores": [
+        0.791313291,
+        0.790423512,
+        0.789015889,
+        0.785142839,
+        0.784936309,
+        0.776341081,
+        0.775845647,
+        0.774832547,
+        0.771737039,
+        0.770460069
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.25,
+        "3": 0.25,
+        "5": 0.25,
+        "10": 0.5
+      },
+      "tags": [
+        "comparison",
+        "credit-required",
+        "csie",
+        "econ",
+        "114",
+        "gen-ed",
+        "foreign-language"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "multi-fact-compare-015",
+      "case_type": "multi-fact-compare",
+      "question": "112學年度經濟系和111學年度資工系對於系選修的規定分別是什麼？",
+      "expected_chunk_groups": [
+        [
+          "3030-credit-required-112-note-005",
+          "9020-credit-required-111-note-006"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "3030-credit-required-111-note-001",
+        "econ-dual-major-policy-111-other",
+        "3030-required-courses-111-grade-3-list",
+        "3030-credit-required-110-note-001",
+        "econ-dual-major-policy-112-other",
+        "3030-credit-required-110-note-007",
+        "3030-credit-required-111-term-003",
+        "3030-required-courses-111-grade-4-list",
+        "3030-credit-required-111-note-007",
+        "3030-credit-required-112-note-007"
+      ],
+      "retrieved_scores": [
+        0.670818865,
+        0.658746183,
+        0.652037382,
+        0.648512661,
+        0.647657454,
+        0.64595741,
+        0.645690858,
+        0.644566178,
+        0.644392312,
+        0.643399239
+      ],
+      "first_hit_rank": null,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "tags": [
+        "comparison",
+        "credit-required",
+        "econ",
+        "csie",
+        "111",
+        "112",
+        "electives"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "misleading-single-fact-001",
+      "case_type": "misleading-single-fact",
+      "question": "雙主修畢業會自動送審對吧？",
+      "expected_chunk_groups": [
+        [
+          "ntu-transfer-minor-double-major-info-section-001"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "ntu-transfer-minor-double-major-info-section-001",
+        "econ-transfer-double-major-portal-section-003",
+        "econ-dual-major-policy-115-selection_method_and_weight",
+        "econ-dual-major-policy-111-selection_method_and_weight",
+        "econ-dual-major-faq-q2",
+        "econ-dual-major-policy-113-selection_method_and_weight",
+        "econ-dual-major-faq-q1",
+        "econ-dual-major-policy-111-notes",
+        "econ-dual-major-policy-114-selection_method_and_weight",
+        "econ-dual-major-policy-112-selection_method_and_weight"
+      ],
+      "retrieved_scores": [
+        0.500520051,
+        0.47466439,
+        0.449782372,
+        0.449514657,
+        0.448540598,
+        0.445238829,
+        0.445002377,
+        0.444479913,
+        0.443733662,
+        0.442937195
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": 1,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "misleading",
+        "dual-major",
+        "graduation-review"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "misleading-single-fact-002",
+      "case_type": "misleading-single-fact",
+      "question": "外系同名課都可以算進經濟系雙主修選修吧？",
+      "expected_chunk_groups": [
+        [
+          "econ-dual-major-faq-q3"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "econ-dual-major-faq-q3",
+        "econ-dual-major-policy-111-selection_method_and_weight",
+        "econ-dual-major-policy-115-selection_method_and_weight",
+        "econ-dual-major-policy-112-selection_method_and_weight",
+        "econ-dual-major-policy-113-selection_method_and_weight",
+        "econ-dual-major-policy-114-selection_method_and_weight",
+        "econ-dual-major-policy-115-other",
+        "econ-dual-major-policy-114-other",
+        "econ-dual-major-policy-111-other",
+        "econ-dual-major-policy-113-other"
+      ],
+      "retrieved_scores": [
+        0.737070382,
+        0.669808328,
+        0.668073773,
+        0.667551577,
+        0.667353451,
+        0.665056586,
+        0.662344396,
+        0.662194729,
+        0.661545634,
+        0.66149354
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": 1,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "misleading",
+        "dual-major",
+        "course-recognition"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "misleading-single-fact-003",
+      "case_type": "misleading-single-fact",
+      "question": "114學年度資工系必修的總體經濟學原理",
+      "expected_chunk_groups": [
+        [
+          "9020-required-courses-114-grade-1-list",
+          "3030-required-courses-114-grade-1-course-006"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "3030-required-courses-114-grade-1-note-002",
+        "3030-required-courses-110-grade-1-note-011",
+        "3030-required-courses-111-grade-1-note-011",
+        "3030-required-courses-112-grade-1-note-002",
+        "3030-required-courses-110-grade-1-note-007",
+        "3030-required-courses-113-grade-1-note-002",
+        "3030-required-courses-111-grade-1-note-007",
+        "3030-required-courses-111-grade-1-note-008",
+        "3030-required-courses-114-grade-1-note-001",
+        "3030-required-courses-110-grade-1-note-008"
+      ],
+      "retrieved_scores": [
+        0.715446353,
+        0.712813437,
+        0.711349308,
+        0.710430205,
+        0.709061623,
+        0.707051396,
+        0.70701474,
+        0.699966729,
+        0.698074341,
+        0.697488844
+      ],
+      "first_hit_rank": null,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "tags": [
+        "misleading",
+        "required-courses",
+        "csie",
+        "econ",
+        "macro"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "misleading-single-fact-004",
+      "case_type": "misleading-single-fact",
+      "question": "114學年度經濟系必修的演算法",
+      "expected_chunk_groups": [
+        [
+          "3030-required-courses-114-grade-2-list",
+          "9020-required-courses-114-grade-2-course-003"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "3030-required-courses-114-grade-1-course-002",
+        "3030-required-courses-114-grade-1-course-003",
+        "3030-required-courses-112-grade-1-course-002",
+        "3030-required-courses-111-grade-1-note-002",
+        "3030-required-courses-114-grade-1-course-001",
+        "3030-required-courses-114-grade-1-course-004",
+        "3030-required-courses-113-grade-1-course-002",
+        "3030-required-courses-112-grade-1-course-004",
+        "3030-required-courses-110-grade-1-note-002",
+        "3030-required-courses-113-grade-1-course-004"
+      ],
+      "retrieved_scores": [
+        0.663542271,
+        0.658904135,
+        0.658044,
+        0.657877624,
+        0.657844424,
+        0.657699823,
+        0.657686532,
+        0.655291259,
+        0.654493332,
+        0.654259741
+      ],
+      "first_hit_rank": null,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "tags": [
+        "misleading",
+        "required-courses",
+        "econ",
+        "csie",
+        "algorithm"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "misleading-single-fact-005",
+      "case_type": "misleading-single-fact",
+      "question": "資工系 112 學年度一年級的作業系統",
+      "expected_chunk_groups": [
+        [
+          "9020-required-courses-112-grade-1-list",
+          "9020-required-courses-112-grade-2-course-005",
+          "9020-required-courses-112-grade-2-list"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "9020-required-courses-112-grade-2-course-005",
+        "9020-required-courses-111-grade-2-course-005",
+        "9020-required-courses-113-grade-2-course-005",
+        "9020-required-courses-110-grade-2-course-005",
+        "9020-required-courses-114-grade-2-course-005",
+        "9020-required-courses-112-grade-2-list",
+        "9020-required-courses-111-grade-2-list",
+        "9020-required-courses-112-grade-2-course-004",
+        "9020-required-courses-113-grade-2-list",
+        "9020-required-courses-112-grade-3-course-003"
+      ],
+      "retrieved_scores": [
+        0.747064352,
+        0.745104611,
+        0.736664772,
+        0.735008657,
+        0.733676672,
+        0.704309464,
+        0.699304163,
+        0.689021707,
+        0.686881721,
+        0.686561406
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.3333333333333333,
+        "3": 0.3333333333333333,
+        "5": 0.3333333333333333,
+        "10": 0.6666666666666666
+      },
+      "tags": [
+        "misleading",
+        "required-courses",
+        "csie",
+        "112",
+        "grade-1",
+        "operating-systems"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "misleading-single-fact-006",
+      "case_type": "misleading-single-fact",
+      "question": "113學年度經濟系規定外文領域一定要修英文",
+      "expected_chunk_groups": [
+        [
+          "3030-credit-required-113-note-006-item-001"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "3030-credit-required-114-note-006-item-001",
+        "3030-credit-required-112-note-006-item-001",
+        "3030-credit-required-111-note-006-item-001",
+        "3030-credit-required-113-note-006-item-001",
+        "3030-credit-required-110-note-006-item-001",
+        "9020-credit-required-114-note-005-item-001",
+        "9020-credit-required-111-note-005-item-001",
+        "9020-credit-required-113-note-005-item-001",
+        "9020-credit-required-112-note-005-item-001",
+        "9020-credit-required-110-note-005-item-001"
+      ],
+      "retrieved_scores": [
+        0.81189543,
+        0.810050249,
+        0.808994293,
+        0.80805403,
+        0.803875744,
+        0.72619319,
+        0.725837052,
+        0.725110054,
+        0.724766076,
+        0.718066216
+      ],
+      "first_hit_rank": 4,
+      "first_complete_rank": 4,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "misleading",
+        "credit-required",
+        "econ",
+        "113",
+        "foreign-language"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "misleading-single-fact-007",
+      "case_type": "misleading-single-fact",
+      "question": "112學年度資工系規定外文領域一定要修英文",
+      "expected_chunk_groups": [
+        [
+          "9020-credit-required-112-note-005-item-001"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "9020-credit-required-112-note-005-item-001",
+        "9020-credit-required-114-note-005-item-001",
+        "9020-credit-required-111-note-005-item-001",
+        "9020-credit-required-113-note-005-item-001",
+        "9020-credit-required-110-note-005-item-001",
+        "3030-credit-required-112-note-006-item-001",
+        "3030-credit-required-114-note-006-item-001",
+        "3030-credit-required-111-note-006-item-001",
+        "3030-credit-required-110-note-006-item-001",
+        "3030-credit-required-113-note-006-item-001"
+      ],
+      "retrieved_scores": [
+        0.773830831,
+        0.770656884,
+        0.769255161,
+        0.766358435,
+        0.763218,
+        0.690498948,
+        0.69035548,
+        0.68524158,
+        0.682196558,
+        0.68083024
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": 1,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "misleading",
+        "credit-required",
+        "csie",
+        "112",
+        "foreign-language"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "misleading-single-fact-008",
+      "case_type": "misleading-single-fact",
+      "question": "114學年度資工系系選修可以都修電機系的",
+      "expected_chunk_groups": [
+        [
+          "9020-credit-required-114-note-006"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "9020-required-courses-114-grade-4-list",
+        "9020-required-courses-114-grade-2-list",
+        "9020-required-courses-112-grade-4-list",
+        "9020-required-courses-111-grade-4-list",
+        "9020-required-courses-113-grade-4-list",
+        "9020-required-courses-110-grade-4-list",
+        "9020-required-courses-114-grade-3-list",
+        "9020-required-courses-113-grade-2-list",
+        "9020-required-courses-114-grade-1-note-001",
+        "9020-required-courses-112-grade-2-list"
+      ],
+      "retrieved_scores": [
+        0.668275476,
+        0.656097174,
+        0.654779613,
+        0.654127836,
+        0.65351069,
+        0.653304,
+        0.645280302,
+        0.643584549,
+        0.643395126,
+        0.643031
+      ],
+      "first_hit_rank": null,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "tags": [
+        "misleading",
+        "credit-required",
+        "csie",
+        "114",
+        "electives",
+        "ee"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "misleading-single-fact-009",
+      "case_type": "misleading-single-fact",
+      "question": "112學年度經濟系系選修只有本系開設課程才算，沒有例外",
+      "expected_chunk_groups": [
+        [
+          "3030-credit-required-112-note-005",
+          "3030-credit-required-112-note-007"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "econ-dual-major-policy-112-other",
+        "3030-required-courses-112-grade-3-list",
+        "econ-dual-major-policy-114-other",
+        "3030-required-courses-114-grade-3-list",
+        "econ-dual-major-policy-113-other",
+        "econ-dual-major-policy-111-other",
+        "3030-required-courses-112-grade-4-list",
+        "econ-dual-major-policy-115-other",
+        "3030-required-courses-111-grade-3-list",
+        "3030-required-courses-114-grade-4-list"
+      ],
+      "retrieved_scores": [
+        0.70203352,
+        0.700396478,
+        0.699136,
+        0.695519507,
+        0.695305228,
+        0.695116282,
+        0.695088506,
+        0.693404555,
+        0.690017223,
+        0.688250661
+      ],
+      "first_hit_rank": null,
+      "first_complete_rank": null,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "group_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "tags": [
+        "misleading",
+        "credit-required",
+        "econ",
+        "112",
+        "electives",
+        "course-recognition"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "misleading-single-fact-010",
+      "case_type": "misleading-single-fact",
+      "question": "114學年度經濟系雙主修考試對於錄取佔比是多少",
+      "expected_chunk_groups": [
+        [
+          "econ-dual-major-policy-114-selection_method_and_weight"
+        ]
+      ],
+      "retrieved_chunk_ids": [
+        "econ-dual-major-policy-114-selection_method_and_weight",
+        "econ-dual-major-policy-115-selection_method_and_weight",
+        "econ-dual-major-policy-111-selection_method_and_weight",
+        "econ-dual-major-policy-113-selection_method_and_weight",
+        "econ-dual-major-policy-112-selection_method_and_weight",
+        "econ-dual-major-policy-114-overview",
+        "econ-dual-major-policy-111-overview",
+        "econ-dual-major-policy-113-overview",
+        "econ-dual-major-policy-115-overview",
+        "econ-dual-major-policy-114-other"
+      ],
+      "retrieved_scores": [
+        0.782441378,
+        0.782318771,
+        0.782147884,
+        0.779217064,
+        0.778615773,
+        0.696874201,
+        0.687984347,
+        0.687744796,
+        0.684607148,
+        0.679645181
+      ],
+      "first_hit_rank": 1,
+      "first_complete_rank": 1,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "group_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "tags": [
+        "misleading",
+        "dual-major",
+        "econ",
+        "114",
+        "selection"
+      ],
+      "error": null
+    }
+  ]
+}

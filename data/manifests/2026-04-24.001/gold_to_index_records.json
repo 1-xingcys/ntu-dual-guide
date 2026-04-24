@@ -1,0 +1,484 @@
+{
+  "schema_version": "index.records_manifest.v1",
+  "dataset_version": "2026-04-24.001",
+  "namespace": "2026-04-24.001",
+  "embedding_model": "text-embedding-3-small",
+  "created_at": "2026-04-24T14:17:23.384063+00:00",
+  "document_count": 58,
+  "record_count": 687,
+  "record_fingerprint": "7cdaa3cefab09fb5ad9f300d851e25a95b0ec37e1598d5b332abcdb2eb3b3742",
+  "include_source_ids": [],
+  "exclude_source_ids": [
+    "csie-handbook-112"
+  ],
+  "include_doc_types": [],
+  "exclude_doc_types": [
+    "handbook"
+  ],
+  "documents": [
+    {
+      "relative_gold_path": "source-specific/台大經濟系轉雙輔招生頁面.json",
+      "source_id": "econ-transfer-double-major-portal",
+      "doc_type": "econ_portal_page",
+      "title": "大學部招生 – The Department of Economics, NTU",
+      "chunk_count": 4,
+      "processing_fingerprint": "c705ba408e94743dace135f529cd62f43dc911a4bf0c80a36c48af6cbe0d4b39"
+    },
+    {
+      "relative_gold_path": "source-specific/台大經濟雙主修_輔系常見Q_A.json",
+      "source_id": "econ-dual-major-faq",
+      "doc_type": "faq",
+      "title": "雙主修、輔系常見 Q&A",
+      "chunk_count": 5,
+      "processing_fingerprint": "a6e58ae3123e86d52ef0e2e395b3f78f6063b714a05731a62426c15db34b3777"
+    },
+    {
+      "relative_gold_path": "source-specific/國立臺灣大學轉系、輔系及雙主修相關規定查詢網頁.json",
+      "source_id": "ntu-transfer-minor-double-major-info",
+      "doc_type": "ntu_policy_info_page",
+      "title": "國立臺灣大學轉系、輔系及雙主修相關規定查詢",
+      "chunk_count": 1,
+      "processing_fingerprint": "9e34148865a67fd286efc0c991ce00d451348382f464775638f373e76a262fc1"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-credit-required/3030-經濟學系/台大經濟學系110學年度入學學生畢業應修學分統計表.json",
+      "source_id": "3030-credit-required-110",
+      "doc_type": "curriculum_required_summary",
+      "title": "3030 經濟學系畢業應修學分統計表, 110學年度入學學生開始實施",
+      "chunk_count": 29,
+      "processing_fingerprint": "63c8cc00e4be336bfb7d93d5d57166ea6f54acc70b459f8b4094b65d2f0799c2"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-credit-required/3030-經濟學系/台大經濟學系111學年度入學學生畢業應修學分統計表.json",
+      "source_id": "3030-credit-required-111",
+      "doc_type": "curriculum_required_summary",
+      "title": "3030 經濟學系畢業應修學分統計表, 111學年度入學學生開始實施",
+      "chunk_count": 29,
+      "processing_fingerprint": "d7bc8d1d102fb4ee96de70717320b33a19c6043710e51f32d167c9c7fb7bfafe"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-credit-required/3030-經濟學系/台大經濟學系112學年度入學學生畢業應修學分統計表.json",
+      "source_id": "3030-credit-required-112",
+      "doc_type": "curriculum_required_summary",
+      "title": "3030 經濟學系畢業應修學分統計表, 112學年度入學學生開始實施",
+      "chunk_count": 29,
+      "processing_fingerprint": "160b89cb5d72e883f37fafe9a88a84d1c646ebec99ba3b348ae2793ce402870a"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-credit-required/3030-經濟學系/台大經濟學系113學年度入學學生畢業應修學分統計表.json",
+      "source_id": "3030-credit-required-113",
+      "doc_type": "curriculum_required_summary",
+      "title": "3030 經濟學系畢業應修學分統計表, 113學年度入學學生開始實施",
+      "chunk_count": 29,
+      "processing_fingerprint": "97105241a8c53ddf8cacd5bf0b13b2473f0790298774c4fae2dc477accbd407b"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-credit-required/3030-經濟學系/台大經濟學系114學年度入學學生畢業應修學分統計表.json",
+      "source_id": "3030-credit-required-114",
+      "doc_type": "curriculum_required_summary",
+      "title": "3030 經濟學系畢業應修學分統計表, 114學年度入學學生開始實施",
+      "chunk_count": 29,
+      "processing_fingerprint": "af241fa4c9f8637f9adcf2996dc96a8188017d4b5c1ba1aa6351f2988d620f3d"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-credit-required/9020-資訊工程學系/台大資訊工程學系110學年度入學學生畢業應修學分統計表.json",
+      "source_id": "9020-credit-required-110",
+      "doc_type": "curriculum_required_summary",
+      "title": "9020 資訊工程學系畢業應修學分統計表, 110學年度入學學生開始實施",
+      "chunk_count": 28,
+      "processing_fingerprint": "4880cf2b0670a87a94f6b6edeb71f9ab7d559e8b9317df1e0a797fb0ee225cf1"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-credit-required/9020-資訊工程學系/台大資訊工程學系111學年度入學學生畢業應修學分統計表.json",
+      "source_id": "9020-credit-required-111",
+      "doc_type": "curriculum_required_summary",
+      "title": "9020 資訊工程學系畢業應修學分統計表, 111學年度入學學生開始實施",
+      "chunk_count": 28,
+      "processing_fingerprint": "decbe2d0cf3a7f78099f5cc70f4e7f1d18709df281b69fd6401ee68088a752b6"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-credit-required/9020-資訊工程學系/台大資訊工程學系112學年度入學學生畢業應修學分統計表.json",
+      "source_id": "9020-credit-required-112",
+      "doc_type": "curriculum_required_summary",
+      "title": "9020 資訊工程學系畢業應修學分統計表, 112學年度入學學生開始實施",
+      "chunk_count": 28,
+      "processing_fingerprint": "4691c9d9b18d5de99a51b33e7632e6586235cae2dc5e656cb52baf5d084a1e1f"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-credit-required/9020-資訊工程學系/台大資訊工程學系113學年度入學學生畢業應修學分統計表.json",
+      "source_id": "9020-credit-required-113",
+      "doc_type": "curriculum_required_summary",
+      "title": "9020 資訊工程學系畢業應修學分統計表, 113學年度入學學生開始實施",
+      "chunk_count": 28,
+      "processing_fingerprint": "fdedac99753a33ce44c063ee0a437834f333757654562d4acafd2114e30b0350"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-credit-required/9020-資訊工程學系/台大資訊工程學系114學年度入學學生畢業應修學分統計表.json",
+      "source_id": "9020-credit-required-114",
+      "doc_type": "curriculum_required_summary",
+      "title": "9020 資訊工程學系畢業應修學分統計表, 114學年度入學學生開始實施",
+      "chunk_count": 28,
+      "processing_fingerprint": "30e61582f7abc7a8ad8181b2e5288b9072ef9a4f6ca72641644285635d94ae17"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-double-major-policy/國立臺灣大學111學年度經濟學系雙主修相關規定.json",
+      "source_id": "econ-dual-major-policy-111",
+      "doc_type": "dual_major_policy",
+      "title": "國立臺灣大學111學年度經濟學系雙主修相關規定",
+      "chunk_count": 5,
+      "processing_fingerprint": "70ceba48bd4357c1d2fd6b63111f57b654e6befe9a1b8b6fc566fd9152f047d3"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-double-major-policy/國立臺灣大學112學年度經濟學系雙主修相關規定.json",
+      "source_id": "econ-dual-major-policy-112",
+      "doc_type": "dual_major_policy",
+      "title": "國立臺灣大學112學年度經濟學系雙主修相關規定",
+      "chunk_count": 5,
+      "processing_fingerprint": "0ac7afe8d372548a0488cff7015f9a627194f6822757f07dce6d142b1d75a291"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-double-major-policy/國立臺灣大學113學年度經濟學系雙主修相關規定 .json",
+      "source_id": "econ-dual-major-policy-113",
+      "doc_type": "dual_major_policy",
+      "title": "國立臺灣大學113學年度經濟學系雙主修相關規定",
+      "chunk_count": 5,
+      "processing_fingerprint": "f518f92953a7eb77c553521604bf11aee28cf20a6b506ec0b027af7efce27876"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-double-major-policy/國立臺灣大學114學年度經濟學系雙主修相關規定.json",
+      "source_id": "econ-dual-major-policy-114",
+      "doc_type": "dual_major_policy",
+      "title": "國立臺灣大學114學年度經濟學系雙主修相關規定",
+      "chunk_count": 5,
+      "processing_fingerprint": "df49e2eb24c78af4b3e5d8e80de18207383bac7585cef62c9cb2608210a5f3c7"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-double-major-policy/國立臺灣大學115學年度經濟學系雙主修相關規定.json",
+      "source_id": "econ-dual-major-policy-115",
+      "doc_type": "dual_major_policy",
+      "title": "國立臺灣大學115學年度經濟學系雙主修相關規定",
+      "chunk_count": 5,
+      "processing_fingerprint": "f7e1ffacc9031b817ce066282f436b4a4bac72d3b6b964d893db619888f34e31"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/3030-經濟學系/110/3030-110學年度-1年級系訂必修科目及學分表.json",
+      "source_id": "3030-required-courses-110-grade-1",
+      "doc_type": "curriculum_required_courses",
+      "title": "3030 經濟學系一年級系訂必修科目及學分表, 110學年度入學學生開始實施",
+      "chunk_count": 16,
+      "processing_fingerprint": "034daec88c236fc5714dbd046b0b8838c800a5c40364668a81978d21627c4d29"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/3030-經濟學系/110/3030-110學年度-2年級系訂必修科目及學分表.json",
+      "source_id": "3030-required-courses-110-grade-2",
+      "doc_type": "curriculum_required_courses",
+      "title": "3030 經濟學系二年級系訂必修科目及學分表, 110學年度入學學生開始實施",
+      "chunk_count": 13,
+      "processing_fingerprint": "1328919a3ae95110de0bc0cab1fc12f2662bb2d2463f544c13aafc746f25da7a"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/3030-經濟學系/110/3030-110學年度-3年級系訂必修科目及學分表.json",
+      "source_id": "3030-required-courses-110-grade-3",
+      "doc_type": "curriculum_required_courses",
+      "title": "3030 經濟學系三年級系訂必修科目及學分表, 110學年度入學學生開始實施",
+      "chunk_count": 1,
+      "processing_fingerprint": "cf1253e87b6dfbecd128769ae1e5dce062f20681324378486b6c595d52cb2f2a"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/3030-經濟學系/110/3030-110學年度-4年級系訂必修科目及學分表.json",
+      "source_id": "3030-required-courses-110-grade-4",
+      "doc_type": "curriculum_required_courses",
+      "title": "3030 經濟學系四年級系訂必修科目及學分表, 110學年度入學學生開始實施",
+      "chunk_count": 1,
+      "processing_fingerprint": "8e79ecdcb3620ab266e6198928e0543627268f33fbe568e40802a249eba5c0ed"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/3030-經濟學系/111/3030-111學年度-1年級系訂必修科目及學分表.json",
+      "source_id": "3030-required-courses-111-grade-1",
+      "doc_type": "curriculum_required_courses",
+      "title": "3030 經濟學系一年級系訂必修科目及學分表, 111學年度入學學生開始實施",
+      "chunk_count": 16,
+      "processing_fingerprint": "d963fb448ca3e46aaeebe2095e934c0acfa6e01f8ba29dc0a95763f3666f31a8"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/3030-經濟學系/111/3030-111學年度-2年級系訂必修科目及學分表.json",
+      "source_id": "3030-required-courses-111-grade-2",
+      "doc_type": "curriculum_required_courses",
+      "title": "3030 經濟學系二年級系訂必修科目及學分表, 111學年度入學學生開始實施",
+      "chunk_count": 13,
+      "processing_fingerprint": "29de0769feb7e5aa95def15757e10d02cf3dcbb2d42043fd434a4780c86e7be7"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/3030-經濟學系/111/3030-111學年度-3年級系訂必修科目及學分表.json",
+      "source_id": "3030-required-courses-111-grade-3",
+      "doc_type": "curriculum_required_courses",
+      "title": "3030 經濟學系三年級系訂必修科目及學分表, 111學年度入學學生開始實施",
+      "chunk_count": 1,
+      "processing_fingerprint": "76e7eb24145f03df5080e898a3b754ccc3abc5f53d0cf24d2930fc16d75ce6a2"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/3030-經濟學系/111/3030-111學年度-4年級系訂必修科目及學分表.json",
+      "source_id": "3030-required-courses-111-grade-4",
+      "doc_type": "curriculum_required_courses",
+      "title": "3030 經濟學系四年級系訂必修科目及學分表, 111學年度入學學生開始實施",
+      "chunk_count": 1,
+      "processing_fingerprint": "a3bb892beffb4bdaa04f7f27f31cefb86f713c3adee327678bee699e62fb47ca"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/3030-經濟學系/112/3030-112學年度-1年級系訂必修科目及學分表.json",
+      "source_id": "3030-required-courses-112-grade-1",
+      "doc_type": "curriculum_required_courses",
+      "title": "3030 經濟學系一年級系訂必修科目及學分表, 112學年度入學學生開始實施",
+      "chunk_count": 10,
+      "processing_fingerprint": "c05cb5d1a1960e88c53c8bf6271c7ecf77c2c58943aa36f4d594600302b23ed6"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/3030-經濟學系/112/3030-112學年度-2年級系訂必修科目及學分表.json",
+      "source_id": "3030-required-courses-112-grade-2",
+      "doc_type": "curriculum_required_courses",
+      "title": "3030 經濟學系二年級系訂必修科目及學分表, 112學年度入學學生開始實施",
+      "chunk_count": 13,
+      "processing_fingerprint": "7f73b538e74ad7ff8bf0e863485825760b689f22d233dc98f334cfab7a0c5dd1"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/3030-經濟學系/112/3030-112學年度-3年級系訂必修科目及學分表.json",
+      "source_id": "3030-required-courses-112-grade-3",
+      "doc_type": "curriculum_required_courses",
+      "title": "3030 經濟學系三年級系訂必修科目及學分表, 112學年度入學學生開始實施",
+      "chunk_count": 1,
+      "processing_fingerprint": "1e6c2a937a255356ed3cab8369c79ecf5015d2499d2b030f2fd48c2c9c4a06aa"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/3030-經濟學系/112/3030-112學年度-4年級系訂必修科目及學分表.json",
+      "source_id": "3030-required-courses-112-grade-4",
+      "doc_type": "curriculum_required_courses",
+      "title": "3030 經濟學系四年級系訂必修科目及學分表, 112學年度入學學生開始實施",
+      "chunk_count": 1,
+      "processing_fingerprint": "03d7135d97075afd77fc3768fa5daacf3b9bce23dbcad67da587efb791349f23"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/3030-經濟學系/113/3030-113學年度-1年級系訂必修科目及學分表.json",
+      "source_id": "3030-required-courses-113-grade-1",
+      "doc_type": "curriculum_required_courses",
+      "title": "3030 經濟學系一年級系訂必修科目及學分表, 113學年度入學學生開始實施",
+      "chunk_count": 10,
+      "processing_fingerprint": "48cebd861e2516b260dc8d4691012d8d699fd618b56aebf47963e857704847f1"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/3030-經濟學系/113/3030-113學年度-2年級系訂必修科目及學分表.json",
+      "source_id": "3030-required-courses-113-grade-2",
+      "doc_type": "curriculum_required_courses",
+      "title": "3030 經濟學系二年級系訂必修科目及學分表, 113學年度入學學生開始實施",
+      "chunk_count": 13,
+      "processing_fingerprint": "1f5cdbdbceed62f7e5443fc73d0936954fed05880f8e6efd7acc9dff8517634b"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/3030-經濟學系/113/3030-113學年度-3年級系訂必修科目及學分表.json",
+      "source_id": "3030-required-courses-113-grade-3",
+      "doc_type": "curriculum_required_courses",
+      "title": "3030 經濟學系三年級系訂必修科目及學分表, 113學年度入學學生開始實施",
+      "chunk_count": 1,
+      "processing_fingerprint": "2daa2ef720f12e636fb9ecdefd24d992a9a205d74f690feba0ed02e466963f07"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/3030-經濟學系/113/3030-113學年度-4年級系訂必修科目及學分表.json",
+      "source_id": "3030-required-courses-113-grade-4",
+      "doc_type": "curriculum_required_courses",
+      "title": "3030 經濟學系四年級系訂必修科目及學分表, 113學年度入學學生開始實施",
+      "chunk_count": 1,
+      "processing_fingerprint": "9ab434083b7b0e98d0bdf04a5c035f968f08076a02acbcb3ed35f02182cdf60d"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/3030-經濟學系/114/3030-114學年度-1年級系訂必修科目及學分表.json",
+      "source_id": "3030-required-courses-114-grade-1",
+      "doc_type": "curriculum_required_courses",
+      "title": "3030 經濟學系一年級系訂必修科目及學分表, 114學年度入學學生開始實施",
+      "chunk_count": 10,
+      "processing_fingerprint": "ea36294e6a36aa4e32e7457d611aebc4c2919fd2313daa6833e8729a07493438"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/3030-經濟學系/114/3030-114學年度-2年級系訂必修科目及學分表.json",
+      "source_id": "3030-required-courses-114-grade-2",
+      "doc_type": "curriculum_required_courses",
+      "title": "3030 經濟學系二年級系訂必修科目及學分表, 114學年度入學學生開始實施",
+      "chunk_count": 13,
+      "processing_fingerprint": "6fe16fa824acf6782fca360fc83a95b71af6a9a90910cbf7d2433ace0ec882b2"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/3030-經濟學系/114/3030-114學年度-3年級系訂必修科目及學分表.json",
+      "source_id": "3030-required-courses-114-grade-3",
+      "doc_type": "curriculum_required_courses",
+      "title": "3030 經濟學系三年級系訂必修科目及學分表, 114學年度入學學生開始實施",
+      "chunk_count": 1,
+      "processing_fingerprint": "5c4388bf340d9a625c508b2916ccff6fc5ad2e9c406641a570fdfa62e53b4251"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/3030-經濟學系/114/3030-114學年度-4年級系訂必修科目及學分表.json",
+      "source_id": "3030-required-courses-114-grade-4",
+      "doc_type": "curriculum_required_courses",
+      "title": "3030 經濟學系四年級系訂必修科目及學分表, 114學年度入學學生開始實施",
+      "chunk_count": 1,
+      "processing_fingerprint": "04a5e4874820229f4f2f5d8c8ec0162b8898bab1505affa861d541ddb297be8c"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/9020-資訊工程學系/110/9020-110學年度-1年級系訂必修科目及學分表.json",
+      "source_id": "9020-required-courses-110-grade-1",
+      "doc_type": "curriculum_required_courses",
+      "title": "9020 資訊工程學系一年級系訂必修科目及學分表, 110學年度入學學生開始實施",
+      "chunk_count": 29,
+      "processing_fingerprint": "355b8ad45ded3efb3c664936ef18066628f0c0406b3816affa054f7facfc4b8f"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/9020-資訊工程學系/110/9020-110學年度-2年級系訂必修科目及學分表.json",
+      "source_id": "9020-required-courses-110-grade-2",
+      "doc_type": "curriculum_required_courses",
+      "title": "9020 資訊工程學系二年級系訂必修科目及學分表, 110學年度入學學生開始實施",
+      "chunk_count": 7,
+      "processing_fingerprint": "15c33e684db0db34f2c539a3c373b1ebd272796a191162eccf667c1d4049966f"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/9020-資訊工程學系/110/9020-110學年度-3年級系訂必修科目及學分表.json",
+      "source_id": "9020-required-courses-110-grade-3",
+      "doc_type": "curriculum_required_courses",
+      "title": "9020 資訊工程學系三年級系訂必修科目及學分表, 110學年度入學學生開始實施",
+      "chunk_count": 9,
+      "processing_fingerprint": "25f883386b45a6ad6a3b84224b8b54ed1c3d5d0d9673bc14c526b273da566e23"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/9020-資訊工程學系/110/9020-110學年度-4年級系訂必修科目及學分表.json",
+      "source_id": "9020-required-courses-110-grade-4",
+      "doc_type": "curriculum_required_courses",
+      "title": "9020 資訊工程學系四年級系訂必修科目及學分表, 110學年度入學學生開始實施",
+      "chunk_count": 1,
+      "processing_fingerprint": "038b049e36510932b9e2627dc2b17319c2f95c777445465e50e6c4ef3e7a593a"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/9020-資訊工程學系/111/9020-111學年度-1年級系訂必修科目及學分表.json",
+      "source_id": "9020-required-courses-111-grade-1",
+      "doc_type": "curriculum_required_courses",
+      "title": "9020 資訊工程學系一年級系訂必修科目及學分表, 111學年度入學學生開始實施",
+      "chunk_count": 29,
+      "processing_fingerprint": "b52caab2953a8cbd1ec12e5b12ce61a2c22ed7756a34c9c3abcabf1f1e1dfc63"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/9020-資訊工程學系/111/9020-111學年度-2年級系訂必修科目及學分表.json",
+      "source_id": "9020-required-courses-111-grade-2",
+      "doc_type": "curriculum_required_courses",
+      "title": "9020 資訊工程學系二年級系訂必修科目及學分表, 111學年度入學學生開始實施",
+      "chunk_count": 7,
+      "processing_fingerprint": "95752d3721e939b4bd6e5c75c8a332ed516c8a36295be5ae620c24c0113e878b"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/9020-資訊工程學系/111/9020-111學年度-3年級系訂必修科目及學分表.json",
+      "source_id": "9020-required-courses-111-grade-3",
+      "doc_type": "curriculum_required_courses",
+      "title": "9020 資訊工程學系三年級系訂必修科目及學分表, 111學年度入學學生開始實施",
+      "chunk_count": 9,
+      "processing_fingerprint": "160c83412aa11f88c9be18ac17b5925d377ab7b3d812c07d4d3109db41eea52b"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/9020-資訊工程學系/111/9020-111學年度-4年級系訂必修科目及學分表.json",
+      "source_id": "9020-required-courses-111-grade-4",
+      "doc_type": "curriculum_required_courses",
+      "title": "9020 資訊工程學系四年級系訂必修科目及學分表, 111學年度入學學生開始實施",
+      "chunk_count": 1,
+      "processing_fingerprint": "d0500fb0b4354fb8f47013edfebbfbda979a3d0775437b8068bbbd4756d08319"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/9020-資訊工程學系/112/9020-112學年度-1年級系訂必修科目及學分表.json",
+      "source_id": "9020-required-courses-112-grade-1",
+      "doc_type": "curriculum_required_courses",
+      "title": "9020 資訊工程學系一年級系訂必修科目及學分表, 112學年度入學學生開始實施",
+      "chunk_count": 29,
+      "processing_fingerprint": "fe422cda18d159001c322271536c1c3c1573f4b6a52dc2e07d52167f210ca0cf"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/9020-資訊工程學系/112/9020-112學年度-2年級系訂必修科目及學分表.json",
+      "source_id": "9020-required-courses-112-grade-2",
+      "doc_type": "curriculum_required_courses",
+      "title": "9020 資訊工程學系二年級系訂必修科目及學分表, 112學年度入學學生開始實施",
+      "chunk_count": 7,
+      "processing_fingerprint": "5be2ffd70d5e08a7360b9a374945d3be98fef5cb6b77229be91a7cde4d0a38f0"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/9020-資訊工程學系/112/9020-112學年度-3年級系訂必修科目及學分表.json",
+      "source_id": "9020-required-courses-112-grade-3",
+      "doc_type": "curriculum_required_courses",
+      "title": "9020 資訊工程學系三年級系訂必修科目及學分表, 112學年度入學學生開始實施",
+      "chunk_count": 9,
+      "processing_fingerprint": "e4e49a006b7e41755f3851ec72c1a46b9edfe8e9eefe3bff001d07ac29e092b9"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/9020-資訊工程學系/112/9020-112學年度-4年級系訂必修科目及學分表.json",
+      "source_id": "9020-required-courses-112-grade-4",
+      "doc_type": "curriculum_required_courses",
+      "title": "9020 資訊工程學系四年級系訂必修科目及學分表, 112學年度入學學生開始實施",
+      "chunk_count": 1,
+      "processing_fingerprint": "306c2fbe4995bb860105e45334f97dd9606ee35757e5c164508ec6f075bbe291"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/9020-資訊工程學系/113/9020-113學年度-1年級系訂必修科目及學分表.json",
+      "source_id": "9020-required-courses-113-grade-1",
+      "doc_type": "curriculum_required_courses",
+      "title": "9020 資訊工程學系一年級系訂必修科目及學分表, 113學年度入學學生開始實施",
+      "chunk_count": 29,
+      "processing_fingerprint": "9f0fe8f91088db3e8b70b4074c085595703c29ddfe86f29fd092c703e465c84e"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/9020-資訊工程學系/113/9020-113學年度-2年級系訂必修科目及學分表.json",
+      "source_id": "9020-required-courses-113-grade-2",
+      "doc_type": "curriculum_required_courses",
+      "title": "9020 資訊工程學系二年級系訂必修科目及學分表, 113學年度入學學生開始實施",
+      "chunk_count": 7,
+      "processing_fingerprint": "004bda2cf26d3216136c8d2134c541cdbd654a8a0a690f508a5fb08ca3967bb6"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/9020-資訊工程學系/113/9020-113學年度-3年級系訂必修科目及學分表.json",
+      "source_id": "9020-required-courses-113-grade-3",
+      "doc_type": "curriculum_required_courses",
+      "title": "9020 資訊工程學系三年級系訂必修科目及學分表, 113學年度入學學生開始實施",
+      "chunk_count": 9,
+      "processing_fingerprint": "65df29ca594ed011a798bf0117e296e523ac4e09d229f9b30e29400d403c0451"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/9020-資訊工程學系/113/9020-113學年度-4年級系訂必修科目及學分表.json",
+      "source_id": "9020-required-courses-113-grade-4",
+      "doc_type": "curriculum_required_courses",
+      "title": "9020 資訊工程學系四年級系訂必修科目及學分表, 113學年度入學學生開始實施",
+      "chunk_count": 1,
+      "processing_fingerprint": "2dd34821c1e6636d3b08a787a7891e4b46e53ca7bf3c8729efc498199c3efc5d"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/9020-資訊工程學系/114/9020-114學年度-1年級系訂必修科目及學分表.json",
+      "source_id": "9020-required-courses-114-grade-1",
+      "doc_type": "curriculum_required_courses",
+      "title": "9020 資訊工程學系一年級系訂必修科目及學分表, 114學年度入學學生開始實施",
+      "chunk_count": 29,
+      "processing_fingerprint": "21d37e1d6bcbd424ca90ec6d0e8c40969fc10dfc6cd8671ee07d2d5d87cb36ab"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/9020-資訊工程學系/114/9020-114學年度-2年級系訂必修科目及學分表.json",
+      "source_id": "9020-required-courses-114-grade-2",
+      "doc_type": "curriculum_required_courses",
+      "title": "9020 資訊工程學系二年級系訂必修科目及學分表, 114學年度入學學生開始實施",
+      "chunk_count": 7,
+      "processing_fingerprint": "40641ee58d21c0fd0a4216c951652a6d90fb2a0d9c8a258db88b5354ddafa7f7"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/9020-資訊工程學系/114/9020-114學年度-3年級系訂必修科目及學分表.json",
+      "source_id": "9020-required-courses-114-grade-3",
+      "doc_type": "curriculum_required_courses",
+      "title": "9020 資訊工程學系三年級系訂必修科目及學分表, 114學年度入學學生開始實施",
+      "chunk_count": 9,
+      "processing_fingerprint": "21e8c21f87adf78752103b2b27f7f56ea19c08db169bbe085d441ce33a1f1f28"
+    },
+    {
+      "relative_gold_path": "template-family/dpt-required-courses/9020-資訊工程學系/114/9020-114學年度-4年級系訂必修科目及學分表.json",
+      "source_id": "9020-required-courses-114-grade-4",
+      "doc_type": "curriculum_required_courses",
+      "title": "9020 資訊工程學系四年級系訂必修科目及學分表, 114學年度入學學生開始實施",
+      "chunk_count": 1,
+      "processing_fingerprint": "d7d4b36f51586da9b27b9aea70e9286c22df65d85a2458991025666a4cf89350"
+    }
+  ]
+}

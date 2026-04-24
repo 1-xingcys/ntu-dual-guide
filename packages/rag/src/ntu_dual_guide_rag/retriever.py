@@ -1,14 +1,30 @@
 from __future__ import annotations
 
+from typing import Protocol, runtime_checkable
+
 from ntu_dual_guide_ingestion.vector_clients import embed_texts_openai
 from ntu_dual_guide_ingestion.vector_clients import query_vectors_pinecone
 from ntu_dual_guide_rag.models import RetrievalChunk
 from ntu_dual_guide_rag.settings import RagSettings
 
 
+@runtime_checkable
+class Retriever(Protocol):
+    """Common contract for all retriever implementations.
+
+    The eval runner depends only on this protocol so that dense, hybrid,
+    filtered, reranked, and decomposing retrievers can all be swapped in.
+    """
+
+    name: str
+
+    def retrieve(self, question: str) -> list[RetrievalChunk]: ...
+
+
 class PineconeRetriever:
-    def __init__(self, settings: RagSettings) -> None:
+    def __init__(self, settings: RagSettings, *, name: str = "dense-pinecone") -> None:
         self.settings = settings
+        self.name = name
 
     def retrieve(self, question: str) -> list[RetrievalChunk]:
         query_vector = embed_texts_openai(
