@@ -1,7 +1,7 @@
 {
   "retriever_name": "dense-pinecone-top10",
   "bench_path": "/Users/1-xing/Documents/ntu-dual-guide/packages/evals/datasets/retrieval_bench_v1.jsonl",
-  "timestamp": "2026-04-24T15:10:47+00:00",
+  "timestamp": "2026-04-24T15:40:26+00:00",
   "total_cases": 53,
   "k_values": [
     1,
@@ -11,58 +11,58 @@
   ],
   "metrics": {
     "hit@1": 0.37735849056603776,
-    "group_recall@1": 0.4025157232704402,
-    "hit@3": 0.4528301886792453,
-    "group_recall@3": 0.49528301886792453,
+    "group_recall@1": 0.4056603773584906,
+    "hit@3": 0.4339622641509434,
+    "group_recall@3": 0.4748427672955975,
     "hit@5": 0.5094339622641509,
-    "group_recall@5": 0.5424528301886793,
-    "hit@10": 0.5660377358490566,
-    "group_recall@10": 0.6525157232704403,
-    "mrr": 0.5329365079365079,
-    "mean_complete_rr": 0.4318358790056903,
+    "group_recall@5": 0.5566037735849056,
+    "hit@10": 0.5849056603773585,
+    "group_recall@10": 0.6682389937106917,
+    "mrr": 0.5451482479784366,
+    "mean_complete_rr": 0.43328092243186583,
     "error_rate": 0.0
   },
   "by_type": {
     "misleading-single-fact": {
       "count": 10,
       "hit@1": 0.4,
-      "group_recall@1": 0.4333333333333333,
+      "group_recall@1": 0.4833333333333333,
       "hit@3": 0.4,
-      "group_recall@3": 0.4333333333333333,
+      "group_recall@3": 0.4833333333333333,
       "hit@5": 0.5,
-      "group_recall@5": 0.5333333333333333,
+      "group_recall@5": 0.5833333333333333,
       "hit@10": 0.5,
-      "group_recall@10": 0.5666666666666667,
-      "mrr": 0.525,
+      "group_recall@10": 0.5833333333333333,
+      "mrr": 0.625,
       "mean_complete_rr": 0.425,
       "error_rate": 0.0
     },
     "multi-fact-compare": {
       "count": 15,
       "hit@1": 0.0,
-      "group_recall@1": 0.06666666666666667,
+      "group_recall@1": 0.04444444444444444,
       "hit@3": 0.0,
-      "group_recall@3": 0.1277777777777778,
-      "hit@5": 0.13333333333333333,
-      "group_recall@5": 0.22777777777777777,
+      "group_recall@3": 0.08888888888888888,
+      "hit@5": 0.06666666666666667,
+      "group_recall@5": 0.17777777777777776,
       "hit@10": 0.2,
-      "group_recall@10": 0.46111111111111114,
-      "mrr": 0.32796296296296296,
-      "mean_complete_rr": 0.03740740740740741,
+      "group_recall@10": 0.4388888888888889,
+      "mrr": 0.2900793650793651,
+      "mean_complete_rr": 0.028148148148148148,
       "error_rate": 0.0
     },
     "single-fact": {
       "count": 28,
       "hit@1": 0.5714285714285714,
       "group_recall@1": 0.5714285714285714,
-      "hit@3": 0.7142857142857143,
-      "group_recall@3": 0.7142857142857143,
-      "hit@5": 0.7142857142857143,
-      "group_recall@5": 0.7142857142857143,
-      "hit@10": 0.7857142857142857,
-      "group_recall@10": 0.7857142857142857,
-      "mrr": 0.645578231292517,
-      "mean_complete_rr": 0.645578231292517,
+      "hit@3": 0.6785714285714286,
+      "group_recall@3": 0.6785714285714286,
+      "hit@5": 0.75,
+      "group_recall@5": 0.75,
+      "hit@10": 0.8214285714285714,
+      "group_recall@10": 0.8214285714285714,
+      "mrr": 0.6532738095238095,
+      "mean_complete_rr": 0.6532738095238095,
       "error_rate": 0.0
     }
   },
@@ -94,10 +94,10 @@
       "retrieved_scores": [
         0.789235711,
         0.765397489,
-        0.764975309,
-        0.762756884,
+        0.764923453,
+        0.762769639,
         0.761825562,
-        0.761428297,
+        0.761330485,
         0.733432472,
         0.731015325,
         0.73059243,
@@ -147,15 +147,15 @@
       ],
       "retrieved_scores": [
         0.789091825,
-        0.704398692,
+        0.704339385,
         0.703134477,
-        0.701512575,
+        0.701469183,
         0.700815678,
-        0.698697627,
-        0.694837749,
-        0.694125831,
+        0.698827684,
+        0.694620967,
+        0.694165945,
         0.692130268,
-        0.69203
+        0.69201088
       ],
       "first_hit_rank": 1,
       "first_complete_rank": 1,
@@ -191,8 +191,8 @@
         "econ-dual-major-faq-q3",
         "econ-dual-major-policy-112-notes",
         "econ-dual-major-policy-111-notes",
-        "econ-dual-major-policy-113-notes",
         "econ-dual-major-policy-115-notes",
+        "econ-dual-major-policy-113-notes",
         "econ-dual-major-policy-114-notes",
         "econ-transfer-double-major-portal-section-003",
         "econ-dual-major-policy-111-selection_method_and_weight",
@@ -201,14 +201,14 @@
       ],
       "retrieved_scores": [
         0.819704533,
-        0.729979932,
-        0.72820282,
-        0.726258,
-        0.726169705,
+        0.73012948,
+        0.72821629,
+        0.726149797,
+        0.72609055,
         0.725352585,
         0.715353429,
-        0.712708294,
-        0.709111035,
+        0.712625742,
+        0.709197283,
         0.709029436
       ],
       "first_hit_rank": 1,
@@ -251,19 +251,19 @@
         "econ-dual-major-policy-111-other",
         "econ-dual-major-policy-113-other",
         "econ-dual-major-policy-115-other",
-        "econ-dual-major-policy-111-selection_method_and_weight"
+        "econ-dual-major-policy-112-other"
       ],
       "retrieved_scores": [
-        0.765356839,
-        0.762415528,
+        0.765200853,
+        0.762328804,
         0.747247458,
         0.745886385,
         0.744686365,
-        0.743409097,
-        0.74269712,
+        0.743667245,
+        0.742740691,
         0.742541909,
         0.739280581,
-        0.734487832
+        0.736852705
       ],
       "first_hit_rank": 1,
       "first_complete_rank": 1,
@@ -308,10 +308,10 @@
         "3030-credit-required-110-note-006-item-006"
       ],
       "retrieved_scores": [
-        0.846370041,
-        0.844363034,
+        0.846338332,
+        0.844281137,
         0.843372226,
-        0.841108859,
+        0.841177762,
         0.840707242,
         0.741239846,
         0.736048758,
@@ -411,9 +411,9 @@
         "3030-credit-required-113-overview",
         "3030-credit-required-112-term-003",
         "3030-credit-required-110-term-003",
-        "3030-required-courses-112-grade-2-list",
-        "3030-required-courses-114-grade-2-list",
-        "3030-required-courses-111-grade-2-list"
+        "3030-credit-required-114-term-003",
+        "3030-credit-required-113-term-003",
+        "3030-credit-required-111-term-003"
       ],
       "retrieved_scores": [
         0.847860038,
@@ -423,9 +423,9 @@
         0.826862,
         0.764084637,
         0.763196409,
-        0.762898624,
-        0.760796607,
-        0.758715808
+        0.757421613,
+        0.755253136,
+        0.753769159
       ],
       "first_hit_rank": 1,
       "first_complete_rank": 1,
@@ -527,7 +527,7 @@
       "retrieved_scores": [
         0.770015955,
         0.770011723,
-        0.768976808,
+        0.769736171,
         0.767034948,
         0.766165316,
         0.725553513,
@@ -568,8 +568,8 @@
       ],
       "retrieved_chunk_ids": [
         "ntu-transfer-minor-double-major-info-section-001",
-        "econ-dual-major-policy-113-notes",
         "econ-dual-major-policy-111-notes",
+        "econ-dual-major-policy-113-notes",
         "econ-dual-major-policy-114-notes",
         "econ-dual-major-policy-115-notes",
         "econ-dual-major-policy-115-selection_method_and_weight",
@@ -580,14 +580,14 @@
       ],
       "retrieved_scores": [
         0.528165638,
-        0.469294399,
-        0.469121784,
+        0.469155043,
+        0.469097435,
         0.468776762,
-        0.468619436,
+        0.468670189,
         0.467594117,
         0.465772927,
-        0.465415835,
-        0.464408159,
+        0.465603292,
+        0.464507073,
         0.46227026
       ],
       "first_hit_rank": 1,
@@ -631,7 +631,7 @@
         "3030-credit-required-114-term-005",
         "3030-credit-required-114-term-003",
         "3030-credit-required-110-term-003",
-        "3030-credit-required-112-term-003"
+        "3030-required-courses-113-grade-1-list"
       ],
       "retrieved_scores": [
         0.72535795,
@@ -643,7 +643,7 @@
         0.678559,
         0.677909493,
         0.677839875,
-        0.677157521
+        0.677302361
       ],
       "first_hit_rank": 1,
       "first_complete_rank": 1,
@@ -693,11 +693,11 @@
         0.628552675,
         0.606018484,
         0.605700731,
-        0.604863584,
-        0.604579926,
-        0.603498697,
-        0.603312612,
-        0.603255153
+        0.604929924,
+        0.604744434,
+        0.603532732,
+        0.603405893,
+        0.603355944
       ],
       "first_hit_rank": 1,
       "first_complete_rank": 1,
@@ -730,40 +730,40 @@
         ]
       ],
       "retrieved_chunk_ids": [
-        "3030-required-courses-114-grade-1-note-002",
+        "3030-required-courses-114-grade-3-list",
+        "3030-required-courses-114-grade-4-list",
+        "3030-required-courses-112-grade-3-list",
         "3030-required-courses-114-grade-2-list",
-        "3030-required-courses-112-grade-1-list",
-        "3030-required-courses-114-grade-1-list",
+        "3030-required-courses-110-grade-3-list",
         "3030-required-courses-112-grade-2-list",
-        "3030-required-courses-112-grade-1-note-002",
-        "3030-required-courses-114-grade-2-note-005",
+        "3030-required-courses-112-grade-4-list",
+        "3030-required-courses-110-grade-4-list",
         "3030-required-courses-110-grade-2-list",
-        "3030-required-courses-110-grade-2-note-005",
-        "3030-required-courses-111-grade-1-note-007"
+        "3030-required-courses-113-grade-2-list"
       ],
       "retrieved_scores": [
-        0.758416653,
-        0.757856131,
-        0.756494462,
-        0.756122708,
-        0.755952954,
-        0.75578481,
-        0.753854,
-        0.752618492,
-        0.751771748,
-        0.751321
+        0.741428912,
+        0.741313875,
+        0.739406884,
+        0.737091,
+        0.736622214,
+        0.734932959,
+        0.733574212,
+        0.733406,
+        0.731717885,
+        0.731107831
       ],
-      "first_hit_rank": 2,
-      "first_complete_rank": 2,
+      "first_hit_rank": 4,
+      "first_complete_rank": 4,
       "hit_at_k": {
         "1": false,
-        "3": true,
+        "3": false,
         "5": true,
         "10": true
       },
       "group_recall_at_k": {
         "1": 0.0,
-        "3": 1.0,
+        "3": 0.0,
         "5": 1.0,
         "10": 1.0
       },
@@ -787,38 +787,38 @@
       "retrieved_chunk_ids": [
         "9020-required-courses-111-grade-2-list",
         "9020-required-courses-111-grade-2-course-003",
-        "9020-required-courses-111-grade-1-course-018",
-        "9020-required-courses-111-grade-1-note-002",
         "9020-required-courses-112-grade-2-list",
+        "9020-required-courses-111-grade-1-course-018",
+        "9020-required-courses-113-grade-2-list",
+        "9020-required-courses-110-grade-2-list",
         "9020-required-courses-112-grade-2-course-003",
         "9020-credit-required-111-note-005-item-002",
         "9020-required-courses-110-grade-2-course-003",
-        "9020-credit-required-111-term-003",
-        "9020-required-courses-112-grade-1-course-018"
+        "9020-required-courses-114-grade-2-list"
       ],
       "retrieved_scores": [
-        0.680493176,
+        0.690662622,
         0.672146201,
+        0.670934439,
         0.665211499,
-        0.658088446,
-        0.65771,
-        0.657070279,
+        0.66086489,
+        0.660187542,
+        0.65686363,
         0.655351341,
         0.653772771,
-        0.651566088,
-        0.650297582
+        0.652595103
       ],
-      "first_hit_rank": 3,
-      "first_complete_rank": 3,
+      "first_hit_rank": 4,
+      "first_complete_rank": 4,
       "hit_at_k": {
         "1": false,
-        "3": true,
+        "3": false,
         "5": true,
         "10": true
       },
       "group_recall_at_k": {
         "1": 0.0,
-        "3": 1.0,
+        "3": 0.0,
         "5": 1.0,
         "10": 1.0
       },
@@ -843,26 +843,26 @@
       "retrieved_chunk_ids": [
         "9020-required-courses-111-grade-1-list",
         "9020-required-courses-112-grade-1-list",
+        "9020-required-courses-114-grade-1-list",
         "9020-required-courses-110-grade-1-list",
         "9020-required-courses-113-grade-1-list",
-        "9020-required-courses-114-grade-1-list",
-        "9020-required-courses-112-grade-1-note-001",
-        "9020-required-courses-111-grade-1-note-001",
-        "9020-required-courses-110-grade-1-note-001",
         "9020-required-courses-112-grade-2-list",
-        "9020-required-courses-114-grade-1-note-001"
+        "9020-required-courses-112-grade-4-list",
+        "9020-required-courses-111-grade-4-list",
+        "9020-required-courses-111-grade-2-list",
+        "9020-required-courses-113-grade-4-list"
       ],
       "retrieved_scores": [
-        0.658648729,
-        0.658448339,
-        0.652628303,
-        0.651387393,
-        0.651263535,
-        0.63397634,
-        0.630091131,
-        0.628335357,
-        0.627738237,
-        0.626754582
+        0.627896786,
+        0.627173722,
+        0.622459888,
+        0.622228503,
+        0.621954381,
+        0.612576067,
+        0.612391233,
+        0.612147391,
+        0.611616611,
+        0.607018352
       ],
       "first_hit_rank": null,
       "first_complete_rank": null,
@@ -899,39 +899,39 @@
         ]
       ],
       "retrieved_chunk_ids": [
+        "3030-required-courses-114-grade-2-list",
         "3030-required-courses-112-grade-2-list",
         "3030-required-courses-110-grade-2-list",
-        "3030-required-courses-114-grade-2-list",
-        "3030-required-courses-111-grade-2-list",
         "3030-required-courses-113-grade-2-list",
-        "3030-required-courses-110-grade-1-note-008",
-        "3030-required-courses-111-grade-1-note-008",
+        "3030-required-courses-111-grade-2-list",
         "3030-required-courses-112-grade-1-list",
-        "3030-required-courses-112-grade-1-note-003",
-        "3030-required-courses-114-grade-1-list"
+        "3030-required-courses-114-grade-1-list",
+        "3030-required-courses-113-grade-1-list",
+        "3030-required-courses-111-grade-1-list",
+        "3030-required-courses-110-grade-1-list"
       ],
       "retrieved_scores": [
-        0.792111218,
-        0.789796054,
-        0.789645076,
-        0.786549807,
-        0.785310864,
-        0.765258908,
-        0.763755858,
-        0.762654424,
-        0.760379553,
-        0.759673715
+        0.769026756,
+        0.768757522,
+        0.767036676,
+        0.765626907,
+        0.765605569,
+        0.761690319,
+        0.759716392,
+        0.758026183,
+        0.740025878,
+        0.73976022
       ],
-      "first_hit_rank": 1,
-      "first_complete_rank": 1,
+      "first_hit_rank": 2,
+      "first_complete_rank": 2,
       "hit_at_k": {
-        "1": true,
+        "1": false,
         "3": true,
         "5": true,
         "10": true
       },
       "group_recall_at_k": {
-        "1": 1.0,
+        "1": 0.0,
         "3": 1.0,
         "5": 1.0,
         "10": 1.0
@@ -954,31 +954,31 @@
         ]
       ],
       "retrieved_chunk_ids": [
-        "9020-required-courses-111-grade-1-list",
         "9020-required-courses-114-grade-1-list",
-        "9020-required-courses-112-grade-1-list",
         "9020-required-courses-113-grade-1-list",
+        "9020-required-courses-111-grade-1-list",
+        "9020-required-courses-112-grade-1-list",
         "9020-required-courses-110-grade-1-list",
         "9020-required-courses-112-grade-3-list",
+        "9020-required-courses-111-grade-3-list",
         "9020-required-courses-114-grade-3-list",
-        "9020-required-courses-114-grade-1-note-001",
-        "9020-required-courses-113-grade-3-list",
-        "9020-required-courses-112-grade-1-note-001"
+        "9020-required-courses-114-grade-4-list",
+        "9020-required-courses-113-grade-3-list"
       ],
       "retrieved_scores": [
-        0.643517,
-        0.643458188,
-        0.642776787,
-        0.642701209,
-        0.640672326,
-        0.619606733,
-        0.619058847,
-        0.61871016,
-        0.616704583,
-        0.615918279
+        0.622236252,
+        0.621080518,
+        0.620620608,
+        0.619402409,
+        0.617862105,
+        0.611932814,
+        0.610398769,
+        0.609446526,
+        0.609137714,
+        0.608308792
       ],
-      "first_hit_rank": 7,
-      "first_complete_rank": 7,
+      "first_hit_rank": 8,
+      "first_complete_rank": 8,
       "hit_at_k": {
         "1": false,
         "3": false,
@@ -1012,42 +1012,42 @@
         ]
       ],
       "retrieved_chunk_ids": [
-        "3030-required-courses-111-grade-1-note-008",
-        "3030-required-courses-110-grade-1-note-008",
-        "3030-required-courses-114-grade-1-note-003",
-        "3030-required-courses-112-grade-1-note-003",
-        "3030-required-courses-113-grade-1-note-003",
-        "3030-required-courses-114-grade-1-note-001",
-        "3030-required-courses-110-grade-1-note-006",
-        "3030-required-courses-111-grade-1-note-006",
-        "3030-required-courses-112-grade-1-note-001",
-        "3030-required-courses-113-grade-1-note-001"
+        "3030-required-courses-114-grade-1-list",
+        "3030-required-courses-112-grade-1-list",
+        "3030-required-courses-113-grade-1-list",
+        "3030-required-courses-114-grade-1-course-005",
+        "3030-required-courses-112-grade-1-course-005",
+        "3030-required-courses-110-grade-1-list",
+        "3030-required-courses-111-grade-1-list",
+        "3030-required-courses-110-grade-1-course-003",
+        "3030-required-courses-111-grade-1-course-003",
+        "3030-required-courses-113-grade-1-course-005"
       ],
       "retrieved_scores": [
-        0.781771719,
-        0.781731248,
-        0.781243861,
-        0.778326094,
-        0.776885092,
-        0.774816,
-        0.774445117,
-        0.772393882,
-        0.769559741,
-        0.769154
+        0.774958313,
+        0.773418546,
+        0.772151887,
+        0.763833582,
+        0.760986686,
+        0.76003319,
+        0.759801149,
+        0.759719491,
+        0.759107351,
+        0.758227527
       ],
-      "first_hit_rank": null,
-      "first_complete_rank": null,
+      "first_hit_rank": 1,
+      "first_complete_rank": 1,
       "hit_at_k": {
-        "1": false,
-        "3": false,
-        "5": false,
-        "10": false
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
       },
       "group_recall_at_k": {
-        "1": 0.0,
-        "3": 0.0,
-        "5": 0.0,
-        "10": 0.0
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
       },
       "tags": [
         "required-courses",
@@ -1076,7 +1076,7 @@
         "3030-credit-required-112-note-007",
         "3030-credit-required-111-note-007",
         "3030-credit-required-110-note-007",
-        "3030-credit-required-114-note-001"
+        "3030-credit-required-114-note-007"
       ],
       "retrieved_scores": [
         0.77897948,
@@ -1088,7 +1088,7 @@
         0.678751588,
         0.678612351,
         0.677249253,
-        0.676675
+        0.676918089
       ],
       "first_hit_rank": 1,
       "first_complete_rank": 1,
@@ -1139,11 +1139,11 @@
         0.733962655,
         0.732398,
         0.731612921,
-        0.730988622,
+        0.731045723,
         0.729201913,
-        0.729076326,
+        0.729179,
         0.728585541,
-        0.727691412,
+        0.7275877,
         0.725824952
       ],
       "first_hit_rank": null,
@@ -1184,11 +1184,11 @@
         "9020-required-courses-113-grade-3-course-007",
         "9020-required-courses-114-grade-3-course-007",
         "9020-required-courses-110-grade-3-course-007",
-        "9020-required-courses-111-grade-3-list",
         "9020-required-courses-111-grade-2-list",
         "9020-credit-required-111-term-007",
-        "9020-required-courses-112-grade-3-list",
-        "9020-required-courses-113-grade-3-list"
+        "9020-required-courses-112-grade-2-list",
+        "9020-required-courses-111-grade-3-course-003",
+        "9020-required-courses-113-grade-2-list"
       ],
       "retrieved_scores": [
         0.700433969,
@@ -1196,11 +1196,11 @@
         0.684555352,
         0.682697535,
         0.681049943,
-        0.674946427,
-        0.667034566,
+        0.669873953,
         0.659577429,
-        0.658733249,
-        0.654836
+        0.654595673,
+        0.653066397,
+        0.650239646
       ],
       "first_hit_rank": 1,
       "first_complete_rank": 1,
@@ -1236,8 +1236,8 @@
       ],
       "retrieved_chunk_ids": [
         "3030-required-courses-114-grade-1-course-001",
-        "3030-required-courses-113-grade-1-course-001",
         "3030-required-courses-112-grade-1-course-001",
+        "3030-required-courses-113-grade-1-course-001",
         "3030-required-courses-114-grade-1-course-002",
         "3030-required-courses-113-grade-1-course-002",
         "3030-required-courses-112-grade-1-course-002",
@@ -1248,8 +1248,8 @@
       ],
       "retrieved_scores": [
         0.77812773,
+        0.773833394,
         0.772419393,
-        0.772357047,
         0.760421932,
         0.756511,
         0.754978,
@@ -1291,31 +1291,31 @@
         ]
       ],
       "retrieved_chunk_ids": [
+        "3030-required-courses-114-grade-1-list",
+        "3030-required-courses-113-grade-1-list",
+        "3030-required-courses-112-grade-1-list",
         "3030-required-courses-110-grade-1-list",
         "3030-required-courses-111-grade-1-list",
-        "3030-required-courses-110-grade-2-list",
-        "3030-required-courses-114-grade-2-list",
-        "3030-required-courses-111-grade-2-list",
-        "3030-required-courses-113-grade-2-list",
-        "3030-required-courses-114-grade-1-list",
-        "3030-required-courses-112-grade-2-list",
-        "3030-required-courses-113-grade-1-list",
-        "3030-required-courses-114-grade-1-course-005"
+        "3030-required-courses-114-grade-1-course-005",
+        "3030-required-courses-110-grade-1-course-003",
+        "3030-required-courses-111-grade-1-course-003",
+        "3030-required-courses-113-grade-1-course-005",
+        "3030-required-courses-112-grade-1-course-005"
       ],
       "retrieved_scores": [
-        0.766343,
-        0.764974415,
-        0.756244659,
-        0.755088687,
-        0.754925787,
-        0.754245639,
-        0.753304482,
-        0.751817465,
-        0.750292957,
-        0.749643683
+        0.780146539,
+        0.779336572,
+        0.777994,
+        0.769389212,
+        0.768990576,
+        0.749643683,
+        0.748315156,
+        0.74730289,
+        0.74671793,
+        0.746352
       ],
-      "first_hit_rank": 10,
-      "first_complete_rank": 10,
+      "first_hit_rank": 6,
+      "first_complete_rank": 6,
       "hit_at_k": {
         "1": false,
         "3": false,
@@ -1343,32 +1343,32 @@
       "question": "114學年度資工系大一普通物理、普通化學、普通生物的必修採計規則是什麼？",
       "expected_chunk_groups": [
         [
-          "9020-required-courses-114-grade-1-note-001"
+          "9020-required-courses-114-grade-1-list"
         ]
       ],
       "retrieved_chunk_ids": [
         "9020-required-courses-114-grade-1-course-006",
         "9020-required-courses-112-grade-1-course-006",
-        "9020-required-courses-114-grade-1-list",
-        "9020-required-courses-112-grade-1-list",
-        "9020-required-courses-111-grade-1-list",
         "9020-required-courses-110-grade-1-course-006",
         "9020-required-courses-112-grade-1-course-007",
         "9020-required-courses-111-grade-1-course-006",
         "9020-required-courses-114-grade-1-course-011",
-        "9020-required-courses-114-grade-1-course-007"
+        "9020-required-courses-114-grade-1-course-007",
+        "9020-required-courses-114-grade-1-course-009",
+        "9020-required-courses-114-grade-1-course-005",
+        "9020-required-courses-112-grade-1-course-005"
       ],
       "retrieved_scores": [
         0.673663139,
         0.672301531,
-        0.671766341,
-        0.671043634,
-        0.667502701,
-        0.667325854,
+        0.667694747,
         0.667038,
         0.666655362,
         0.665713,
-        0.6657
+        0.6657,
+        0.665586591,
+        0.66552949,
+        0.66478467
       ],
       "first_hit_rank": null,
       "first_complete_rank": null,
@@ -1416,11 +1416,11 @@
         "econ-dual-major-policy-114-notes"
       ],
       "retrieved_scores": [
-        0.818647087,
+        0.818742752,
         0.816989362,
         0.81612426,
-        0.815666437,
-        0.814816535,
+        0.815605164,
+        0.814814508,
         0.766892076,
         0.761723399,
         0.757938504,
@@ -1460,28 +1460,28 @@
         ]
       ],
       "retrieved_chunk_ids": [
-        "3030-required-courses-114-grade-1-note-002",
-        "3030-required-courses-112-grade-1-note-002",
-        "3030-required-courses-110-grade-1-note-011",
-        "3030-required-courses-111-grade-1-note-007",
-        "3030-required-courses-110-grade-1-note-007",
         "3030-required-courses-110-grade-3-list",
-        "3030-required-courses-113-grade-1-note-002",
-        "3030-required-courses-111-grade-1-note-011",
         "3030-required-courses-112-grade-3-list",
-        "3030-required-courses-110-grade-4-list"
+        "3030-required-courses-110-grade-4-list",
+        "3030-required-courses-114-grade-3-list",
+        "3030-required-courses-114-grade-4-list",
+        "3030-required-courses-113-grade-3-list",
+        "3030-required-courses-112-grade-4-list",
+        "3030-required-courses-111-grade-3-list",
+        "3030-required-courses-113-grade-4-list",
+        "3030-required-courses-111-grade-4-list"
       ],
       "retrieved_scores": [
-        0.786949515,
-        0.786949515,
-        0.786654,
-        0.785901964,
-        0.785749495,
         0.78484118,
-        0.784724534,
-        0.782622933,
         0.779351175,
-        0.77880764
+        0.77880764,
+        0.777952,
+        0.776026964,
+        0.772502244,
+        0.772415042,
+        0.771243095,
+        0.771020651,
+        0.767807782
       ],
       "first_hit_rank": null,
       "first_complete_rank": null,
@@ -1520,11 +1520,11 @@
         "9020-required-courses-114-grade-4-list",
         "9020-required-courses-110-grade-4-list",
         "9020-required-courses-113-grade-4-list",
-        "9020-required-courses-112-grade-1-list",
-        "9020-required-courses-114-grade-1-list",
-        "9020-required-courses-112-grade-2-list",
-        "9020-required-courses-111-grade-1-list",
-        "9020-required-courses-114-grade-2-list"
+        "9020-required-courses-114-grade-2-course-005",
+        "9020-required-courses-112-grade-2-course-005",
+        "9020-required-courses-111-grade-2-course-005",
+        "9020-required-courses-110-grade-2-course-005",
+        "9020-required-courses-113-grade-2-course-005"
       ],
       "retrieved_scores": [
         0.733074605,
@@ -1532,11 +1532,11 @@
         0.729741871,
         0.72964114,
         0.728255391,
-        0.727462947,
-        0.727342,
-        0.726649106,
-        0.726387084,
-        0.725231767
+        0.699786246,
+        0.699528337,
+        0.698408544,
+        0.69822979,
+        0.698039293
       ],
       "first_hit_rank": null,
       "first_complete_rank": null,
@@ -1575,11 +1575,11 @@
         "9020-required-courses-111-grade-4-list",
         "9020-required-courses-112-grade-4-list",
         "9020-required-courses-110-grade-4-list",
-        "9020-required-courses-114-grade-2-list",
-        "9020-required-courses-114-grade-1-list",
+        "9020-required-courses-114-grade-2-course-005",
+        "9020-required-courses-113-grade-2-course-005",
         "9020-required-courses-114-grade-3-list",
-        "9020-required-courses-113-grade-2-list",
-        "9020-required-courses-113-grade-3-list"
+        "9020-required-courses-114-grade-2-list",
+        "9020-required-courses-112-grade-3-list"
       ],
       "retrieved_scores": [
         0.759312212,
@@ -1587,11 +1587,11 @@
         0.754203677,
         0.752886951,
         0.751193523,
-        0.726598084,
-        0.726293921,
-        0.725790441,
-        0.723409,
-        0.721413255
+        0.697580159,
+        0.694867194,
+        0.693911,
+        0.69285053,
+        0.692513406
       ],
       "first_hit_rank": 2,
       "first_complete_rank": 2,
@@ -1645,9 +1645,9 @@
         0.597434759,
         0.588681579,
         0.578236103,
-        0.577936,
-        0.577551484,
-        0.576491416,
+        0.578173161,
+        0.577103615,
+        0.576535165,
         0.576385677
       ],
       "first_hit_rank": 2,
@@ -1692,21 +1692,21 @@
         "econ-dual-major-policy-115-other",
         "econ-dual-major-policy-111-overview",
         "econ-dual-major-policy-112-overview",
-        "econ-dual-major-policy-112-selection_method_and_weight",
         "econ-dual-major-policy-111-selection_method_and_weight",
+        "econ-dual-major-policy-112-selection_method_and_weight",
         "econ-dual-major-policy-111-eligibility"
       ],
       "retrieved_scores": [
-        0.718910038,
-        0.71823585,
+        0.720156431,
+        0.71840626,
         0.703716159,
         0.702704966,
         0.698856056,
         0.691695869,
-        0.690410495,
-        0.687361181,
-        0.687271476,
-        0.685207784
+        0.690411,
+        0.687249899,
+        0.687230051,
+        0.685085595
       ],
       "first_hit_rank": 8,
       "first_complete_rank": null,
@@ -1744,8 +1744,8 @@
       ],
       "retrieved_chunk_ids": [
         "econ-dual-major-policy-114-other",
-        "econ-dual-major-policy-113-other",
         "econ-dual-major-policy-111-other",
+        "econ-dual-major-policy-113-other",
         "econ-dual-major-policy-115-other",
         "econ-dual-major-policy-112-other",
         "econ-dual-major-policy-114-selection_method_and_weight",
@@ -1756,13 +1756,13 @@
       ],
       "retrieved_scores": [
         0.73553,
+        0.7196455,
         0.719634175,
-        0.719463,
         0.717140436,
-        0.713184476,
-        0.705827892,
+        0.715144873,
+        0.705883622,
         0.705668867,
-        0.701367915,
+        0.701236844,
         0.700128436,
         0.699284315
       ],
@@ -1799,28 +1799,28 @@
         ]
       ],
       "retrieved_chunk_ids": [
-        "3030-required-courses-114-grade-1-note-002",
         "3030-required-courses-114-grade-4-list",
         "3030-required-courses-114-grade-3-list",
-        "3030-required-courses-112-grade-1-note-002",
-        "3030-required-courses-114-grade-2-note-005",
-        "3030-required-courses-113-grade-1-note-002",
-        "3030-required-courses-110-grade-1-note-007",
-        "3030-required-courses-111-grade-1-note-007",
-        "3030-required-courses-114-grade-2-list",
-        "3030-required-courses-112-grade-3-list"
+        "3030-required-courses-112-grade-3-list",
+        "3030-required-courses-112-grade-4-list",
+        "3030-required-courses-110-grade-4-list",
+        "3030-required-courses-113-grade-4-list",
+        "3030-required-courses-110-grade-3-list",
+        "3030-required-courses-111-grade-4-list",
+        "econ-dual-major-policy-114-other",
+        "3030-required-courses-113-grade-3-list"
       ],
       "retrieved_scores": [
-        0.700469851,
-        0.700379074,
+        0.700852573,
         0.69778651,
-        0.691700339,
-        0.69060564,
-        0.688461661,
-        0.688173413,
-        0.688097358,
-        0.687241793,
-        0.68671453
+        0.68671453,
+        0.686436653,
+        0.684832096,
+        0.68276459,
+        0.681255341,
+        0.680739939,
+        0.680541635,
+        0.677863
       ],
       "first_hit_rank": null,
       "first_complete_rank": null,
@@ -1856,28 +1856,28 @@
         ]
       ],
       "retrieved_chunk_ids": [
-        "3030-required-courses-111-grade-1-note-007",
-        "3030-required-courses-112-grade-1-note-002",
-        "3030-required-courses-110-grade-1-note-007",
-        "3030-required-courses-114-grade-1-note-002",
         "3030-credit-required-111-term-003",
-        "3030-required-courses-113-grade-1-note-002",
         "3030-credit-required-112-term-003",
-        "3030-required-courses-111-grade-1-note-011",
         "3030-required-courses-111-grade-3-list",
-        "3030-required-courses-111-grade-1-note-006"
+        "3030-required-courses-111-grade-4-list",
+        "3030-required-courses-112-grade-3-list",
+        "3030-required-courses-112-grade-4-list",
+        "3030-credit-required-110-term-003",
+        "3030-credit-required-111-term-005",
+        "3030-credit-required-111-term-004",
+        "3030-credit-required-111-term-002"
       ],
       "retrieved_scores": [
-        0.719341,
-        0.716984153,
-        0.705492139,
-        0.702870607,
         0.701467395,
-        0.700236619,
         0.697103739,
-        0.69642061,
         0.695051432,
-        0.694768548
+        0.693954587,
+        0.692845881,
+        0.691240072,
+        0.690092921,
+        0.6883533,
+        0.686995566,
+        0.685570836
       ],
       "first_hit_rank": null,
       "first_complete_rank": null,
@@ -1914,28 +1914,28 @@
         ]
       ],
       "retrieved_chunk_ids": [
-        "9020-required-courses-111-grade-2-note-001",
         "9020-credit-required-111-note-005-item-006",
-        "9020-required-courses-112-grade-2-note-001",
         "9020-required-courses-111-grade-4-list",
         "9020-credit-required-112-note-005-item-006",
-        "9020-required-courses-111-grade-1-note-003",
-        "9020-required-courses-111-grade-1-list",
+        "9020-credit-required-111-note-005-item-004",
         "9020-required-courses-111-grade-2-list",
-        "9020-required-courses-111-grade-1-note-002",
-        "9020-credit-required-111-note-005-item-004"
+        "9020-credit-required-112-note-005-item-004",
+        "9020-required-courses-112-grade-4-list",
+        "9020-credit-required-113-note-005-item-006",
+        "9020-required-courses-112-grade-2-list",
+        "9020-credit-required-110-note-005-item-006"
       ],
       "retrieved_scores": [
-        0.624644101,
         0.623598218,
-        0.620350838,
         0.620280683,
         0.620022476,
-        0.617966533,
-        0.61714071,
-        0.616816223,
-        0.61641,
-        0.615300119
+        0.615300119,
+        0.615113258,
+        0.613099396,
+        0.610303342,
+        0.609727561,
+        0.608202159,
+        0.607963562
       ],
       "first_hit_rank": null,
       "first_complete_rank": null,
@@ -1972,30 +1972,30 @@
         ]
       ],
       "retrieved_chunk_ids": [
-        "3030-required-courses-112-grade-1-note-002",
-        "3030-required-courses-114-grade-1-note-002",
-        "3030-required-courses-112-grade-2-list",
         "3030-required-courses-112-grade-3-list",
         "3030-required-courses-112-grade-4-list",
-        "3030-required-courses-111-grade-1-note-007",
-        "3030-required-courses-110-grade-1-note-007",
-        "3030-required-courses-113-grade-1-note-002",
+        "3030-required-courses-114-grade-4-list",
+        "3030-required-courses-110-grade-3-list",
+        "3030-required-courses-110-grade-4-list",
+        "3030-required-courses-114-grade-3-list",
         "3030-required-courses-112-grade-1-list",
-        "3030-required-courses-114-grade-2-list"
+        "3030-required-courses-113-grade-4-list",
+        "3030-required-courses-111-grade-3-list",
+        "3030-required-courses-111-grade-4-list"
       ],
       "retrieved_scores": [
-        0.690043211,
-        0.686772943,
-        0.686558187,
         0.68640244,
         0.685549319,
-        0.682832599,
-        0.682387888,
-        0.682273924,
-        0.682119727,
-        0.681946158
+        0.681378782,
+        0.679562271,
+        0.679125369,
+        0.678902745,
+        0.674786329,
+        0.67384845,
+        0.672858775,
+        0.672504961
       ],
-      "first_hit_rank": 9,
+      "first_hit_rank": 7,
       "first_complete_rank": null,
       "hit_at_k": {
         "1": false,
@@ -2034,30 +2034,30 @@
         ]
       ],
       "retrieved_chunk_ids": [
-        "3030-required-courses-111-grade-1-note-002",
-        "3030-required-courses-110-grade-1-note-002",
         "3030-required-courses-112-grade-1-course-001",
-        "3030-required-courses-111-grade-1-note-003",
         "3030-required-courses-113-grade-1-course-001",
         "3030-required-courses-112-grade-1-course-003",
         "9020-required-courses-111-grade-1-course-001",
         "3030-required-courses-112-grade-1-course-002",
         "3030-required-courses-114-grade-1-course-001",
-        "9020-required-courses-112-grade-1-course-001"
+        "9020-required-courses-112-grade-1-course-001",
+        "3030-required-courses-113-grade-1-course-002",
+        "3030-required-courses-113-grade-1-course-003",
+        "9020-required-courses-111-grade-1-course-003"
       ],
       "retrieved_scores": [
-        0.64211005,
-        0.632024109,
-        0.622564,
-        0.619233191,
+        0.622679,
         0.617933869,
         0.617002845,
         0.61678648,
         0.615936697,
         0.614237,
-        0.613028646
+        0.613028646,
+        0.612683117,
+        0.612011671,
+        0.611643374
       ],
-      "first_hit_rank": 3,
+      "first_hit_rank": 1,
       "first_complete_rank": null,
       "hit_at_k": {
         "1": false,
@@ -2066,10 +2066,10 @@
         "10": false
       },
       "group_recall_at_k": {
-        "1": 0.0,
-        "3": 0.16666666666666666,
-        "5": 0.16666666666666666,
-        "10": 0.6666666666666666
+        "1": 0.16666666666666666,
+        "3": 0.3333333333333333,
+        "5": 0.6666666666666666,
+        "10": 0.8333333333333334
       },
       "tags": [
         "comparison",
@@ -2096,42 +2096,42 @@
         ]
       ],
       "retrieved_chunk_ids": [
-        "3030-required-courses-111-grade-1-list",
-        "3030-required-courses-111-grade-1-note-011",
-        "3030-required-courses-110-grade-1-note-011",
-        "3030-required-courses-110-grade-1-list",
         "3030-required-courses-112-grade-1-list",
-        "3030-required-courses-114-grade-1-note-002",
-        "3030-required-courses-111-grade-1-note-007",
-        "3030-required-courses-114-grade-1-list",
         "3030-required-courses-113-grade-1-list",
-        "3030-required-courses-112-grade-1-course-006"
+        "3030-required-courses-114-grade-1-list",
+        "3030-required-courses-110-grade-1-list",
+        "3030-required-courses-111-grade-1-list",
+        "3030-required-courses-112-grade-1-course-006",
+        "3030-required-courses-111-grade-1-course-004",
+        "3030-required-courses-113-grade-1-course-006",
+        "3030-required-courses-114-grade-1-course-006",
+        "3030-required-courses-110-grade-1-course-004"
       ],
       "retrieved_scores": [
-        0.675858736,
-        0.675193429,
-        0.670503736,
-        0.669702053,
-        0.655375302,
-        0.654193,
-        0.654155791,
-        0.653508782,
-        0.653443336,
-        0.652698278
+        0.664469779,
+        0.664167523,
+        0.663164437,
+        0.662398815,
+        0.662203252,
+        0.652698278,
+        0.652646124,
+        0.652268827,
+        0.651986778,
+        0.650327146
       ],
-      "first_hit_rank": 10,
-      "first_complete_rank": null,
+      "first_hit_rank": 6,
+      "first_complete_rank": 9,
       "hit_at_k": {
         "1": false,
         "3": false,
         "5": false,
-        "10": false
+        "10": true
       },
       "group_recall_at_k": {
         "1": 0.0,
         "3": 0.0,
         "5": 0.0,
-        "10": 0.25
+        "10": 1.0
       },
       "tags": [
         "comparison",
@@ -2157,42 +2157,42 @@
         ]
       ],
       "retrieved_chunk_ids": [
-        "9020-required-courses-114-grade-2-list",
-        "9020-required-courses-111-grade-2-list",
-        "9020-required-courses-112-grade-2-list",
-        "9020-required-courses-113-grade-2-list",
         "9020-credit-required-112-note-005-item-006",
         "9020-credit-required-111-note-005-item-006",
         "9020-credit-required-114-note-005-item-006",
-        "9020-required-courses-114-grade-1-list",
-        "9020-required-courses-112-grade-1-list",
-        "9020-required-courses-111-grade-1-list"
+        "9020-credit-required-113-note-005-item-006",
+        "9020-required-courses-114-grade-4-list",
+        "9020-credit-required-110-note-005-item-006",
+        "9020-required-courses-111-grade-4-list",
+        "9020-required-courses-111-grade-2-list",
+        "9020-required-courses-112-grade-4-list",
+        "9020-required-courses-112-grade-2-list"
       ],
       "retrieved_scores": [
-        0.67729187,
-        0.672805905,
-        0.672141433,
-        0.669821918,
         0.668541789,
         0.668383837,
         0.665755749,
-        0.665102303,
-        0.665050685,
-        0.664683044
+        0.66393739,
+        0.660508275,
+        0.65955,
+        0.656987906,
+        0.656571925,
+        0.656133533,
+        0.65513736
       ],
-      "first_hit_rank": 1,
-      "first_complete_rank": 4,
+      "first_hit_rank": null,
+      "first_complete_rank": null,
       "hit_at_k": {
         "1": false,
         "3": false,
-        "5": true,
-        "10": true
+        "5": false,
+        "10": false
       },
       "group_recall_at_k": {
-        "1": 0.5,
-        "3": 0.5,
-        "5": 1.0,
-        "10": 1.0
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
       },
       "tags": [
         "comparison",
@@ -2217,30 +2217,30 @@
         ]
       ],
       "retrieved_chunk_ids": [
-        "9020-required-courses-111-grade-1-list",
-        "9020-required-courses-112-grade-1-list",
-        "9020-required-courses-113-grade-1-list",
-        "9020-required-courses-114-grade-1-list",
-        "9020-required-courses-110-grade-1-list",
         "9020-credit-required-111-note-005-item-002",
         "9020-credit-required-111-note-002",
         "9020-credit-required-112-note-002",
         "9020-credit-required-111-note-005-item-003",
-        "9020-credit-required-112-note-005-item-002"
+        "9020-credit-required-112-note-005-item-002",
+        "9020-credit-required-112-note-005-item-003",
+        "9020-credit-required-113-note-005-item-002",
+        "9020-required-courses-111-grade-4-list",
+        "9020-credit-required-111-note-005-item-006",
+        "9020-credit-required-113-note-005-item-003"
       ],
       "retrieved_scores": [
-        0.660034418,
-        0.656682551,
-        0.650798082,
-        0.648703873,
-        0.645988464,
         0.642202079,
         0.641306162,
         0.640336037,
         0.639706969,
-        0.638964891
+        0.638964891,
+        0.637650073,
+        0.637475908,
+        0.636783421,
+        0.636717677,
+        0.635488689
       ],
-      "first_hit_rank": 3,
+      "first_hit_rank": null,
       "first_complete_rank": null,
       "hit_at_k": {
         "1": false,
@@ -2250,9 +2250,9 @@
       },
       "group_recall_at_k": {
         "1": 0.0,
-        "3": 0.25,
-        "5": 0.25,
-        "10": 0.25
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
       },
       "tags": [
         "overview",
@@ -2290,7 +2290,7 @@
         0.644877076,
         0.641604841,
         0.638477504,
-        0.637239456,
+        0.637314081,
         0.636481643,
         0.630225599,
         0.628200054,
@@ -2345,7 +2345,7 @@
         "3030-credit-required-110-note-006-item-002"
       ],
       "retrieved_scores": [
-        0.803234458,
+        0.803398609,
         0.801426709,
         0.801180422,
         0.800276816,
@@ -2464,14 +2464,14 @@
         "3030-credit-required-112-note-007"
       ],
       "retrieved_scores": [
-        0.670818865,
-        0.658746183,
+        0.670748651,
+        0.658879936,
         0.652037382,
         0.648512661,
-        0.647657454,
+        0.648444653,
         0.64595741,
         0.645690858,
-        0.644566178,
+        0.644544125,
         0.644392312,
         0.643399239
       ],
@@ -2525,13 +2525,13 @@
         0.500520051,
         0.47466439,
         0.449782372,
-        0.449514657,
+        0.449653178,
         0.448540598,
         0.445238829,
         0.445002377,
-        0.444479913,
-        0.443733662,
-        0.442937195
+        0.444429308,
+        0.44388023,
+        0.442975938
       ],
       "first_hit_rank": 1,
       "first_complete_rank": 1,
@@ -2577,14 +2577,14 @@
       ],
       "retrieved_scores": [
         0.737070382,
-        0.669808328,
+        0.669722438,
         0.668073773,
-        0.667551577,
+        0.667543292,
         0.667353451,
-        0.665056586,
+        0.665223,
         0.662344396,
         0.662194729,
-        0.661545634,
+        0.661539,
         0.66149354
       ],
       "first_hit_rank": 1,
@@ -2619,30 +2619,30 @@
         ]
       ],
       "retrieved_chunk_ids": [
-        "3030-required-courses-114-grade-1-note-002",
-        "3030-required-courses-110-grade-1-note-011",
-        "3030-required-courses-111-grade-1-note-011",
-        "3030-required-courses-112-grade-1-note-002",
-        "3030-required-courses-110-grade-1-note-007",
-        "3030-required-courses-113-grade-1-note-002",
-        "3030-required-courses-111-grade-1-note-007",
-        "3030-required-courses-111-grade-1-note-008",
-        "3030-required-courses-114-grade-1-note-001",
-        "3030-required-courses-110-grade-1-note-008"
+        "3030-required-courses-114-grade-1-course-006",
+        "3030-required-courses-111-grade-1-course-004",
+        "3030-required-courses-112-grade-1-course-006",
+        "3030-required-courses-113-grade-1-course-006",
+        "3030-required-courses-110-grade-1-course-004",
+        "3030-required-courses-114-grade-1-list",
+        "3030-required-courses-112-grade-1-list",
+        "3030-required-courses-113-grade-1-list",
+        "3030-required-courses-110-grade-1-list",
+        "3030-required-courses-111-grade-1-list"
       ],
       "retrieved_scores": [
-        0.715446353,
-        0.712813437,
-        0.711349308,
-        0.710430205,
-        0.709061623,
-        0.707051396,
-        0.70701474,
-        0.699966729,
-        0.698074341,
-        0.697488844
+        0.693342924,
+        0.691832304,
+        0.691285968,
+        0.68871969,
+        0.68863225,
+        0.685727417,
+        0.685173094,
+        0.68334347,
+        0.66886729,
+        0.668577909
       ],
-      "first_hit_rank": null,
+      "first_hit_rank": 1,
       "first_complete_rank": null,
       "hit_at_k": {
         "1": false,
@@ -2651,10 +2651,10 @@
         "10": false
       },
       "group_recall_at_k": {
-        "1": 0.0,
-        "3": 0.0,
-        "5": 0.0,
-        "10": 0.0
+        "1": 0.5,
+        "3": 0.5,
+        "5": 0.5,
+        "10": 0.5
       },
       "tags": [
         "misleading",
@@ -2679,25 +2679,25 @@
         "3030-required-courses-114-grade-1-course-002",
         "3030-required-courses-114-grade-1-course-003",
         "3030-required-courses-112-grade-1-course-002",
-        "3030-required-courses-111-grade-1-note-002",
         "3030-required-courses-114-grade-1-course-001",
         "3030-required-courses-114-grade-1-course-004",
         "3030-required-courses-113-grade-1-course-002",
         "3030-required-courses-112-grade-1-course-004",
-        "3030-required-courses-110-grade-1-note-002",
-        "3030-required-courses-113-grade-1-course-004"
+        "3030-required-courses-113-grade-1-course-004",
+        "3030-required-courses-112-grade-1-course-003",
+        "3030-required-courses-112-grade-1-course-001"
       ],
       "retrieved_scores": [
         0.663542271,
         0.658904135,
         0.658044,
-        0.657877624,
         0.657844424,
         0.657699823,
         0.657686532,
         0.655291259,
-        0.654493332,
-        0.654259741
+        0.654259741,
+        0.653207302,
+        0.652702868
       ],
       "first_hit_rank": null,
       "first_complete_rank": null,
@@ -2739,23 +2739,23 @@
         "9020-required-courses-113-grade-2-course-005",
         "9020-required-courses-110-grade-2-course-005",
         "9020-required-courses-114-grade-2-course-005",
-        "9020-required-courses-112-grade-2-list",
-        "9020-required-courses-111-grade-2-list",
         "9020-required-courses-112-grade-2-course-004",
-        "9020-required-courses-113-grade-2-list",
-        "9020-required-courses-112-grade-3-course-003"
+        "9020-required-courses-112-grade-3-course-003",
+        "9020-required-courses-111-grade-2-course-004",
+        "9020-required-courses-111-grade-3-course-003",
+        "9020-required-courses-112-grade-4-list"
       ],
       "retrieved_scores": [
         0.747064352,
         0.745104611,
         0.736664772,
-        0.735008657,
+        0.735366523,
         0.733676672,
-        0.704309464,
-        0.699304163,
-        0.689021707,
-        0.686881721,
-        0.686561406
+        0.689296603,
+        0.686378,
+        0.686274529,
+        0.682231069,
+        0.67675674
       ],
       "first_hit_rank": 1,
       "first_complete_rank": null,
@@ -2769,7 +2769,7 @@
         "1": 0.3333333333333333,
         "3": 0.3333333333333333,
         "5": 0.3333333333333333,
-        "10": 0.6666666666666666
+        "10": 0.3333333333333333
       },
       "tags": [
         "misleading",
@@ -2808,7 +2808,7 @@
         0.808994293,
         0.80805403,
         0.803875744,
-        0.72619319,
+        0.726217568,
         0.725837052,
         0.725110054,
         0.724766076,
@@ -2860,7 +2860,7 @@
       ],
       "retrieved_scores": [
         0.773830831,
-        0.770656884,
+        0.770674706,
         0.769255161,
         0.766358435,
         0.763218,
@@ -2904,27 +2904,27 @@
       ],
       "retrieved_chunk_ids": [
         "9020-required-courses-114-grade-4-list",
-        "9020-required-courses-114-grade-2-list",
         "9020-required-courses-112-grade-4-list",
         "9020-required-courses-111-grade-4-list",
         "9020-required-courses-113-grade-4-list",
         "9020-required-courses-110-grade-4-list",
+        "9020-required-courses-114-grade-2-course-005",
+        "9020-required-courses-111-grade-2-course-005",
         "9020-required-courses-114-grade-3-list",
-        "9020-required-courses-113-grade-2-list",
-        "9020-required-courses-114-grade-1-note-001",
-        "9020-required-courses-112-grade-2-list"
+        "9020-required-courses-113-grade-2-course-005",
+        "9020-required-courses-110-grade-2-course-005"
       ],
       "retrieved_scores": [
         0.668275476,
-        0.656097174,
         0.654779613,
         0.654127836,
         0.65351069,
         0.653304,
-        0.645280302,
-        0.643584549,
-        0.643395126,
-        0.643031
+        0.636408,
+        0.629705727,
+        0.629438698,
+        0.628664851,
+        0.628570497
       ],
       "first_hit_rank": null,
       "first_complete_rank": null,
@@ -2966,23 +2966,23 @@
         "econ-dual-major-policy-114-other",
         "3030-required-courses-114-grade-3-list",
         "econ-dual-major-policy-113-other",
-        "econ-dual-major-policy-111-other",
         "3030-required-courses-112-grade-4-list",
+        "econ-dual-major-policy-111-other",
         "econ-dual-major-policy-115-other",
         "3030-required-courses-111-grade-3-list",
         "3030-required-courses-114-grade-4-list"
       ],
       "retrieved_scores": [
-        0.70203352,
+        0.703092694,
         0.700396478,
         0.699136,
         0.695519507,
         0.695305228,
-        0.695116282,
         0.695088506,
+        0.694995522,
         0.693404555,
         0.690017223,
-        0.688250661
+        0.688398302
       ],
       "first_hit_rank": null,
       "first_complete_rank": null,
@@ -3030,11 +3030,11 @@
         "econ-dual-major-policy-114-other"
       ],
       "retrieved_scores": [
-        0.782441378,
+        0.782407403,
         0.782318771,
-        0.782147884,
+        0.782090604,
         0.779217064,
-        0.778615773,
+        0.778621078,
         0.696874201,
         0.687984347,
         0.687744796,

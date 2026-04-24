@@ -12,7 +12,7 @@ CREDIT_PATTERN = re.compile(r"(\d+(?:\.\d+)?)")
 
 class RequiredCoursesGoldChunker(BaseGoldChunker):
     chunker_name = "required_courses_chunker"
-    chunker_version = "v3"
+    chunker_version = "v4"
 
     def build_document(self, silver_document: dict) -> dict:
         content = silver_document["content"]
@@ -29,6 +29,7 @@ class RequiredCoursesGoldChunker(BaseGoldChunker):
         courses = content["courses"]
         course_names = [course["chinese_name"] for course in courses]
         total_credits = sum_credits(courses)
+        notes = list(content.get("notes") or [])
 
         chunks.append(
             GoldChunk(
@@ -45,6 +46,7 @@ class RequiredCoursesGoldChunker(BaseGoldChunker):
                     grade_label=grade_label,
                     course_names=course_names,
                     total_credits=total_credits,
+                    notes=notes,
                 ),
                 order=1,
                 metadata={
@@ -56,6 +58,7 @@ class RequiredCoursesGoldChunker(BaseGoldChunker):
                     "course_count": len(course_names),
                     "course_names": course_names,
                     "total_credits": total_credits,
+                    "notes": notes,
                 },
             )
         )
@@ -89,31 +92,9 @@ class RequiredCoursesGoldChunker(BaseGoldChunker):
                 )
             )
 
-        for index, note in enumerate(content["notes"], start=1):
-            chunks.append(
-                GoldChunk(
-                    chunk_id="{0}-note-{1:03d}".format(silver_document["source_id"], index),
-                    chunk_type="required_courses_note",
-                    title="備註 {0}".format(index),
-                    text=(
-                        "{department_context}{admission_year}學年度入學學生，{grade_label}系訂必修科目備註：{note}"
-                    ).format(
-                        department_context=department_context,
-                        admission_year=admission_year or "未知",
-                        grade_label=grade_label,
-                        note=note,
-                    ),
-                    order=len(chunks) + 1,
-                    metadata={
-                        "department_code": department_code,
-                        "department_name": department_name,
-                        "admission_year": admission_year,
-                        "grade": grade,
-                        "grade_label": grade_label,
-                        "note_index": index,
-                    },
-                )
-            )
+        # v4: notes are merged into the list chunk above (no standalone note chunks)
+        # to prevent short, semantically-broad note chunks from out-ranking the
+        # list/course chunks that actually answer dept × year × grade queries.
 
         document = GoldDocument(
             dataset_version=silver_document["dataset_version"],
@@ -143,26 +124,35 @@ def render_list_text(
     grade_label: str,
     course_names: list[str],
     total_credits: float | None,
+    notes: list[str] | None = None,
 ) -> str:
     year_text = admission_year or "未知"
+    notes = notes or []
     if not course_names:
-        return "{0}{1}學年度入學學生，{2}系訂必修科目查無課程資料。".format(
+        body = "{0}{1}學年度入學學生，{2}系訂必修科目查無課程資料。".format(
             department_context, year_text, grade_label
         )
-    credits_sentence = ""
-    if total_credits is not None:
-        credits_sentence = "、合計{0}學分".format(format_credits(total_credits))
-    return (
-        "{department_context}{year}學年度入學學生，{grade_label}系訂必修共{count}門{credits_sentence}。"
-        "必修課程：{course_list}。"
-    ).format(
-        department_context=department_context,
-        year=year_text,
-        grade_label=grade_label,
-        count=len(course_names),
-        credits_sentence=credits_sentence,
-        course_list="、".join(course_names),
-    )
+    else:
+        credits_sentence = ""
+        if total_credits is not None:
+            credits_sentence = "、合計{0}學分".format(format_credits(total_credits))
+        body = (
+            "{department_context}{year}學年度入學學生，{grade_label}系訂必修共{count}門{credits_sentence}。"
+            "必修課程：{course_list}。"
+        ).format(
+            department_context=department_context,
+            year=year_text,
+            grade_label=grade_label,
+            count=len(course_names),
+            credits_sentence=credits_sentence,
+            course_list="、".join(course_names),
+        )
+    if notes:
+        notes_section = "備註：" + "；".join(
+            "({0}) {1}".format(i, note) for i, note in enumerate(notes, start=1)
+        )
+        body = body + " " + notes_section
+    return body
 
 
 def render_course_text(
