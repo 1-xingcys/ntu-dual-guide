@@ -1,13 +1,18 @@
 from __future__ import annotations
 
+import re
+
 from ntu_dual_guide_ingestion.chunkers.base import BaseGoldChunker
 from ntu_dual_guide_ingestion.gold_schema import GoldChunk
 from ntu_dual_guide_ingestion.gold_schema import GoldDocument
 
 
+CREDIT_PATTERN = re.compile(r"(\d+(?:\.\d+)?)")
+
+
 class RequiredCoursesGoldChunker(BaseGoldChunker):
     chunker_name = "required_courses_chunker"
-    chunker_version = "v2"
+    chunker_version = "v3"
 
     def build_document(self, silver_document: dict) -> dict:
         content = silver_document["content"]
@@ -21,27 +26,25 @@ class RequiredCoursesGoldChunker(BaseGoldChunker):
             department_name=department_name,
             department_code=department_code,
         )
-        course_names = [course["chinese_name"] for course in content["courses"]]
-        course_list_text = "、".join(course_names)
+        courses = content["courses"]
+        course_names = [course["chinese_name"] for course in courses]
+        total_credits = sum_credits(courses)
 
         chunks.append(
             GoldChunk(
-                chunk_id="{0}-overview".format(silver_document["source_id"]),
-                chunk_type="required_courses_overview",
-                title="{0} 概覽".format(silver_document["title"]),
-                text=(
-                    "{department_context}{admission_year}學年度入學學生，{grade_label}系訂必修科目及學分表。"
-                    "本頁共列出{course_count}門課程。"
-                    "{course_list_sentence}"
-                ).format(
+                chunk_id="{0}-list".format(silver_document["source_id"]),
+                chunk_type="required_courses_list",
+                title="{0} {1} {2}學年度 必修課程清單".format(
+                    department_name or department_code or "系所",
+                    grade_label,
+                    admission_year or "未知",
+                ),
+                text=render_list_text(
                     department_context=department_context,
-                    admission_year=admission_year or "未知",
+                    admission_year=admission_year,
                     grade_label=grade_label,
-                    course_count=len(content["courses"]),
-                    course_list_sentence=render_course_list_sentence(
-                        grade_label=grade_label,
-                        course_list_text=course_list_text,
-                    ),
+                    course_names=course_names,
+                    total_credits=total_credits,
                 ),
                 order=1,
                 metadata={
@@ -50,65 +53,24 @@ class RequiredCoursesGoldChunker(BaseGoldChunker):
                     "admission_year": admission_year,
                     "grade": grade,
                     "grade_label": grade_label,
-                    "course_count": len(content["courses"]),
+                    "course_count": len(course_names),
                     "course_names": course_names,
+                    "total_credits": total_credits,
                 },
             )
         )
 
-        if course_names:
-            chunks.append(
-                GoldChunk(
-                    chunk_id="{0}-course-list".format(silver_document["source_id"]),
-                    chunk_type="required_courses_catalog",
-                    title="{0} {1}必修課程清單".format(
-                        department_name or department_code or "系所",
-                        grade_label,
-                    ),
-                    text=(
-                        "如果問題是「{department_context}{admission_year}學年度入學學生，{grade_label}必修課程有哪些」，"
-                        "答案如下：{course_list_text}。以上共{course_count}門。"
-                    ).format(
-                        department_context=department_context,
-                        admission_year=admission_year or "未知",
-                        grade_label=grade_label,
-                        course_list_text=course_list_text,
-                        course_count=len(course_names),
-                    ),
-                    order=2,
-                    metadata={
-                        "department_code": department_code,
-                        "department_name": department_name,
-                        "admission_year": admission_year,
-                        "grade": grade,
-                        "grade_label": grade_label,
-                        "course_count": len(course_names),
-                        "course_names": course_names,
-                    },
-                )
-            )
-
-        for index, course in enumerate(content["courses"], start=1):
+        for index, course in enumerate(courses, start=1):
             chunks.append(
                 GoldChunk(
                     chunk_id="{0}-course-{1:03d}".format(silver_document["source_id"], index),
                     chunk_type="required_course",
                     title=course["chinese_name"],
-                    text=(
-                        "{department_context}{admission_year}學年度入學學生，{grade_label}系訂必修課程："
-                        "{chinese_name}（{english_name}），課號{course_code}"
-                        "{identifier_part}，{credits}學分，群組別{group_value}，必修認可範圍{recognition_scope}。"
-                    ).format(
+                    text=render_course_text(
                         department_context=department_context,
-                        admission_year=admission_year or "未知",
+                        admission_year=admission_year,
                         grade_label=grade_label,
-                        chinese_name=course["chinese_name"],
-                        english_name=course["english_name"],
-                        course_code=course["course_code"],
-                        identifier_part=render_identifier(course.get("course_identifier")),
-                        credits=course["credits"],
-                        group_value=course.get("group") or "無",
-                        recognition_scope=course.get("recognition_scope") or "未提供",
+                        course=course,
                     ),
                     order=len(chunks) + 1,
                     metadata={
@@ -174,19 +136,84 @@ class RequiredCoursesGoldChunker(BaseGoldChunker):
         return document.to_dict()
 
 
-def render_identifier(course_identifier: str | None) -> str:
-    if not course_identifier:
-        return ""
-    return "，課程識別碼{0}".format(course_identifier)
-
-
-def render_course_list_sentence(*, grade_label: str, course_list_text: str) -> str:
-    if not course_list_text:
-        return ""
-    return "若問題是在問「{0}有哪些必修課程」，清單如下：{1}。".format(
-        grade_label,
-        course_list_text,
+def render_list_text(
+    *,
+    department_context: str,
+    admission_year: str | None,
+    grade_label: str,
+    course_names: list[str],
+    total_credits: float | None,
+) -> str:
+    year_text = admission_year or "未知"
+    if not course_names:
+        return "{0}{1}學年度入學學生，{2}系訂必修科目查無課程資料。".format(
+            department_context, year_text, grade_label
+        )
+    credits_sentence = ""
+    if total_credits is not None:
+        credits_sentence = "、合計{0}學分".format(format_credits(total_credits))
+    return (
+        "{department_context}{year}學年度入學學生，{grade_label}系訂必修共{count}門{credits_sentence}。"
+        "必修課程：{course_list}。"
+    ).format(
+        department_context=department_context,
+        year=year_text,
+        grade_label=grade_label,
+        count=len(course_names),
+        credits_sentence=credits_sentence,
+        course_list="、".join(course_names),
     )
+
+
+def render_course_text(
+    *,
+    department_context: str,
+    admission_year: str | None,
+    grade_label: str,
+    course: dict,
+) -> str:
+    parts = [
+        "課號{0}".format(course["course_code"]),
+    ]
+    if course.get("course_identifier"):
+        parts.append("課程識別碼{0}".format(course["course_identifier"]))
+    parts.append("{0}學分".format(course["credits"]))
+    if course.get("group"):
+        parts.append("群組別{0}".format(course["group"]))
+    if course.get("recognition_scope"):
+        parts.append("必修認可範圍{0}".format(course["recognition_scope"]))
+    return (
+        "{department_context}{year}學年度入學學生，{grade_label}系訂必修科目「{chinese_name}」"
+        "（{english_name}）：{details}。"
+    ).format(
+        department_context=department_context,
+        year=admission_year or "未知",
+        grade_label=grade_label,
+        chinese_name=course["chinese_name"],
+        english_name=course["english_name"],
+        details="，".join(parts),
+    )
+
+
+def sum_credits(courses: list[dict]) -> float | None:
+    total = 0.0
+    found = False
+    for course in courses:
+        raw = course.get("credits")
+        if raw is None:
+            continue
+        match = CREDIT_PATTERN.search(str(raw))
+        if not match:
+            continue
+        total += float(match.group(1))
+        found = True
+    return total if found else None
+
+
+def format_credits(value: float) -> str:
+    if value.is_integer():
+        return str(int(value))
+    return "{0:.1f}".format(value)
 
 
 def build_department_context(*, department_name: str | None, department_code: str | None) -> str:
