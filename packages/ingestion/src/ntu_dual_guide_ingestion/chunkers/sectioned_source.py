@@ -22,10 +22,13 @@ class SectionedSourceGoldChunker(BaseGoldChunker):
                     title=section["heading"],
                     text="{0}\n{1}".format(section["heading"], section["body"]),
                     order=order,
-                    metadata={
-                        "section_id": section["section_id"],
-                        "heading": section["heading"],
-                    },
+                    metadata=self.scoped_metadata(
+                        silver_document,
+                        {
+                            "section_id": section["section_id"],
+                            "heading": section["heading"],
+                        },
+                    ),
                 )
             )
 

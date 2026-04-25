@@ -34,12 +34,15 @@ class DualMajorPolicyGoldChunker(BaseGoldChunker):
                 title="{0} 概覽".format(silver_document["title"]),
                 text=overview_text,
                 order=1,
-                metadata={
-                    "academic_year": content.get("academic_year"),
-                    "department_name": content.get("department_name"),
-                    "quota": content.get("quota"),
-                    "contact_phone": content.get("contact_phone"),
-                },
+                metadata=self.scoped_metadata(
+                    silver_document,
+                    {
+                        "academic_year": content.get("academic_year"),
+                        "department_name": content.get("department_name"),
+                        "quota": content.get("quota"),
+                        "contact_phone": content.get("contact_phone"),
+                    },
+                ),
             )
         )
 
@@ -58,12 +61,15 @@ class DualMajorPolicyGoldChunker(BaseGoldChunker):
                         section["text"],
                     ),
                     order=order,
-                    metadata={
-                        "section_id": section["section_id"],
-                        "section_label": section["label"],
-                        "academic_year": academic_year or None,
-                        "department_name": department_name or None,
-                    },
+                    metadata=self.scoped_metadata(
+                        silver_document,
+                        {
+                            "section_id": section["section_id"],
+                            "section_label": section["label"],
+                            "academic_year": academic_year or None,
+                            "department_name": department_name or None,
+                        },
+                    ),
                 )
             )
 

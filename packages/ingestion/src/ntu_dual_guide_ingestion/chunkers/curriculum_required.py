@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 
 from ntu_dual_guide_ingestion.chunkers.base import BaseGoldChunker
+from ntu_dual_guide_ingestion.chunkers.base import build_scope_metadata
 from ntu_dual_guide_ingestion.gold_schema import GoldChunk
 from ntu_dual_guide_ingestion.gold_schema import GoldDocument
 
@@ -26,12 +27,15 @@ class CurriculumRequiredGoldChunker(BaseGoldChunker):
                     "共同必修加通識{common_and_general_credits}學分，選修{elective_credits}學分。"
                 ).format(**content),
                 order=1,
-                metadata={
-                    "department_code": content.get("department_code"),
-                    "department_name": content.get("department_name"),
-                    "admission_year": content.get("admission_year"),
-                    "graduation_total_credits": content.get("graduation_total_credits"),
-                },
+                metadata=self.scoped_metadata(
+                    silver_document,
+                    {
+                        "department_code": content.get("department_code"),
+                        "department_name": content.get("department_name"),
+                        "admission_year": content.get("admission_year"),
+                        "graduation_total_credits": content.get("graduation_total_credits"),
+                    },
+                ),
             )
         )
 
@@ -58,7 +62,7 @@ class CurriculumRequiredGoldChunker(BaseGoldChunker):
                         required_major_credits=term_limit["required_major_credits"],
                     ),
                     order=order,
-                    metadata=term_limit,
+                    metadata=self.scoped_metadata(silver_document, term_limit),
                 )
             )
 
@@ -123,13 +127,16 @@ def build_note_chunks(
                     note_item_index=None,
                 ),
                 order=start_order,
-                metadata={
-                    "department_code": department_code,
-                    "department_name": department_name,
-                    "department_aliases": department_aliases,
-                    "admission_year": admission_year,
-                    "note_index": note_index,
-                },
+                metadata=build_scope_metadata(
+                    silver_document,
+                    {
+                        "department_code": department_code,
+                        "department_name": department_name,
+                        "department_aliases": department_aliases,
+                        "admission_year": admission_year,
+                        "note_index": note_index,
+                    },
+                ),
             )
         ]
 
@@ -155,14 +162,17 @@ def build_note_chunks(
                     note_item_index=note_item["item_number"],
                 ),
                 order=order,
-                metadata={
-                    "department_code": department_code,
-                    "department_name": department_name,
-                    "department_aliases": department_aliases,
-                    "admission_year": admission_year,
-                    "note_index": note_index,
-                    "note_item_index": note_item["item_number"],
-                },
+                metadata=build_scope_metadata(
+                    silver_document,
+                    {
+                        "department_code": department_code,
+                        "department_name": department_name,
+                        "department_aliases": department_aliases,
+                        "admission_year": admission_year,
+                        "note_index": note_index,
+                        "note_item_index": note_item["item_number"],
+                    },
+                ),
             )
         )
     return chunks

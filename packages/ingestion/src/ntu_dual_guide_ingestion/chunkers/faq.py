@@ -24,10 +24,13 @@ class FaqGoldChunker(BaseGoldChunker):
                         qa_pair["question"], qa_pair["answer"]
                     ),
                     order=order,
-                    metadata={
-                        "question": qa_pair["question"],
-                        "topics": qa_pair.get("topics", []),
-                    },
+                    metadata=self.scoped_metadata(
+                        silver_document,
+                        {
+                            "question": qa_pair["question"],
+                            "topics": qa_pair.get("topics", []),
+                        },
+                    ),
                 )
             )
 

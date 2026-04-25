@@ -49,17 +49,20 @@ class RequiredCoursesGoldChunker(BaseGoldChunker):
                     notes=notes,
                 ),
                 order=1,
-                metadata={
-                    "department_code": department_code,
-                    "department_name": department_name,
-                    "admission_year": admission_year,
-                    "grade": grade,
-                    "grade_label": grade_label,
-                    "course_count": len(course_names),
-                    "course_names": course_names,
-                    "total_credits": total_credits,
-                    "notes": notes,
-                },
+                metadata=self.scoped_metadata(
+                    silver_document,
+                    {
+                        "department_code": department_code,
+                        "department_name": department_name,
+                        "admission_year": admission_year,
+                        "grade": grade,
+                        "grade_label": grade_label,
+                        "course_count": len(course_names),
+                        "course_names": course_names,
+                        "total_credits": total_credits,
+                        "notes": notes,
+                    },
+                ),
             )
         )
 
@@ -76,19 +79,22 @@ class RequiredCoursesGoldChunker(BaseGoldChunker):
                         course=course,
                     ),
                     order=len(chunks) + 1,
-                    metadata={
-                        "department_code": department_code,
-                        "department_name": department_name,
-                        "admission_year": admission_year,
-                        "grade": grade,
-                        "grade_label": grade_label,
-                        "course_code": course["course_code"],
-                        "course_identifier": course.get("course_identifier"),
-                        "chinese_name": course["chinese_name"],
-                        "credits": course["credits"],
-                        "group": course.get("group"),
-                        "recognition_scope": course.get("recognition_scope"),
-                    },
+                    metadata=self.scoped_metadata(
+                        silver_document,
+                        {
+                            "department_code": department_code,
+                            "department_name": department_name,
+                            "admission_year": admission_year,
+                            "grade": grade,
+                            "grade_label": grade_label,
+                            "course_code": course["course_code"],
+                            "course_identifier": course.get("course_identifier"),
+                            "chinese_name": course["chinese_name"],
+                            "credits": course["credits"],
+                            "group": course.get("group"),
+                            "recognition_scope": course.get("recognition_scope"),
+                        },
+                    ),
                 )
             )
 
