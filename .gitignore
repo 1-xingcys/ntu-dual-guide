@@ -25,6 +25,7 @@ data/raw-deprecated/*
 data/bronze/*
 data/silver/*
 data/gold/*
+data/eval_runs/*
 artifacts/*
 tmp/*
 
