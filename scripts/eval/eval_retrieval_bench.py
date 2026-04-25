@@ -21,6 +21,7 @@ from ntu_dual_guide_evals.retrieval.runner import run_bench  # noqa: E402
 from ntu_dual_guide_evals.utils.progress import EvalProgress  # noqa: E402
 from ntu_dual_guide_rag.retriever import HybridRetriever  # noqa: E402
 from ntu_dual_guide_rag.retriever import PineconeRetriever  # noqa: E402
+from ntu_dual_guide_rag.retriever import PromotedRetriever  # noqa: E402
 from ntu_dual_guide_rag.retriever import Retriever  # noqa: E402
 from ntu_dual_guide_rag.settings import RagSettings  # noqa: E402
 
@@ -36,7 +37,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--retriever",
-        choices=["dense", "hybrid"],
+        choices=["dense", "hybrid", "hybrid_promoted"],
         default="dense",
         help="Which retriever variant to evaluate. Add new ones in build_retriever().",
     )
@@ -139,6 +140,58 @@ def build_retriever(
                 "hybrid-rrf-dense{0}-sparse{1}-dw{2:g}-sw{3:g}-k{4}".format(
                     final_dense_top_k,
                     final_sparse_top_k,
+                    dense_weight,
+                    sparse_weight,
+                    rrf_k,
+                )
+            ),
+        )
+    if name == "hybrid_promoted":
+        final_dense_top_k = max(dense_top_k or top_k, top_k)
+        final_sparse_top_k = max(sparse_top_k or top_k, top_k)
+        candidate_top_k = max(final_dense_top_k, final_sparse_top_k, top_k)
+        candidate_settings = RagSettings(
+            openai_api_key=settings.openai_api_key,
+            openai_model=settings.openai_model,
+            openai_embedding_model=settings.openai_embedding_model,
+            pinecone_api_key=settings.pinecone_api_key,
+            pinecone_index_host=settings.pinecone_index_host,
+            pinecone_api_version=settings.pinecone_api_version,
+            dataset_version=settings.dataset_version,
+            namespace=settings.namespace,
+            top_k=candidate_top_k,
+            min_score=settings.min_score,
+        )
+        base_retriever = HybridRetriever(
+            candidate_settings,
+            repo_root=REPO_ROOT,
+            dense_top_k=final_dense_top_k,
+            sparse_top_k=final_sparse_top_k,
+            dense_weight=dense_weight,
+            sparse_weight=sparse_weight,
+            rrf_k=rrf_k,
+            name=(
+                "hybrid-rrf-dense{0}-sparse{1}-candidate{2}-dw{3:g}-sw{4:g}-k{5}".format(
+                    final_dense_top_k,
+                    final_sparse_top_k,
+                    candidate_top_k,
+                    dense_weight,
+                    sparse_weight,
+                    rrf_k,
+                )
+            ),
+        )
+        return PromotedRetriever(
+            base_retriever,
+            repo_root=REPO_ROOT,
+            dataset_version=settings.dataset_version,
+            top_k=top_k,
+            name=(
+                "hybrid-promoted-dense{0}-sparse{1}-candidate{2}-final{3}-dw{4:g}-sw{5:g}-k{6}".format(
+                    final_dense_top_k,
+                    final_sparse_top_k,
+                    candidate_top_k,
+                    top_k,
                     dense_weight,
                     sparse_weight,
                     rrf_k,
