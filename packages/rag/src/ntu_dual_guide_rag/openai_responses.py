@@ -128,21 +128,32 @@ def stream_text_response(
 ) -> Iterator[tuple[str, str]]:
     """Stream a text-format response.
 
-    Yields ("delta", text) for each token chunk, then ("done", full_text) once at the end.
+    Yields:
+      ("reasoning", delta) — reasoning summary chunks (only emitted by reasoning models)
+      ("delta", delta)     — visible answer token chunks
+      ("done", full_text)  — final concatenated answer text, once at the end
     """
     client = get_client(api_key)
+    debug_stream = os.environ.get("RAG_STREAM_DEBUG") == "1"
     with client.responses.stream(
         model=model,
         instructions=instructions,
         input=user_input,
         text={"format": {"type": "text"}},
+        reasoning={"summary": "detailed"},
     ) as stream:
         for event in stream:
             event_type = getattr(event, "type", "")
+            if debug_stream:
+                print("[stream] event:", event_type, flush=True)
             if event_type == "response.output_text.delta":
                 delta = getattr(event, "delta", "") or ""
                 if delta:
                     yield ("delta", delta)
+            elif event_type == "response.reasoning_summary_text.delta":
+                delta = getattr(event, "delta", "") or ""
+                if delta:
+                    yield ("reasoning", delta)
         final = stream.get_final_response()
     yield ("done", extract_output_text(final).strip())
 

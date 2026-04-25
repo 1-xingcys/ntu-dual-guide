@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from dataclasses import replace
 from pathlib import Path
 
 
@@ -151,18 +152,7 @@ def build_retriever(
         final_dense_top_k = max(dense_top_k or top_k, top_k)
         final_sparse_top_k = max(sparse_top_k or top_k, top_k)
         candidate_top_k = max(final_dense_top_k, final_sparse_top_k, top_k)
-        candidate_settings = RagSettings(
-            openai_api_key=settings.openai_api_key,
-            openai_model=settings.openai_model,
-            openai_embedding_model=settings.openai_embedding_model,
-            pinecone_api_key=settings.pinecone_api_key,
-            pinecone_index_host=settings.pinecone_index_host,
-            pinecone_api_version=settings.pinecone_api_version,
-            dataset_version=settings.dataset_version,
-            namespace=settings.namespace,
-            top_k=candidate_top_k,
-            min_score=settings.min_score,
-        )
+        candidate_settings = replace(settings, top_k=candidate_top_k)
         base_retriever = HybridRetriever(
             candidate_settings,
             repo_root=REPO_ROOT,

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from dataclasses import replace
 from pathlib import Path
 
 from ntu_dual_guide_rag.retrievers.bm25 import BM25Index
@@ -32,18 +33,7 @@ class HybridRetriever:
         self.dense_weight = dense_weight
         self.sparse_weight = sparse_weight
         self.rrf_k = rrf_k
-        dense_settings = RagSettings(
-            openai_api_key=settings.openai_api_key,
-            openai_model=settings.openai_model,
-            openai_embedding_model=settings.openai_embedding_model,
-            pinecone_api_key=settings.pinecone_api_key,
-            pinecone_index_host=settings.pinecone_index_host,
-            pinecone_api_version=settings.pinecone_api_version,
-            dataset_version=settings.dataset_version,
-            namespace=settings.namespace,
-            top_k=dense_top_k,
-            min_score=settings.min_score,
-        )
+        dense_settings = replace(settings, top_k=dense_top_k)
         self.dense_retriever = PineconeRetriever(
             dense_settings,
             name="dense-pinecone-top{0}".format(dense_top_k),
@@ -113,4 +103,3 @@ class HybridRetriever:
                 )
             )
         return fused_chunks
-

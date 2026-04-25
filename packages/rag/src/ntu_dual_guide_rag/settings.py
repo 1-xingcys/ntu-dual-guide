@@ -31,6 +31,12 @@ class RagSettings:
     namespace: str
     top_k: int
     min_score: float
+    retriever: str = "hybrid"
+    dense_top_k: int = 50
+    sparse_top_k: int = 50
+    dense_weight: float = 1.0
+    sparse_weight: float = 1.0
+    rrf_k: int = 60
 
     @classmethod
     def from_env(cls, repo_root: Path) -> "RagSettings":
@@ -46,8 +52,14 @@ class RagSettings:
             pinecone_api_version=os.environ.get("PINECONE_API_VERSION", "2026-04"),
             dataset_version=dataset_version,
             namespace=namespace,
-            top_k=int(os.environ.get("RAG_TOP_K", "6")),
+            top_k=int(os.environ.get("RAG_TOP_K", "10")),
             min_score=float(os.environ.get("RAG_MIN_SCORE", "0.55")),
+            retriever=os.environ.get("RAG_RETRIEVER", "hybrid"),
+            dense_top_k=int(os.environ.get("RAG_DENSE_TOP_K", "50")),
+            sparse_top_k=int(os.environ.get("RAG_SPARSE_TOP_K", "50")),
+            dense_weight=float(os.environ.get("RAG_DENSE_WEIGHT", "1.0")),
+            sparse_weight=float(os.environ.get("RAG_SPARSE_WEIGHT", "1.0")),
+            rrf_k=int(os.environ.get("RAG_RRF_K", "60")),
         )
 
 

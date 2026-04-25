@@ -44,11 +44,19 @@ PINECONE_INDEX_HOST=...
 PINECONE_API_VERSION=2026-04
 RAG_DATASET_VERSION=2026-04-15.004
 RAG_NAMESPACE=2026-04-15.004
-RAG_TOP_K=6
+RAG_RETRIEVER=hybrid
+RAG_TOP_K=10
+RAG_DENSE_TOP_K=50
+RAG_SPARSE_TOP_K=50
+RAG_DENSE_WEIGHT=1.0
+RAG_SPARSE_WEIGHT=1.0
+RAG_RRF_K=60
 RAG_MIN_SCORE=0.55
 ```
 
 `OPENAI_CHAT_MODEL` 預設是 `gpt-5-mini`。這是因為 OpenAI 官方文件目前把它定位成 cost-optimized reasoning and chat；若之後要更強推理，可以升級到 `gpt-5.2`。
+
+`RagService.from_repo_root()` 預設使用 `hybrid` retriever：Pinecone dense pool 50 + BM25 sparse pool 50，RRF fusion 後回傳 final 10 個 chunks。若要切回 dense，可設定 `RAG_RETRIEVER=dense`。
 
 `HybridRetriever` 另外會讀取：
 
