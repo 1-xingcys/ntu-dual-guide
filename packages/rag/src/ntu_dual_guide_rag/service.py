@@ -60,7 +60,7 @@ class RagService:
             model=self.settings.openai_model,
             dataset_version=self.settings.dataset_version,
             namespace=self.settings.namespace,
-            citations=build_citations(retrieved_chunks[:3]),
+            citations=build_citations(retrieved_chunks),
             retrieved_chunks=retrieved_chunks,
         )
 
@@ -109,7 +109,7 @@ class RagService:
                 model=self.settings.openai_model,
                 dataset_version=self.settings.dataset_version,
                 namespace=self.settings.namespace,
-                citations=build_citations(retrieved_chunks[:3]),
+                citations=build_citations(retrieved_chunks),
                 retrieved_chunks=retrieved_chunks,
             ),
         )
@@ -121,7 +121,7 @@ class RagService:
             model=self.settings.openai_model,
             dataset_version=self.settings.dataset_version,
             namespace=self.settings.namespace,
-            citations=build_citations(retrieved_chunks[:3]),
+            citations=build_citations(retrieved_chunks),
             retrieved_chunks=retrieved_chunks,
         )
 

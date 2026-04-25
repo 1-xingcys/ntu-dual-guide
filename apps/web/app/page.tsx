@@ -391,9 +391,6 @@ function CitationsView({ citations }: { citations: Citation[] }) {
               {c.chunk_title && c.chunk_title !== c.title && (
                 <span className="ml-1 text-zinc-500">— {c.chunk_title}</span>
               )}
-              <span className="ml-2 font-mono text-zinc-400">
-                {c.score.toFixed(3)}
-              </span>
             </li>
           ))}
         </ul>
