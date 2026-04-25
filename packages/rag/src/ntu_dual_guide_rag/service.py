@@ -7,7 +7,7 @@ from ntu_dual_guide_rag.models import Citation
 from ntu_dual_guide_rag.openai_responses import create_structured_answer
 from ntu_dual_guide_rag.prompts import SYSTEM_PROMPT
 from ntu_dual_guide_rag.prompts import build_user_prompt
-from ntu_dual_guide_rag.retriever import PineconeRetriever
+from ntu_dual_guide_rag.retrievers import PineconeRetriever
 from ntu_dual_guide_rag.settings import RagSettings
 
 

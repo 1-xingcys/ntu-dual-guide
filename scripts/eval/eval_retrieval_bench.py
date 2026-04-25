@@ -19,10 +19,10 @@ from ntu_dual_guide_evals.retrieval.bench import load_retrieval_bench  # noqa: E
 from ntu_dual_guide_evals.retrieval.runner import build_report  # noqa: E402
 from ntu_dual_guide_evals.retrieval.runner import run_bench  # noqa: E402
 from ntu_dual_guide_evals.utils.progress import EvalProgress  # noqa: E402
-from ntu_dual_guide_rag.retriever import HybridRetriever  # noqa: E402
-from ntu_dual_guide_rag.retriever import PineconeRetriever  # noqa: E402
-from ntu_dual_guide_rag.retriever import PromotedRetriever  # noqa: E402
-from ntu_dual_guide_rag.retriever import Retriever  # noqa: E402
+from ntu_dual_guide_rag.retrievers import HybridRetriever  # noqa: E402
+from ntu_dual_guide_rag.retrievers import PineconeRetriever  # noqa: E402
+from ntu_dual_guide_rag.retrievers import PromotedRetriever  # noqa: E402
+from ntu_dual_guide_rag.retrievers import Retriever  # noqa: E402
 from ntu_dual_guide_rag.settings import RagSettings  # noqa: E402
 
 

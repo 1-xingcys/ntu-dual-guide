@@ -172,3 +172,4 @@ def build_bm25_for_dataset(repo_root: Path, dataset_version: str) -> BM25Index:
     bm25 = BM25Index()
     bm25.fit(records)
     return bm25
+

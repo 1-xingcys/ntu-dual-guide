@@ -9,7 +9,7 @@ from typing import Iterable
 
 from ntu_dual_guide_evals.retrieval.bench import RetrievalCase
 from ntu_dual_guide_rag.models import RetrievalChunk
-from ntu_dual_guide_rag.retriever import Retriever
+from ntu_dual_guide_rag.retrievers import Retriever
 
 
 DEFAULT_K_VALUES: tuple[int, ...] = (1, 3, 5, 10)
