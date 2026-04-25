@@ -116,7 +116,7 @@ python3 scripts/eval/eval_golden_bench.py --mode rag --retriever hybrid --top-k 
 執行方式：
 
 ```bash
-python3 scripts/eval/eval_deepeval.py --mode rag
+.venv/bin/python scripts/eval/eval_deepeval.py --mode rag
 ```
 
 judge model 預設為：
@@ -129,19 +129,19 @@ judge model 預設為：
 只跑單題：
 
 ```bash
-python3 scripts/eval/eval_deepeval.py --case-id comparison-dual-major-vs-minor-001
+.venv/bin/python scripts/eval/eval_deepeval.py --case-id comparison-dual-major-vs-minor-001
 ```
 
 輸出 report：
 
 ```bash
-python3 scripts/eval/eval_deepeval.py --output artifacts/evals/deepeval_rag.json
+.venv/bin/python scripts/eval/eval_deepeval.py --output artifacts/evals/deepeval_rag.json
 ```
 
 跑 hybrid retriever 的 DeepEval golden bench：
 
 ```bash
-python3 scripts/eval/eval_deepeval.py --mode rag --retriever hybrid --top-k 10 --dense-top-k 50 --sparse-top-k 50 --min-score 0 --output artifacts/evals/deepeval_hybrid.json
+.venv/bin/python scripts/eval/eval_deepeval.py --mode rag --retriever hybrid --top-k 10 --dense-top-k 50 --sparse-top-k 50 --min-score 0 --output artifacts/evals/deepeval_hybrid.json
 ```
 
 ## Retrieval Bench

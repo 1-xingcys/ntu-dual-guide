@@ -5,8 +5,7 @@ from pathlib import Path
 
 from ntu_dual_guide_ingestion.vector_clients import embed_texts_openai
 from ntu_dual_guide_ingestion.vector_clients import query_vectors_pinecone
-from ntu_dual_guide_rag.openai_responses import extract_output_json
-from ntu_dual_guide_rag.openai_responses import post_responses_request
+from ntu_dual_guide_rag.openai_responses import create_structured_response
 from ntu_dual_guide_rag.models import RetrievalChunk
 from ntu_dual_guide_rag.retrievers.bm25 import BM25Index
 from ntu_dual_guide_rag.retrievers.bm25 import build_bm25_for_dataset
@@ -144,21 +143,15 @@ class LlmDecomposedRetriever:
         return chunks
 
     def plan(self, question: str) -> list[PlannedSubquery]:
-        payload = {
-            "model": self.settings.openai_model,
-            "instructions": build_planner_instructions(self.catalog.describe_for_prompt()),
-            "input": "User query:\n{0}".format(question),
-            "text": {
-                "format": {
-                    "type": "json_schema",
-                    "name": QUERY_PLAN_SCHEMA["name"],
-                    "schema": QUERY_PLAN_SCHEMA["schema"],
-                    "strict": QUERY_PLAN_SCHEMA["strict"],
-                }
-            },
-        }
-        body = post_responses_request(api_key=self.settings.openai_api_key, payload=payload)
-        plan = extract_output_json(body)
+        plan = create_structured_response(
+            api_key=self.settings.openai_api_key,
+            model=self.settings.openai_model,
+            instructions=build_planner_instructions(self.catalog.describe_for_prompt()),
+            user_input="User query:\n{0}".format(question),
+            schema_name=QUERY_PLAN_SCHEMA["name"],
+            schema=QUERY_PLAN_SCHEMA["schema"],
+            strict=QUERY_PLAN_SCHEMA["strict"],
+        )
         subqueries: list[PlannedSubquery] = []
         for item in plan.get("subqueries", []):
             query = str(item.get("query") or "").strip()

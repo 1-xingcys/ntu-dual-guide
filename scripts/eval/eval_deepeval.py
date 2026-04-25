@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 import argparse
+import importlib.util
 import json
 import os
 import sys
@@ -15,6 +16,24 @@ EVALS_SRC = REPO_ROOT / "packages" / "evals" / "src"
 for path in [INGESTION_SRC, RAG_SRC, EVALS_SRC]:
     if str(path) not in sys.path:
         sys.path.insert(0, str(path))
+
+REQUIRED_RUNTIME_MODULES = ("openai", "deepeval")
+missing_modules = [
+    module
+    for module in REQUIRED_RUNTIME_MODULES
+    if importlib.util.find_spec(module) is None
+]
+if missing_modules:
+    raise SystemExit(
+        "Missing required Python modules in current interpreter ({0}): {1}\n"
+        "Run this benchmark with the project environment instead, for example:\n"
+        "  .venv/bin/python scripts/eval/eval_deepeval.py ...\n"
+        "or:\n"
+        "  uv run python scripts/eval/eval_deepeval.py ...".format(
+            sys.executable,
+            ", ".join(missing_modules),
+        )
+    )
 
 from ntu_dual_guide_evals.deepeval.runner import error_deepeval_case_result
 from ntu_dual_guide_evals.deepeval.runner import run_deepeval_case
