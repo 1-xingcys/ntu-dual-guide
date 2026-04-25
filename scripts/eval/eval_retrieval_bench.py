@@ -20,6 +20,7 @@ from ntu_dual_guide_evals.retrieval.runner import build_report  # noqa: E402
 from ntu_dual_guide_evals.retrieval.runner import run_bench  # noqa: E402
 from ntu_dual_guide_evals.utils.progress import EvalProgress  # noqa: E402
 from ntu_dual_guide_rag.retrievers import HybridRetriever  # noqa: E402
+from ntu_dual_guide_rag.retrievers import LlmDecomposedRetriever  # noqa: E402
 from ntu_dual_guide_rag.retrievers import PineconeRetriever  # noqa: E402
 from ntu_dual_guide_rag.retrievers import PromotedRetriever  # noqa: E402
 from ntu_dual_guide_rag.retrievers import Retriever  # noqa: E402
@@ -37,7 +38,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--retriever",
-        choices=["dense", "hybrid", "hybrid_promoted"],
+        choices=["dense", "hybrid", "hybrid_promoted", "llm_decomposed"],
         default="dense",
         help="Which retriever variant to evaluate. Add new ones in build_retriever().",
     )
@@ -191,6 +192,29 @@ def build_retriever(
                     final_dense_top_k,
                     final_sparse_top_k,
                     candidate_top_k,
+                    top_k,
+                    dense_weight,
+                    sparse_weight,
+                    rrf_k,
+                )
+            ),
+        )
+    if name == "llm_decomposed":
+        final_dense_top_k = max(dense_top_k or top_k, top_k)
+        final_sparse_top_k = max(sparse_top_k or top_k, top_k)
+        return LlmDecomposedRetriever(
+            settings,
+            repo_root=REPO_ROOT,
+            final_top_k=top_k,
+            subquery_dense_top_k=final_dense_top_k,
+            subquery_sparse_top_k=final_sparse_top_k,
+            dense_weight=dense_weight,
+            sparse_weight=sparse_weight,
+            rrf_k=rrf_k,
+            name=(
+                "llm-decomposed-diverse-dense{0}-sparse{1}-final{2}-dw{3:g}-sw{4:g}-k{5}".format(
+                    final_dense_top_k,
+                    final_sparse_top_k,
                     top_k,
                     dense_weight,
                     sparse_weight,

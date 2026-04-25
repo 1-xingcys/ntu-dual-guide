@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 import re
+from typing import Any
 
 from ntu_dual_guide_rag.models import RetrievalChunk
 from ntu_dual_guide_rag.retrievers.bm25 import load_records, records_path_for
@@ -272,3 +273,128 @@ def curriculum_note_keyword_groups(question: str) -> list[tuple[str, ...]]:
 YEAR_RE = re.compile(r"(?<!\d)(1[01][0-9]|12[0-9])(?!\d)")
 DEPARTMENT_RE = re.compile(r"資工|資訊工程|CSIE|9020|經濟|ECON|3030")
 
+
+PLANNER_FILTER_KEYS = (
+    "year_scope",
+    "department_scope",
+)
+
+
+class MetadataCatalog:
+    def __init__(self, records: list[dict], *, filter_keys: tuple[str, ...] = PLANNER_FILTER_KEYS) -> None:
+        self.filter_keys = filter_keys
+        self.physical_values: dict[str, set[str]] = {key: set() for key in filter_keys}
+        self.values: dict[str, set[str]] = {key: set() for key in filter_keys}
+        self.department_aliases: dict[str, set[str]] = {}
+        self.values.setdefault("year_scope", set()).add("all")
+        self.values.setdefault("department_scope", set()).add("all")
+        for record in records:
+            metadata = record.get("metadata") or {}
+            for key in filter_keys:
+                value = metadata.get(key)
+                if isinstance(value, (str, int, float)):
+                    self.physical_values[key].add(str(value))
+                    self.values[key].add(str(value))
+            self.values["year_scope"].add(infer_year_scope(metadata))
+            self.values["department_scope"].add(infer_department_scope(metadata))
+            department_code = metadata.get("department_code")
+            aliases = metadata.get("department_aliases")
+            if department_code and isinstance(aliases, list):
+                bucket = self.department_aliases.setdefault(str(department_code), set())
+                for alias in aliases:
+                    if isinstance(alias, str) and alias:
+                        bucket.add(alias)
+
+    @classmethod
+    def from_dataset(cls, repo_root: Path, dataset_version: str) -> "MetadataCatalog":
+        return cls(load_records(records_path_for(repo_root, dataset_version)))
+
+    def valid_filter(self, key: str, value: str) -> bool:
+        return key in self.values and value in self.values[key]
+
+    def scope_filters(
+        self,
+        *,
+        year_scope: str | None,
+        department_scope: str | None,
+    ) -> dict[str, list[str]]:
+        filters: dict[str, list[str]] = {}
+        normalized_year = normalize_scope_value(year_scope)
+        normalized_department = normalize_scope_value(department_scope)
+        if normalized_year and normalized_year != "all" and self.valid_filter("year_scope", normalized_year):
+            filters["year_scope"] = [normalized_year, "all"]
+        if (
+            normalized_department
+            and normalized_department != "all"
+            and self.valid_filter("department_scope", normalized_department)
+        ):
+            filters["department_scope"] = [normalized_department, "all"]
+        return filters
+
+    def pinecone_filter(self, filters: dict[str, list[str]]) -> dict[str, Any] | None:
+        clauses: dict[str, Any] = {}
+        for key, values in filters.items():
+            if key not in self.physical_values or not self.physical_values[key]:
+                continue
+            if len(values) == 1:
+                clauses[key] = {"$eq": values[0]}
+            elif values:
+                clauses[key] = {"$in": values}
+        return clauses or None
+
+    def metadata_matches(self, metadata: dict, filters: dict[str, list[str]]) -> bool:
+        for key, values in filters.items():
+            if key == "year_scope":
+                value = infer_year_scope(metadata)
+            elif key == "department_scope":
+                value = infer_department_scope(metadata)
+            else:
+                value = str(metadata.get(key) or "")
+            if value not in values:
+                return False
+        return True
+
+    def describe_for_prompt(self, *, value_limit: int = 80) -> str:
+        lines = ["可輸出的 metadata scope。只能使用這兩個欄位與下列值："]
+        for key in self.filter_keys:
+            values = sorted(self.values.get(key, set()))
+            if not values:
+                continue
+            shown = values[:value_limit]
+            suffix = "" if len(values) <= value_limit else " ... ({0} total)".format(len(values))
+            lines.append("- {0}: {1}{2}".format(key, ", ".join(shown), suffix))
+        if self.department_aliases:
+            lines.append("語料中的系所別名：")
+            for code, aliases in sorted(self.department_aliases.items()):
+                lines.append("- {0}: {1}".format(code, ", ".join(sorted(aliases))))
+        return "\n".join(lines)
+
+
+def normalize_scope_value(value: str | None) -> str | None:
+    if value is None:
+        return None
+    normalized = str(value).strip()
+    if not normalized:
+        return None
+    return normalized
+
+
+def infer_year_scope(metadata: dict) -> str:
+    value = metadata.get("year_scope")
+    if isinstance(value, (str, int, float)) and str(value):
+        return str(value)
+    for key in ("admission_year", "academic_year"):
+        value = metadata.get(key)
+        if isinstance(value, (str, int, float)) and str(value):
+            return str(value)
+    return "all"
+
+
+def infer_department_scope(metadata: dict) -> str:
+    value = metadata.get("department_scope")
+    if isinstance(value, (str, int, float)) and str(value):
+        return str(value)
+    value = metadata.get("department_code")
+    if isinstance(value, (str, int, float)) and str(value):
+        return str(value)
+    return "all"
