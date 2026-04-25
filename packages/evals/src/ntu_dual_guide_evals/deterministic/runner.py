@@ -65,16 +65,27 @@ def evaluate_case(case: GoldenBenchCase, result: ChatAnswer, *, mode: str = "rag
     retrieved_source_ids = [chunk.source_id for chunk in result.retrieved_chunks]
     retrieval_checks_enabled = mode == "rag"
 
+    retrieved_chunk_id_set = set(retrieved_chunk_ids)
     source_hit_ok = (
         True
         if not retrieval_checks_enabled or not case.expected_source_ids_any
         else any(source_id in retrieved_source_ids for source_id in case.expected_source_ids_any)
     )
-    retrieval_hit_ok = (
-        True
-        if not retrieval_checks_enabled or not case.expected_retrieved_chunk_ids_any
-        else any(chunk_id in retrieved_chunk_ids for chunk_id in case.expected_retrieved_chunk_ids_any)
-    )
+    if not retrieval_checks_enabled:
+        retrieval_hit_ok = True
+    elif case.expected_chunk_groups:
+        retrieval_hit_ok = any(
+            set(group).issubset(retrieved_chunk_id_set)
+            for group in case.expected_chunk_groups
+            if group
+        )
+    elif case.expected_retrieved_chunk_ids_any:
+        retrieval_hit_ok = any(
+            chunk_id in retrieved_chunk_id_set
+            for chunk_id in case.expected_retrieved_chunk_ids_any
+        )
+    else:
+        retrieval_hit_ok = True
     passed = status_ok and answer_contains_ok and source_hit_ok and retrieval_hit_ok
 
     return CaseResult(
@@ -88,7 +99,8 @@ def evaluate_case(case: GoldenBenchCase, result: ChatAnswer, *, mode: str = "rag
         source_hit_ok=source_hit_ok,
         retrieval_hit_ok=retrieval_hit_ok,
         source_hit_checked=retrieval_checks_enabled and bool(case.expected_source_ids_any),
-        retrieval_hit_checked=retrieval_checks_enabled and bool(case.expected_retrieved_chunk_ids_any),
+        retrieval_hit_checked=retrieval_checks_enabled
+        and (bool(case.expected_chunk_groups) or bool(case.expected_retrieved_chunk_ids_any)),
         answer=result.answer,
         citations=[citation.to_dict() for citation in result.citations],
         retrieved_chunk_ids=retrieved_chunk_ids,
@@ -138,4 +150,3 @@ def summarize_results(results: list[CaseResult], *, mode: str) -> dict[str, Any]
         "retrieval_checks_enabled_cases": retrieval_checked,
         "results": [result.to_dict() for result in results],
     }
-

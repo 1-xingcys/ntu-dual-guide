@@ -43,7 +43,7 @@ Golden Bench 應被視為產品品質資產，而不是臨時測試資料。
 - `status_ok`: 回答狀態是否符合預期
 - `answer_contains_ok`: 答案是否包含必要關鍵事實
 - `source_hit_ok`: retrieval 是否命中預期 source family
-- `retrieval_hit_ok`: retrieval 是否命中預期 chunk
+- `retrieval_hit_ok`: retrieval 是否命中預期 chunk group
 
 `rag` mode 會完整檢查上述四項。  
 `llm_only` mode 只檢查：
@@ -52,6 +52,8 @@ Golden Bench 應被視為產品品質資產，而不是臨時測試資料。
 - `answer_contains_ok`
 
 因為純 LLM baseline 沒有 retrieval。
+
+`expected_chunk_groups` 使用 retrieval bench 相同語意：同一個 group 內的 chunk 必須全部命中；多個 group 之間則命中任一組即可。
 
 ### Usage
 
@@ -79,6 +81,12 @@ python3 scripts/eval/eval_golden_bench.py --case-id curriculum-csie-111-double-m
 python3 scripts/eval/eval_golden_bench.py --output artifacts/evals/golden_bench_v1.json
 ```
 
+跑 hybrid retriever 的 golden bench：
+
+```bash
+python3 scripts/eval/eval_golden_bench.py --mode rag --retriever hybrid --top-k 10 --dense-top-k 50 --sparse-top-k 50 --min-score 0
+```
+
 ## Why this before DeepEval
 
 這層是 benchmark contract：
@@ -93,14 +101,16 @@ python3 scripts/eval/eval_golden_bench.py --output artifacts/evals/golden_bench_
 
 目前先接第一版 DeepEval runner：
 
-- `AnswerRelevancyMetric`
+- `GEval(answer_quality)`：用 LLM-as-a-judge 比對 question、actual answer、expected answer
 - `FaithfulnessMetric`（僅 `rag` mode 且有 retrieval context 時）
+- `HallucinationMetric`（僅 `rag` mode 且有 retrieval context 時；分數越低越好，低於 threshold 算成功）
 
 設計原則：
 
-- deterministic baseline 繼續當 hard constraints
-- DeepEval 當語意品質補充
-- `unknown` 題預設跳過，避免一開始就把 refusal 題混進 judge 分數
+- retrieval hit / source hit 留給 retrieval bench，不在 DeepEval runner 重複判斷
+- 每個 case 都照樣呼叫 service 檢索並生成答案，包含預期為 `unknown` 的 nonexistent-fact 題
+- DeepEval runner 會讓空 retrieval context 也進入生成，避免用 service 的靜態 fallback 取代生成評估
+- DeepEval 只評生成階段：答案是否符合題目與 expected answer、是否避免編造、RAG 答案是否忠於提供 context
 
 執行方式：
 
@@ -125,6 +135,12 @@ python3 scripts/eval/eval_deepeval.py --case-id comparison-dual-major-vs-minor-0
 
 ```bash
 python3 scripts/eval/eval_deepeval.py --output artifacts/evals/deepeval_rag.json
+```
+
+跑 hybrid retriever 的 DeepEval golden bench：
+
+```bash
+python3 scripts/eval/eval_deepeval.py --mode rag --retriever hybrid --top-k 10 --dense-top-k 50 --sparse-top-k 50 --min-score 0 --output artifacts/evals/deepeval_hybrid.json
 ```
 
 ## Retrieval Bench

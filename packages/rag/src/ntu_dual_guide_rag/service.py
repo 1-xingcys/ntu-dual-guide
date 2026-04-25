@@ -8,13 +8,21 @@ from ntu_dual_guide_rag.openai_responses import create_structured_answer
 from ntu_dual_guide_rag.prompts import SYSTEM_PROMPT
 from ntu_dual_guide_rag.prompts import build_user_prompt
 from ntu_dual_guide_rag.retrievers import PineconeRetriever
+from ntu_dual_guide_rag.retrievers import Retriever
 from ntu_dual_guide_rag.settings import RagSettings
 
 
 class RagService:
-    def __init__(self, settings: RagSettings) -> None:
+    def __init__(
+        self,
+        settings: RagSettings,
+        *,
+        retriever: Retriever | None = None,
+        generate_on_empty_retrieval: bool = False,
+    ) -> None:
         self.settings = settings
-        self.retriever = PineconeRetriever(settings)
+        self.retriever = retriever or PineconeRetriever(settings)
+        self.generate_on_empty_retrieval = generate_on_empty_retrieval
 
     @classmethod
     def from_repo_root(cls, repo_root: Path) -> "RagService":
@@ -23,7 +31,7 @@ class RagService:
 
     def answer(self, question: str) -> ChatAnswer:
         retrieved_chunks = self.retriever.retrieve(question)
-        if not retrieved_chunks:
+        if not retrieved_chunks and not self.generate_on_empty_retrieval:
             return self._unknown_answer([])
 
         prompt = build_user_prompt(question, retrieved_chunks)

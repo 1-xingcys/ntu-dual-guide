@@ -34,29 +34,21 @@ class DeepEvalMetricResult:
 class DeepEvalCaseResult:
     mode: str
     case_id: str
-    skipped: bool
-    skip_reason: str | None
     errored: bool
     error_message: str | None
     answer: str
     status: str
     metrics: list[DeepEvalMetricResult]
-    retrieved_chunk_ids: list[str]
-    retrieved_source_ids: list[str]
 
     def to_dict(self) -> dict[str, Any]:
         return {
             "mode": self.mode,
             "case_id": self.case_id,
-            "skipped": self.skipped,
-            "skip_reason": self.skip_reason,
             "errored": self.errored,
             "error_message": self.error_message,
             "answer": self.answer,
             "status": self.status,
             "metrics": [metric.to_dict() for metric in self.metrics],
-            "retrieved_chunk_ids": self.retrieved_chunk_ids,
-            "retrieved_source_ids": self.retrieved_source_ids,
         }
 
 
@@ -66,47 +58,28 @@ def run_deepeval_case(
     *,
     mode: str,
     judge_model: str,
-    answer_relevancy_threshold: float,
+    answer_quality_threshold: float,
     faithfulness_threshold: float,
-    include_unknown: bool,
+    hallucination_threshold: float,
 ) -> DeepEvalCaseResult:
     result = service.answer(case.question)
-
-    if result.status == "unknown" and not include_unknown:
-        return DeepEvalCaseResult(
-            mode=mode,
-            case_id=case.case_id,
-            skipped=True,
-            skip_reason="unknown_case_skipped",
-            errored=False,
-            error_message=None,
-            answer=result.answer,
-            status=result.status,
-            metrics=[],
-            retrieved_chunk_ids=[chunk.chunk_id for chunk in result.retrieved_chunks],
-            retrieved_source_ids=[chunk.source_id for chunk in result.retrieved_chunks],
-        )
-
     metrics = evaluate_with_deepeval(
         case=case,
         result=result,
         mode=mode,
         judge_model=judge_model,
-        answer_relevancy_threshold=answer_relevancy_threshold,
+        answer_quality_threshold=answer_quality_threshold,
         faithfulness_threshold=faithfulness_threshold,
+        hallucination_threshold=hallucination_threshold,
     )
     return DeepEvalCaseResult(
         mode=mode,
         case_id=case.case_id,
-        skipped=False,
-        skip_reason=None,
         errored=False,
         error_message=None,
         answer=result.answer,
         status=result.status,
         metrics=metrics,
-        retrieved_chunk_ids=[chunk.chunk_id for chunk in result.retrieved_chunks],
-        retrieved_source_ids=[chunk.source_id for chunk in result.retrieved_chunks],
     )
 
 
@@ -119,15 +92,11 @@ def error_deepeval_case_result(
     return DeepEvalCaseResult(
         mode=mode,
         case_id=case.case_id,
-        skipped=False,
-        skip_reason=None,
         errored=True,
         error_message=error_message,
         answer="",
         status="error",
         metrics=[],
-        retrieved_chunk_ids=[],
-        retrieved_source_ids=[],
     )
 
 
@@ -137,11 +106,12 @@ def evaluate_with_deepeval(
     result: ChatAnswer,
     mode: str,
     judge_model: str,
-    answer_relevancy_threshold: float,
+    answer_quality_threshold: float,
     faithfulness_threshold: float,
+    hallucination_threshold: float,
 ) -> list[DeepEvalMetricResult]:
-    from deepeval.metrics import AnswerRelevancyMetric, FaithfulnessMetric
-    from deepeval.test_case import LLMTestCase
+    from deepeval.metrics import FaithfulnessMetric, GEval, HallucinationMetric
+    from deepeval.test_case import LLMTestCase, LLMTestCaseParams
 
     retrieval_context = [chunk.text for chunk in result.retrieved_chunks]
     expected_output = build_expected_output(case)
@@ -149,18 +119,32 @@ def evaluate_with_deepeval(
         input=case.question,
         actual_output=result.answer,
         expected_output=expected_output,
+        context=retrieval_context,
         retrieval_context=retrieval_context,
     )
 
     metric_results: list[DeepEvalMetricResult] = []
-    answer_relevancy = AnswerRelevancyMetric(
-        threshold=answer_relevancy_threshold,
+    answer_quality = GEval(
+        name="answer_quality",
+        evaluation_params=[
+            LLMTestCaseParams.INPUT,
+            LLMTestCaseParams.ACTUAL_OUTPUT,
+            LLMTestCaseParams.EXPECTED_OUTPUT,
+        ],
+        criteria=(
+            "Evaluate whether the actual output is a high-quality answer to the input "
+            "when compared with the expected output. Reward answers that preserve the "
+            "expected key facts, answer in Traditional Chinese, and avoid unsupported "
+            "claims. If the expected output says the information is unavailable or "
+            "cannot be answered, the actual output should clearly refuse or say the "
+            "available context is insufficient instead of inventing facts."
+        ),
+        threshold=answer_quality_threshold,
         model=judge_model,
-        include_reason=True,
         async_mode=False,
     )
-    answer_relevancy.measure(test_case)
-    metric_results.append(capture_metric_result("answer_relevancy", answer_relevancy))
+    answer_quality.measure(test_case)
+    metric_results.append(capture_metric_result("answer_quality", answer_quality))
 
     if mode == "rag" and retrieval_context and result.status != "unknown":
         faithfulness = FaithfulnessMetric(
@@ -171,6 +155,15 @@ def evaluate_with_deepeval(
         )
         faithfulness.measure(test_case)
         metric_results.append(capture_metric_result("faithfulness", faithfulness))
+
+        hallucination = HallucinationMetric(
+            threshold=hallucination_threshold,
+            model=judge_model,
+            include_reason=True,
+            async_mode=False,
+        )
+        hallucination.measure(test_case)
+        metric_results.append(capture_metric_result("hallucination", hallucination))
 
     return metric_results
 
@@ -192,9 +185,11 @@ def capture_metric_result(name: str, metric: Any) -> DeepEvalMetricResult:
 
 
 def build_expected_output(case: GoldenBenchCase) -> str | None:
-    if not case.expected_answer_contains:
-        return None
-    return "；".join(case.expected_answer_contains)
+    if case.expected_answer:
+        return case.expected_answer
+    if case.expected_answer_contains:
+        return "；".join(case.expected_answer_contains)
+    return None
 
 
 def summarize_deepeval_results(
@@ -203,8 +198,7 @@ def summarize_deepeval_results(
     mode: str,
     judge_model: str,
 ) -> dict[str, Any]:
-    executed = [result for result in results if not result.skipped]
-    skipped = [result for result in results if result.skipped]
+    executed = [result for result in results if not result.errored]
     errored = [result for result in results if result.errored]
     metric_summary: dict[str, dict[str, Any]] = {}
 
@@ -242,9 +236,7 @@ def summarize_deepeval_results(
         "judge_model": judge_model,
         "total": len(results),
         "executed": len(executed),
-        "skipped": len(skipped),
         "errored": len(errored),
         "metrics": metrics_output,
         "results": [result.to_dict() for result in results],
     }
-
