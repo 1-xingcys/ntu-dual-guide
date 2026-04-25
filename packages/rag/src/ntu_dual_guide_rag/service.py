@@ -4,7 +4,7 @@ from pathlib import Path
 
 from ntu_dual_guide_rag.models import ChatAnswer
 from ntu_dual_guide_rag.models import Citation
-from ntu_dual_guide_rag.openai_responses import create_structured_answer
+from ntu_dual_guide_rag.openai_responses import create_text_response
 from ntu_dual_guide_rag.prompts import SYSTEM_PROMPT
 from ntu_dual_guide_rag.prompts import build_user_prompt
 from ntu_dual_guide_rag.retrievers import PineconeRetriever
@@ -35,26 +35,19 @@ class RagService:
             return self._unknown_answer([])
 
         prompt = build_user_prompt(question, retrieved_chunks)
-        structured_answer = create_structured_answer(
+        answer = create_text_response(
             api_key=self.settings.openai_api_key,
             model=self.settings.openai_model,
             instructions=SYSTEM_PROMPT,
             user_input=prompt,
         )
-        if structured_answer.status == "unknown":
-            return self._unknown_answer(
-                retrieved_chunks,
-                answer_text=structured_answer.answer,
-            )
-
-        citations = build_citations(retrieved_chunks[:3])
         return ChatAnswer(
-            answer=structured_answer.answer.strip(),
-            status="answered",
+            answer=answer.strip() or "不知道",
+            status="answered" if retrieved_chunks else "unknown",
             model=self.settings.openai_model,
             dataset_version=self.settings.dataset_version,
             namespace=self.settings.namespace,
-            citations=citations,
+            citations=build_citations(retrieved_chunks[:3]),
             retrieved_chunks=retrieved_chunks,
         )
 

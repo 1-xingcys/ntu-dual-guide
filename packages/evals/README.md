@@ -110,6 +110,7 @@ python3 scripts/eval/eval_golden_bench.py --mode rag --retriever hybrid --top-k 
 - retrieval hit / source hit 留給 retrieval bench，不在 DeepEval runner 重複判斷
 - 每個 case 都照樣呼叫 service 檢索並生成答案，包含預期為 `unknown` 的 nonexistent-fact 題
 - DeepEval runner 會讓空 retrieval context 也進入生成，避免用 service 的靜態 fallback 取代生成評估
+- `RagService` 使用 plain text generation，不要求模型輸出 structured JSON；unknown/refusal 是否合理交給 judge 判斷
 - DeepEval 只評生成階段：答案是否符合題目與 expected answer、是否避免編造、RAG 答案是否忠於提供 context
 
 執行方式：

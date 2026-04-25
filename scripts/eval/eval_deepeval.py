@@ -199,7 +199,11 @@ def build_service(args: argparse.Namespace):
         sparse_weight=args.sparse_weight,
         rrf_k=args.rrf_k,
     )
-    return RagService(settings, retriever=retriever, generate_on_empty_retrieval=True)
+    return RagService(
+        settings,
+        retriever=retriever,
+        generate_on_empty_retrieval=True,
+    )
 
 
 def validate_args(args: argparse.Namespace) -> None:
