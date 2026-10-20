@@ -1,6 +1,6 @@
 # NTU Dual Guide
 
-> A RAG system that answers questions about the **Computer Science × Economics dual-degree program at National Taiwan University (NTU)**. I built the whole pipeline: data ETL, versioned indexing, hybrid retrieval, benchmark-driven evaluation and a streaming chat UI.
+> A RAG system that answers questions about **dual-degree programs at National Taiwan University (NTU)**. It currently supports **Computer Science (CSIE) × Economics**. I built the whole pipeline: data ETL, versioned indexing, hybrid retrieval, benchmark-driven evaluation and a streaming chat UI.
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
@@ -13,7 +13,7 @@
 
 Dual-degree rules are spread across department websites, PDF regulations, freshman handbooks and FAQs, and they **change every academic year**. General-purpose LLMs often mix up rules from different years or departments, or make up answers.
 
-This project grounds every answer in a **specific document, version and chunk**. When the evidence isn't there, it answers "I don't know." Every change to retrieval or prompts is measured against benchmarks.
+This project grounds every answer in a specific document and chunk. Every change to retrieval or prompts is measured against benchmarks.
 
 ## Highlights
 
