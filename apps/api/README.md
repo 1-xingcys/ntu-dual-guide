@@ -1,50 +1,38 @@
-# API App
+# API
 
-這裡放對外服務層，建議使用 `FastAPI`。
+The transport layer, built with FastAPI. It validates requests, calls the service layer in `packages/rag` and streams results to clients. Retrieval and prompt logic stay in `packages/rag`, and ETL and index management stay in `packages/ingestion`.
 
-責任：
+## Endpoints
 
-- 暴露 chat / health / feedback endpoints
-- 驗證 request/response schema
-- 呼叫 `packages/rag` 的 service layer
-- 記錄 trace 與 observability
+| Method | Path | Description |
+|---|---|---|
+| `GET` | `/healthz` | Health check |
+| `POST` | `/v1/chat` | Returns the full answer with citations |
+| `POST` | `/v1/chat/stream` | Streams the answer as Server-Sent Events |
 
-不建議：
+`/v1/chat/stream` emits these events in order:
 
-- 在 route handler 內直接寫 retrieval / prompt business logic
-- 在這層直接做 ETL 或 index 管理
+| Event | Payload |
+|---|---|
+| `stage` | Current pipeline stage |
+| `retrieved` | Retrieved chunk IDs, scores, titles and source IDs |
+| `reasoning` / `token` | Incremental reasoning summary and answer text |
+| `final` | The complete answer with citations |
+| `error` | Error message, if the request fails |
+| `done` | End of stream |
 
-## Current MVP
-
-目前已提供：
-
-- `GET /healthz`
-- `POST /v1/chat`
-
-啟動方式：
-
-```bash
-uvicorn apps.api.main:app --reload
-```
-
-若使用 `uv` 建好的虛擬環境：
+## Running Locally
 
 ```bash
 .venv/bin/uvicorn apps.api.main:app --reload
 ```
 
-request body：
-
-```json
-{
-  "message": "資工系學生修讀他系之雙主修必修科目及指定選修學分會怎麼計算？"
-}
-```
-
-本機測試：
+Example request:
 
 ```bash
 curl -X POST http://127.0.0.1:8000/v1/chat \
   -H 'Content-Type: application/json' \
   -d '{"message":"資工系學生修讀他系之雙主修必修科目及指定選修學分會怎麼計算？"}'
 ```
+
+The request body has a single `message` field.

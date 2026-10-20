@@ -1,12 +1,13 @@
-# Data Layout
+# Data
 
-這個目錄只保留本機開發用結構，不建議把大型 PDF、markdown artifacts 或 embeddings 直接提交到 git。
+This directory holds the local data layers. Source documents, intermediate artifacts and embeddings are not committed to git; run `scripts/fetch/fetch_raw.py` to download the source documents.
 
-建議層次：
+| Layer | Contents |
+|---|---|
+| `raw/` | Original PDF and HTML source documents |
+| `bronze/<dataset_version>/` | Generic parser output, without domain-specific schema |
+| `silver/<dataset_version>/` | Canonical documents produced by document-class normalizers |
+| `gold/<dataset_version>/` | Retrieval-ready chunks with enrichment metadata |
+| `manifests/<dataset_version>/` | Stage manifests for each dataset snapshot (tracked in git) |
 
-- `raw/`
-- `bronze/`
-- `silver/`
-- `gold/`
-
-正式環境可把相同結構搬到 object storage。
+In a production setup, the same layout can be moved to object storage.

@@ -1,343 +1,154 @@
 # Architecture
 
-## 1. 目標
+## 1. Goals
 
-這個專案的核心任務是回答「台大資工雙主修經濟系」相關問題，而且答案要能追溯到明確文件事實。這代表系統設計要優先解決三件事：
+The system answers questions about the NTU Computer Science × Economics dual-degree program. Every answer must be traceable to specific documents, so the design prioritizes three properties:
 
-- 資料可追溯：回答能對應到文件、版本、chunk。
-- 可重建：任何 index 都能由某個 dataset snapshot 重新生成。
-- 可評測：改 chunking、embedding、prompt、retriever 後能回歸比較。
+- **Traceability**: each answer maps back to a document, a dataset version and a chunk.
+- **Reproducibility**: any index can be rebuilt from a dataset snapshot.
+- **Measurability**: changes to chunking, embeddings, prompts or retrieval are compared against versioned benchmarks.
 
-## 2. 整體架構
+## 2. System Overview
 
 ```mermaid
 flowchart LR
-    A["Source PDFs / webpages"] --> B["Ingestion Pipeline"]
-    B --> C["Normalized Markdown"]
-    C --> D["Chunking + Metadata"]
-    D --> E["Embedding"]
-    E --> F["Pinecone"]
-    C --> G["Dataset Snapshot Manifest"]
-    G --> B
-
-    H["Golden Bench"] --> I["DeepEval"]
-    F --> J["RAG Service"]
-    J --> K["API"]
-    K --> L["Web Chat UI"]
-    I --> K
+    A["Source PDFs / HTML"] --> B["Ingestion pipeline<br/>raw → bronze → silver → gold"]
+    B --> C["Index records"]
+    B --> M["Stage manifests"]
+    C --> D[("Pinecone<br/>dense")]
+    C --> E["BM25<br/>sparse"]
+    D --> F["RAG service"]
+    E --> F
+    F --> G["FastAPI"]
+    G --> H["Next.js chat UI"]
+    I["Retrieval bench / Golden bench / DeepEval"] -.-> F
 ```
 
-## 3. 模組邊界
+## 3. Module Boundaries
 
-### `packages/ingestion`
+| Module | Responsibility | Does not handle |
+|---|---|---|
+| `packages/ingestion` | Parsing, normalization, chunking, index records and Pinecone upserts | User requests |
+| `packages/rag` | Retrieval, prompting, answer generation and citations | HTTP transport, ETL |
+| `packages/evals` | Benchmark datasets and evaluation runners | Production serving |
+| `apps/api` | HTTP and SSE transport over the RAG service | Retrieval or prompt logic |
+| `apps/web` | Streaming chat UI with retrieval progress and citations | Business logic |
 
-負責 ETL 與 indexing，不處理使用者聊天請求。
+Route handlers never construct retrievers, prompts or index clients directly. They call `RagService`, which keeps the RAG layer reusable from the API, the CLI and the evaluation runners.
 
-建議拆成以下子模組：
+The core data models (`BronzeDocument`, `SilverDocument`, `GoldChunk`, `RetrievalChunk`, `ChatAnswer`) and the `Retriever` protocol are defined in this repository rather than borrowed from an orchestration framework, so the LLM, embedding model and vector database can each be swapped independently.
 
-- `connectors/`: 下載來源文件，像 PDF、HTML、公告頁。
-- `parsers/`: PDF/HTML 轉 markdown。
-- `normalizers/`: 清理頁首頁尾、重複段落、表格或 OCR 雜訊。
-- `chunkers/`: 依文件型別套不同 chunking 規則。
-- `embedders/`: 封裝 embedding model 與 batch upsert。
-- `indexers/`: 寫入 Pinecone 與同步 metadata。
-- `manifests/`: 產出 dataset snapshot。
+## 4. Data Pipeline
 
-### `packages/rag`
+### Medallion layers
 
-負責 runtime 問答流程。
+| Layer | Contents |
+|---|---|
+| `raw` | Original PDF and HTML files, unchanged |
+| `bronze` | Generic parser output, without domain-specific schema |
+| `silver` | Canonical schema per document class, produced by class-specific normalizers |
+| `gold` | Retrieval-ready chunks with enrichment metadata |
 
-- `retrieval/`: Pinecone 查詢、metadata filter、hybrid retrieval 預留接口。
-- `ranking/`: reranking 預留接口；一開始可先不開。
-- `prompts/`: 系統 prompt、citation prompt、fallback prompt。
-- `services/`: `answer_question()` 等核心應用服務。
-- `schemas/`: query / answer / citation / context chunk schema。
+The layers live on the local file system and can move to object storage without code changes.
 
-### `packages/evals`
+### Document classes
 
-負責 Golden Bench 與回歸評測，不要混進 production API。
+Source documents differ greatly in structure, so each class has a dedicated normalizer and chunker instead of a single fixed-size splitter:
 
-- `datasets/`: 版本化 golden set，建議用 `jsonl`。
-- `generators/`: 用人工題目 + LLM 擴增候選題，再人工審核。
-- `runners/`: DeepEval runner。
-- `reports/`: 輸出 PR 與 nightly benchmark 結果。
+| Document class | Chunking strategy |
+|---|---|
+| Dual-degree policy (PDF) | An overview chunk plus one chunk per regulation section |
+| Required-course tables (HTML) | Per-course chunks plus a course-list chunk per year and grade |
+| Credit requirement tables (HTML) | An overview chunk plus chunks for per-term credit limits and notes |
+| FAQ | One chunk per question-answer pair |
+| Other source-specific pages | By heading section |
 
-### `apps/api`
+### Pipeline run
 
-對外只提供 transport layer，不把 retrieval 細節散在 route handler。
+1. Fetch source documents into `data/raw/` (`scripts/fetch/fetch_raw.py`).
+2. Run each stage with an explicit `--dataset-version`; each stage writes to `data/<layer>/<dataset_version>/`.
+3. Each stage writes a manifest recording every document's `source_hash` and processing fingerprint.
+4. Build index records from gold chunks and embed them with `text-embedding-3-small`.
+5. Upsert to the Pinecone namespace that matches the dataset version.
 
-建議包含：
+## 5. Versioning
 
-- `POST /chat`
-- `POST /feedback`
-- `GET /health`
-- `GET /version`
-- `POST /admin/reindex` 或改成 queue/cron 觸發
+Git tracks pipeline code, source configs, stage manifests, benchmark datasets and schema definitions. Source documents and intermediate artifacts stay outside git.
 
-### `apps/web`
+Every index record carries the metadata needed to trace it back to its source:
 
-簡單 chat UI 即可，重點是 citation 與可用性。
+| Field | Purpose |
+|---|---|
+| `dataset_version` | Snapshot the record belongs to |
+| `source_id`, `doc_type`, `title` | Source document identity |
+| `source_hash` | Hash of the raw source file |
+| `silver_processing_fingerprint`, `gold_processing_fingerprint` | Code and config version that produced the chunk |
+| `chunk_type`, `chunk_order`, `section_id`, `heading` | Position and type of the chunk within the document |
+| `year_scope`, `department_scope` | Academic year and department the chunk applies to (`all` when general) |
+| `authority_level`, `language` | Source authority and language |
 
-- 顯示答案與引用片段
-- 顯示來源文件標題 / URL / 更新日期
-- 支援「答案不夠準」回饋
+Principles:
 
-## 4. 推薦資料流
+- `dataset_version` is a first-class identifier and is not inferred from the Pinecone namespace name.
+- Any answer can be traced through `dataset_version → source_id → source_hash`.
+- Changes to parsing, chunking or embeddings produce a new dataset version, so old and new quality can be compared side by side.
 
-### ETL 四層
+Manifests and content hashes are sufficient at the current scale. A tool such as DVC becomes worthwhile once several people rebuild datasets frequently, or large artifacts need to be synced across environments.
 
-- `raw`: 原始下載檔案，保留 PDF/HTML 原貌。
-- `bronze`: 解析後原始 markdown，不做太多語意修正。
-- `silver`: 清洗與標準化後可供 chunking 的 markdown。
-- `gold`: chunk metadata、embedding job manifest、eval-ready dataset。
+## 6. Vector Index
 
-這四層可以先放本機檔案系統，未來平移到 object storage。
+- **Index boundary**: one index per embedding model and dimension. Changing the embedding model creates a new index, so vectors from different models never mix.
+- **Namespace boundary**: one namespace per dataset version. Old snapshots remain available for A/B comparison and rollback.
+- **Metadata filters**: `year_scope` and `department_scope` narrow retrieval to a specific academic year or department. A filter on a concrete value also matches `all`, so general FAQ and policy chunks remain visible:
 
-### 單次 pipeline
+```python
+{
+    "year_scope": {"$in": ["112", "all"]},
+    "department_scope": {"$in": ["3030", "all"]},
+}
+```
 
-1. 下載/更新來源文件。
-2. 對每份文件計算 `content_hash`。
-3. 若 hash 未變，不重跑 parse/chunk/embed。
-4. 產出 markdown 與標準化 metadata。
-5. 依文件型別 chunking。
-6. 產出 chunk manifest。
-7. 執行 embedding。
-8. upsert 至 Pinecone。
-9. 產生 dataset snapshot manifest，記錄這次 index 使用了哪些文件版本。
+## 7. Retrieval
 
-## 5. 資料版本控制
+| Retriever | Description |
+|---|---|
+| `dense` | OpenAI embeddings with Pinecone similarity search |
+| `hybrid` (default) | Dense and BM25 candidate pools fused with weighted Reciprocal Rank Fusion |
+| `hybrid_promoted` | Hybrid retrieval followed by deterministic promotion of related chunks |
+| `llm_decomposed` | An LLM planner splits the question into sub-queries with year and department scopes, then fuses per-sub-query results |
 
-這裡不建議把「資料版本控制」等同於「把所有 PDF 放進 git」。比較穩的做法是：
+The BM25 index is built in-process from the same `records.jsonl` that was upserted to Pinecone, so dense and sparse retrieval always see the same snapshot. Experiment results are in [retrieval_experiment_summary_2026-04-25.md](retrieval_experiment_summary_2026-04-25.md).
 
-- Git 追蹤：
-  - pipeline code
-  - source config
-  - dataset snapshot manifest
-  - golden bench
-  - schema 定義
-- Object storage / local storage 儲存：
-  - 原始 PDF / HTML
-  - 轉換後 markdown
-  - 中間 artifacts
+## 8. Request Path
 
-### 推薦版本策略
+1. The API receives a question on `/v1/chat` or `/v1/chat/stream`.
+2. `RagService` runs the configured retriever.
+3. If no chunk passes the relevance threshold, the service answers that it does not know.
+4. Otherwise, it builds a prompt from the retrieved chunks and calls the OpenAI Responses API.
+5. The response returns the answer, citations, retrieved chunks, model and dataset version.
 
-每份文件至少帶以下欄位：
+The streaming endpoint emits `stage`, `retrieved`, `reasoning`, `token` and `final` events over Server-Sent Events. The Next.js app proxies the stream and renders retrieval progress, the answer as it is generated, and its citations.
 
-- `source_id`: 例如 `ntu-csie-dual-major-regulation`
-- `doc_id`: 穩定文件 ID
-- `doc_version`: 可用時間戳或 hash-based version
-- `source_url`
-- `content_hash`
-- `fetched_at`
-- `effective_date`
-- `parser_version`
-- `chunking_version`
+## 9. Evaluation
 
-每個 chunk 至少帶：
+The benchmarks are versioned quality assets, separate from the ETL pipeline. Evaluation is layered so that a regression points to the layer that caused it:
 
-- `chunk_id`
-- `doc_id`
-- `doc_version`
-- `chunk_index`
-- `chunk_text`
-- `section_path`
-- `dataset_version`
-- `embedding_model`
-- `embedding_version`
-- `language`
+| Layer | Question it answers |
+|---|---|
+| Retrieval bench | Did the retriever return the required evidence? |
+| Golden bench | Does the end-to-end answer have the right status, facts and sources? |
+| DeepEval | Is the generated answer relevant, faithful to the context and free of hallucination? |
 
-### 關鍵原則
+Benchmark cases cover single-fact lookups, cross-year and cross-department comparisons, misleading questions, and questions whose answer is not in the corpus.
 
-- `dataset_version` 要獨立存在，不要只依賴 Pinecone namespace 名稱。
-- 任何回答都應能追到 `dataset_version -> doc_version -> content_hash`。
-- 改 parser / chunking / embedding 時，版本號要變，讓你能對照新舊品質。
+### Planned CI
 
-### 是否用 DVC
+| Trigger | Checks |
+|---|---|
+| Pull request | Lint, type check, unit tests, retrieval smoke eval |
+| Merge to `main` | Build image, deploy to staging, full benchmark |
+| Nightly | Regression eval against the latest snapshot |
 
-如果你現在是一人開發、資料量中等、來源多為官方 PDF，我不建議一開始就把 DVC 當必需品。先用「manifest + object storage path + content hash」就夠，而且比較不會把流程綁死。
+## 10. Observability (Planned)
 
-等到出現以下情況再加 DVC 或 lakehouse 工具：
-
-- 多人協作頻繁重建資料集
-- 需要跨環境同步大型 artifacts
-- 需要正式追蹤多個資料快照與 lineage
-
-## 6. Pinecone 規劃
-
-不要把所有東西塞進單一 index。
-
-建議策略：
-
-- `index` 以 embedding model family / dimension + environment 為邊界
-- `namespace` 以 dataset 或 tenant 為邊界
-- metadata filter 用於 `department=csie|econ`, `doc_type=regulation|faq|announcement`
-
-一個可行範例：
-
-- `ntu-dual-guide-dev-openai-large`
-- `ntu-dual-guide-prod-openai-large`
-
-namespace 例子：
-
-- `main`
-- `2026-04-14-snapshot`
-
-這樣的好處是：
-
-- 換 embedding model 時不會互相污染
-- dev/staging/prod 易於隔離
-- 可以保留舊 snapshot 做 A/B 或回滾
-
-## 7. LlamaIndex 的角色
-
-可以用，但不要讓業務邏輯直接依附在 framework object graph。
-
-建議把 LlamaIndex 用在：
-
-- ingestion pipeline orchestration
-- Pinecone vector store adapter
-- retriever integration
-- response synthesizer
-
-不要直接把系統綁死在：
-
-- LlamaIndex 專屬文件 schema 當內部唯一資料模型
-- route handler 直接 new retriever / prompt / index object
-
-比較好的做法是你自己定義：
-
-- `DocumentRecord`
-- `ChunkRecord`
-- `DatasetSnapshot`
-- `AnswerResult`
-
-外層再把這些映射到 LlamaIndex。
-
-## 8. 後端設計
-
-推薦 `FastAPI + service layer`。
-
-### request path
-
-1. API 收到問題
-2. 做 query normalization
-3. 呼叫 `RAGService`
-4. `RAGService` 執行 retrieval
-5. 若需要則 rerank
-6. 組 prompt 並產生答案
-7. 回傳答案、citations、retrieval metadata
-8. 同步記錄 trace / feedback / latency
-
-### 後端應留下的 observability
-
-- query text
-- answer id
-- top-k chunk ids
-- dataset version
-- latency
-- token usage
-- user feedback
-
-後期如果要接 Langfuse / OpenTelemetry，也比較容易。
-
-## 9. 前端設計
-
-前端不需要花俏，但要有以下元素：
-
-- 對話區
-- 引用來源卡片
-- 回答信心或 fallback 提示
-- 問題建議 chips
-- feedback buttons
-
-若你想快速做 MVP，`Next.js` 很合適；若你只要極簡，也可以單純 React + Vite。這裡我傾向 `Next.js`，因為未來要接 auth、server actions、部署平台通常更順。
-
-## 10. Golden Bench 與 DeepEval
-
-Golden Bench 不應視為 ETL 附屬物，而應該是獨立的品質資產。
-
-建議把它切成兩類：
-
-- `seed set`: 人工撰寫的高價值題目，數量少但品質高
-- `synthetic set`: 由 LLM 從文件生成候選問答，再人工篩選
-
-### benchmark 題目分類
-
-- 規章判讀
-- 資格限制
-- 學分與課程要求
-- 申請流程與時間點
-- 例外條款
-- 跨文件整合問答
-- 拒答 / 資訊不足
-
-### CI 中怎麼跑
-
-- PR:
-  - lint / typecheck / unit tests
-  - 小型 eval smoke test
-- merge to main:
-  - build image
-  - deploy staging
-  - 跑完整 benchmark
-- nightly:
-  - 對最新 staging/prod snapshot 跑回歸 eval
-
-## 11. 建議 repo contract
-
-### 來源設定檔
-
-每個來源都應該是 config-driven，而不是散落在程式裡。
-
-至少包含：
-
-- `source_id`
-- `source_type`
-- `url`
-- `crawl_policy`
-- `parser`
-- `chunking_profile`
-- `tags`
-
-### chunking profile
-
-不要只有一種 chunk size。規章、FAQ、公告頁的切法應不同。
-
-- regulation: 依章節標題優先切
-- faq: Q/A 配對切
-- announcement: 依日期與主題切
-
-## 12. 建議開發順序
-
-1. 先定 schema，不先寫 UI。
-2. 先完成單一來源到 Pinecone 的最小 ETL。
-3. 再做 retrieval + citation answer。
-4. 接著做 Golden Bench。
-5. 最後補前端與部署自動化。
-
-## 13. 初始實作建議
-
-第一版不要急著做：
-
-- agent workflow
-- multi-hop planning
-- complicated memory
-- 多模型路由
-
-先把以下做到穩：
-
-- 文件版本化
-- citation quality
-- answer refusal
-- eval regression
-- 可重建 index
-
-## 14. 建議下一步
-
-如果你要我直接繼續往下做，最合理的順序是：
-
-1. 先建立 Python monorepo 與 `FastAPI`/`LlamaIndex` package skeleton。
-2. 補 `DocumentRecord`、`ChunkRecord`、`DatasetSnapshot` schema。
-3. 寫第一條 ETL pipeline stub。
-4. 補 GitHub Actions 與 DeepEval runner skeleton。
+Each request should record the query, answer ID, top-k chunk IDs, dataset version, latency, token usage and user feedback. Keeping these in one place makes it straightforward to add Langfuse or OpenTelemetry later.

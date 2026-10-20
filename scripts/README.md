@@ -1,16 +1,13 @@
 # Scripts
 
-腳本依用途分目錄：
+Scripts are grouped by purpose:
 
-- `scripts/fetch/`
-  - 抓原始資料到 `data/raw`
-- `scripts/etl/`
-  - `raw -> bronze -> silver -> gold`
-- `scripts/index/`
-  - `gold -> index records -> Pinecone`
-- `scripts/eval/`
-  - benchmark / golden bench
-- `scripts/rag/`
-  - 本機 CLI 問答與 retrieval 驗證
+| Directory | Purpose |
+|---|---|
+| `scripts/fetch/` | Download source documents into `data/raw/` |
+| `scripts/etl/` | Run the `raw → bronze → silver → gold` stages |
+| `scripts/index/` | Build index records from gold chunks and upsert them to Pinecone |
+| `scripts/eval/` | Run the retrieval bench, golden bench and DeepEval |
+| `scripts/rag/` | Ask questions and inspect retrieval from the command line |
 
-如果某支腳本會被 CI/CD 使用，優先讓它保持無狀態且可重複執行。
+Scripts that run in CI/CD should stay stateless and idempotent.

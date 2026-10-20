@@ -114,9 +114,9 @@ This keeps generally applicable FAQ or policy chunks visible while narrowing yea
 
 - Planner-generated subqueries are generally reasonable.
 - Scope filtering helped annual policy comparisons, for example:
-  - `111` vs `112` 經濟系雙主修申請資格
-  - `113` vs `114` 經濟系雙主修申請資格
-  - `113` 資工/經濟全年課程是否計入畢業學分
+  - Economics dual-degree eligibility, academic year `111` vs `112`
+  - Economics dual-degree eligibility, academic year `113` vs `114`
+  - Whether full-year CSIE/Economics courses in academic year `113` count toward graduation credits
 - Remaining misses are often not caused by bad year/department scopes. Common patterns:
   - Query asks for a course list, but final top-10 contains individual `required_course` chunks instead of `required_courses_list`.
   - Multi-fact questions need evidence diversity across subqueries; plain RRF can let one subquery dominate final top-k.
@@ -126,15 +126,15 @@ This keeps generally applicable FAQ or policy chunks visible while narrowing yea
 
 Changed cases compared with `llm-decomposed-dense10-sparse10-final10`:
 
-| Case | Type | Plain RRF | Diverse fusion | Question |
+| Case | Type | Plain RRF | Diverse fusion | Question (translated) |
 |---|---|---|---|---|
-| `single-fact-013` | single | miss / GR 0.00 | hit / GR 1.00 | 114學年度入學經濟系二年級有哪些必修？ |
-| `multi-fact-compare-001` | multi | miss / GR 0.50 | hit / GR 1.00 | 雙主修和輔系學分要求差在哪？ |
-| `multi-fact-compare-002` | multi | hit / GR 1.00 | miss / GR 0.75 | 111 學年度和 112 學年度經濟系雙主修申請資格規定有什麼差異？ |
-| `multi-fact-compare-003` | multi | hit / GR 1.00 | miss / GR 0.75 | 113 學年度和 114 學年度經濟系雙主修申請資格規定有什麼差異？ |
-| `multi-fact-compare-004` | multi | miss / GR 0.50 | miss / GR 0.00 | 114學年度資工系、114學年度經濟系有什麼共同必修？ |
-| `multi-fact-compare-005` | multi | miss / GR 0.00 | miss / GR 0.50 | 經濟系一年級必修在 111學年度和 112 學年有什麼差異？ |
-| `multi-fact-compare-011` | multi | miss / GR 0.75 | miss / GR 0.50 | 資工系 113 學年度所有年級必修總覽 |
+| `single-fact-013` | single | miss / GR 0.00 | hit / GR 1.00 | What are the second-year required courses for Economics students admitted in academic year 114? |
+| `multi-fact-compare-001` | multi | miss / GR 0.50 | hit / GR 1.00 | How do credit requirements differ between a dual degree and a minor? |
+| `multi-fact-compare-002` | multi | hit / GR 1.00 | miss / GR 0.75 | How do the Economics dual-degree eligibility rules differ between academic years 111 and 112? |
+| `multi-fact-compare-003` | multi | hit / GR 1.00 | miss / GR 0.75 | How do the Economics dual-degree eligibility rules differ between academic years 113 and 114? |
+| `multi-fact-compare-004` | multi | miss / GR 0.50 | miss / GR 0.00 | Which required courses do CSIE and Economics share in academic year 114? |
+| `multi-fact-compare-005` | multi | miss / GR 0.00 | miss / GR 0.50 | How do first-year Economics required courses differ between academic years 111 and 112? |
+| `multi-fact-compare-011` | multi | miss / GR 0.75 | miss / GR 0.50 | Overview of CSIE required courses for all years, academic year 113 |
 
 Interpretation:
 

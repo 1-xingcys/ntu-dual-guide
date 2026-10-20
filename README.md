@@ -15,8 +15,6 @@ Dual-degree rules are spread across department websites, PDF regulations, freshm
 
 This project grounds every answer in a **specific document, version and chunk**. When the evidence isn't there, it answers "I don't know." Every change to retrieval or prompts is measured against benchmarks.
 
-> The corpus and the chat interface are in Traditional Chinese.
-
 ## Highlights
 
 - **Hybrid retrieval** combining Pinecone dense search and local BM25 through weighted Reciprocal Rank Fusion. On a 53-case retrieval benchmark, it raised **Hit@10 from 0.585 to 0.717 (+22.6%)**, **MRR from 0.545 to 0.722 (+32.5%)** and **Group Recall@10 from 0.668 to 0.836**.
@@ -52,7 +50,7 @@ flowchart LR
     M -.-> J
 ```
 
-For more design detail, see [docs/architecture.md](docs/architecture.md) (in Chinese).
+For more design detail, see [docs/architecture.md](docs/architecture.md).
 
 ## Retrieval Experiments
 

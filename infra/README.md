@@ -1,10 +1,5 @@
 # Infra
 
-這裡放部署與環境相關資產，例如：
+Reserved for deployment and environment assets, such as Dockerfiles, docker-compose files, IaC and deployment manifests.
 
-- Dockerfiles
-- docker-compose
-- IaC
-- deployment manifests
-
-先把 infra 留成獨立邊界，之後換部署平台時不需要重構應用程式碼。
+Keeping infrastructure behind its own boundary means the deployment platform can change without refactoring application code.
